@@ -1,0 +1,6 @@
+framework module Pods_swift_score {
+  umbrella header "Pods-swift-score-umbrella.h"
+
+  export *
+  module * { export * }
+}
