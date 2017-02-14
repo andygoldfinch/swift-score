@@ -13,7 +13,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let parser = Parser()
+        
+        print(parser.getDocument(withName: "example-simple")?.root["part"]["measure"]["attributes"])
     }
 
     override func didReceiveMemoryWarning() {

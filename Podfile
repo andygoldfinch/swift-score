@@ -6,5 +6,6 @@ target 'swift-score' do
   use_frameworks!
 
   # Pods for swift-score
+  pod 'AEXML'
 
 end
