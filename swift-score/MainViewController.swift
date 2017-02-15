@@ -14,8 +14,12 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         let parser = Parser()
+        let builder = ScoreBuilder()
         
-        print(parser.getDocument(withName: "example-simple")?.root["part"]["measure"]["attributes"])
+        print("Building partwise score")
+        let score = builder.partwise(xml: parser.getDocument(withName: "example-simple")!)
+        
+        print("Score: \(score)")
     }
 
     override func didReceiveMemoryWarning() {
