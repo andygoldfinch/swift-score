@@ -157,7 +157,12 @@ class ScoreBuilder {
         pitch.octave = element["octave"].int
         pitch.alter = element["alter"].int
         
-        return pitch
+        if pitch.step == nil {
+            return nil
+        }
+        else {        
+            return pitch
+        }
     }
 }
 

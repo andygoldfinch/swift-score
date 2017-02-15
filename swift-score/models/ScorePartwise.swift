@@ -77,7 +77,7 @@ enum NoteType: String {
 struct Pitch {
     var step: PitchStep!
     var octave: Int!
-    var alter: Int!
+    var alter: Int?
 }
 
 enum PitchStep: String {
