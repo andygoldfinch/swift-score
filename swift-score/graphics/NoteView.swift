@@ -15,6 +15,9 @@ import UIKit
     var headCenter: CGPoint?
     
     override func draw(_ rect: CGRect) {
+        self.backgroundColor = UIColor.blue
+        super.backgroundColor = UIColor.red
+        
         let size = rect.height
         
         let headSize = size/3.3
