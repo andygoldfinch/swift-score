@@ -17,6 +17,7 @@
 		462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC61E533A9100323987 /* ScorePartwise.swift */; };
 		462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC91E533E9D00323987 /* ScoreBuilder.swift */; };
 		462FBACC1E546D4100323987 /* example-complex.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* example-complex.xml */; };
+		462FBAF11E56023800323987 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF01E56023800323987 /* NoteView.swift */; };
 		64EA86779FFC57440D87E0E4 /* Pods_swift_score.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A864E826769E06360C2E5A5 /* Pods_swift_score.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +32,10 @@
 		462FBABF1E520A6000323987 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "swift-score/MainViewController.swift"; sourceTree = SOURCE_ROOT; };
 		462FBAC11E52163E00323987 /* example-simple.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "example-simple.xml"; path = "swift-score/example-simple.xml"; sourceTree = SOURCE_ROOT; };
 		462FBAC31E5216B200323987 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		462FBAC61E533A9100323987 /* ScorePartwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScorePartwise.swift; path = models/ScorePartwise.swift; sourceTree = "<group>"; };
-		462FBAC91E533E9D00323987 /* ScoreBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreBuilder.swift; path = builders/ScoreBuilder.swift; sourceTree = "<group>"; };
+		462FBAC61E533A9100323987 /* ScorePartwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePartwise.swift; sourceTree = "<group>"; };
+		462FBAC91E533E9D00323987 /* ScoreBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBuilder.swift; sourceTree = "<group>"; };
 		462FBACB1E546D4100323987 /* example-complex.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-complex.xml"; sourceTree = "<group>"; };
+		462FBAF01E56023800323987 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		759995089424FAA29F482F85 /* Pods-swift-score.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.release.xcconfig"; sourceTree = "<group>"; };
 		DBD557EC705D108AE7F1C937 /* Pods-swift-score.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 		462FBAAC1E51FE2400323987 /* swift-score */ = {
 			isa = PBXGroup;
 			children = (
+				462FBAEF1E5601A900323987 /* graphics */,
 				462FBACB1E546D4100323987 /* example-complex.xml */,
 				462FBAC81E533E3B00323987 /* builders */,
 				462FBAC51E533A2800323987 /* models */,
@@ -99,7 +102,7 @@
 			children = (
 				462FBAC61E533A9100323987 /* ScorePartwise.swift */,
 			);
-			name = models;
+			path = models;
 			sourceTree = "<group>";
 		};
 		462FBAC81E533E3B00323987 /* builders */ = {
@@ -107,7 +110,15 @@
 			children = (
 				462FBAC91E533E9D00323987 /* ScoreBuilder.swift */,
 			);
-			name = builders;
+			path = builders;
+			sourceTree = "<group>";
+		};
+		462FBAEF1E5601A900323987 /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				462FBAF01E56023800323987 /* NoteView.swift */,
+			);
+			path = graphics;
 			sourceTree = "<group>";
 		};
 		D98003454D3EEEC3D79E418B /* Pods */ = {
@@ -247,6 +258,7 @@
 			files = (
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
+				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
 				462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */,
