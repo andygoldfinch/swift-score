@@ -75,6 +75,31 @@ class LineView: UIView {
                     }
                 }
                 
+                if note.dots > 0 {
+                    var x: CGFloat!
+                    if note.type == .n1 {
+                        x = noteSpacing - 0.6 * spacing
+                    }
+                    else {
+                        x = xCounter + 1.4 * spacing
+                    }
+                    
+                    let y: CGFloat!
+                    if note.pitch?.octave ?? 0 >= 5 {
+                        y = noteView.frame.minY + (2/3) * spacing
+                    }
+                    else {
+                        y = noteView.frame.maxY - (1/3) * spacing
+                    }
+                    
+                    for _ in 1...note.dots {
+                        drawDot(x: x, y: y)
+                        x = x + 0.5 * spacing
+                    }
+                    
+                    xCounter += CGFloat(note.dots) * 0.5 * spacing
+                }
+                
                 xCounter += noteSpacing
             }
             
@@ -83,6 +108,15 @@ class LineView: UIView {
             path.stroke()
             xCounter += spacing
         }
+    }
+    
+    
+    /// Draw a dot at the given location
+    func drawDot(x: CGFloat, y: CGFloat) {
+        let frame = CGRect(x: x, y: y, width: spacing/4, height: spacing/4)
+        let path = UIBezierPath(ovalIn: frame)
+        path.stroke()
+        path.fill()
     }
     
     
@@ -105,8 +139,9 @@ class LineView: UIView {
  
     /// Return the y position for the given note.
     func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
-        let stempUp: Bool = (note.pitch?.octave ?? 0) < 5 && note.type != .n1
-        let noteOffset: CGFloat =  stempUp ? 3.5 * spacing : 0.5 * spacing
+        let octave = note.pitch?.octave ?? 0
+        let stemUp: Bool = octave < 5 && note.type != .n1
+        let noteOffset: CGFloat =  stemUp ? 3.5 * spacing : 0.5 * spacing
         var stepY: CGFloat!
         var lines: LedgerLines? = nil
         

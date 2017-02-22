@@ -144,7 +144,8 @@ class ScoreBuilder {
         note.chord = element["chord"].count != 0 ? true : false
         note.pitch = makePitch(element: element["pitch"])
         note.duration = element["duration"].int
-        note.type = NoteType(rawValue: element["type"].string)
+        note.type = NoteType(rawValue: element["type"].string) ?? .invalid
+        note.dots = element["dot"].count
         
         return note
     }

@@ -273,7 +273,7 @@
                 <type>half</type>
             </note>
         </measure>
-        <measure number="4">
+        <measure number="6">
             <attributes>
                 <divisions>1</divisions>
                 <key>
@@ -295,6 +295,70 @@
                 </pitch>
                 <duration>1</duration>
                 <type>whole</type>
+            </note>
+        </measure>
+        <measure number="7">
+            <attributes>
+                <divisions>1</divisions>
+                <key>
+                    <fifths>0</fifths>
+                </key>
+                <time>
+                    <beats>4</beats>
+                    <beat-type>4</beat-type>
+                </time>
+                <clef>
+                    <sign>G</sign>
+                    <line>2</line>
+                </clef>
+            </attributes>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1</duration>
+                <type>quarter</type>
+                <dot/>
+            </note>
+            <note>
+                <pitch>
+                    <step>G</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1</duration>
+                <type>eighth</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>A</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1</duration>
+                <type>eighth</type>
+                <dot/>
+            </note>
+            <note>
+                <pitch>
+                    <step>A</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1</duration>
+                <type>16th</type>
+            </note>
+            <note>
+                <pitch>
+                    <step>F</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>1</duration>
+                <type>eighth</type>
+                <dot/>
+                <dot/>
+            </note>
+            <note>
+                <duration>1</duration>
+                <type>32nd</type>
             </note>
         </measure>
     </part>

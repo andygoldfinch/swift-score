@@ -55,6 +55,7 @@ struct Note {
     var pitch: Pitch?
     var duration: Int!
     var type: NoteType!
+    var dots: Int!
 }
 
 enum NoteType: String {
@@ -72,6 +73,7 @@ enum NoteType: String {
     case nx2 = "breve"
     case nx4 = "long"
     case nx8 = "maxima"
+    case invalid = "invalid"
 }
 
 struct Pitch {
