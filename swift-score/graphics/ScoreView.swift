@@ -9,16 +9,43 @@
 import UIKit
 
 class ScoreView: UIView {
+    var lines: [LineView] = []
 
     func drawScore(score: ScorePartwise?) {
-        let padding: CGFloat = 20.0
-        var rect = CGRect(x: self.frame.minX + padding - self.frame.width/20, y: self.frame.minY, width: self.frame.width/20, height: self.frame.height/10)
+        guard let score = score else {
+            return
+        }
         
-        for _ in 1...4 {
-            rect.origin.x += self.frame.width/20
-            let note = NoteView(frame: rect)
-            note.backgroundColor = UIColor.clear
-            self.addSubview(note)
+        for i in 0..<score.parts.count {
+            let part = score.parts[i]
+            let line = LineView(frame: CGRect.zero)
+            line.backgroundColor = UIColor.clear
+            
+            for measure in part.measures {
+                if !line.addMeasure(measure) {
+                    print("Measure not added to line: \(measure)")
+                }
+            }
+            
+            self.addSubview(line)
+            lines.append(line)
+        }
+        
+    }
+    
+    
+    /// Set the frame for every line once the frame has been set for self.
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Frame created here with manual offsets to compensate for a bug where some layout constraints of self are applied twice.
+        let frame = CGRect(x: self.frame.minX - 36, y: self.frame.minY - 28, width: self.frame.width, height: self.frame.height)
+        let numLines = lines.count
+        
+        for i in 0..<numLines {
+            let height: CGFloat = frame.height/CGFloat(numLines)
+            let y = frame.minY + CGFloat(i) * height
+            lines[i].frame = CGRect(x: frame.minX, y: y, width: frame.width, height: height)
         }
     }
 

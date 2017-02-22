@@ -10,6 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var scoreView: ScoreView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +22,9 @@ class MainViewController: UIViewController {
         let score = builder.partwise(xml: parser.getDocument(withName: "example-complex")!)
         
         label.text = scoreToText(score: score)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        scoreView.drawScore(score: score)
+        
+        print("score drawn")
     }
     
     func scoreToText(score: ScorePartwise) -> String {

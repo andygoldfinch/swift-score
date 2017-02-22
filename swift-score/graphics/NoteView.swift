@@ -12,20 +12,55 @@ import UIKit
     @IBInspectable var isFilled: Bool = true
     @IBInspectable var color: UIColor = UIColor.black
     
-    var headCenter: CGPoint?
+    static let widthRatio: CGFloat = 3.3
+    static let radiusRatio: CGFloat = 2.0
+    
+    var headCenter: CGPoint
+    var height: CGFloat
+    var stemUp: Bool
+    
+    var width: CGFloat {
+        return height / NoteView.widthRatio
+    }
+    
+    var headRadius: CGFloat {
+        return width / NoteView.radiusRatio
+    }
+    
+    init(headCenter: CGPoint, height: CGFloat, stemUp: Bool) {
+        self.headCenter = headCenter
+        self.height = height
+        self.stemUp = stemUp
+        
+        let width = height / NoteView.widthRatio
+        let radius = width / NoteView.radiusRatio
+        
+        let x: CGFloat = headCenter.x - radius
+        var y: CGFloat!
+        
+        if stemUp {
+            y = headCenter.y - height - radius
+        }
+        else {
+            y = headCenter.y - radius
+        }
+        
+        let frame =  CGRect(x: x, y: y, width: width, height: height)
+
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented in NoteView class")
+    }
     
     override func draw(_ rect: CGRect) {
-        self.backgroundColor = UIColor.blue
-        super.backgroundColor = UIColor.red
-        
-        let size = rect.height
-        
-        let headSize = size/3.3
+        let headSize = width
         let lineWidth = headSize / 8
+        
         let headRect = CGRect(x: rect.minX + (lineWidth / 2), y: (rect.maxY - headSize - (lineWidth / 2)), width: headSize, height: headSize)
         let headPath = UIBezierPath(ovalIn: headRect)
         headPath.lineWidth = lineWidth
-        headCenter = CGPoint(x: headRect.midX, y: headRect.midY)
         
         color.setStroke()
         headPath.stroke()

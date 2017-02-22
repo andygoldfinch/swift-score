@@ -19,7 +19,7 @@
 		462FBACC1E546D4100323987 /* example-complex.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* example-complex.xml */; };
 		462FBAF11E56023800323987 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF01E56023800323987 /* NoteView.swift */; };
 		462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF21E562FFD00323987 /* ScoreView.swift */; };
-		462FBAF51E56329F00323987 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF41E56329F00323987 /* ScoreViewController.swift */; };
+		462FBAF71E5B32FF00323987 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF61E5B32FF00323987 /* LineView.swift */; };
 		64EA86779FFC57440D87E0E4 /* Pods_swift_score.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A864E826769E06360C2E5A5 /* Pods_swift_score.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +39,7 @@
 		462FBACB1E546D4100323987 /* example-complex.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "example-complex.xml"; sourceTree = "<group>"; };
 		462FBAF01E56023800323987 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		462FBAF21E562FFD00323987 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		462FBAF41E56329F00323987 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		462FBAF61E5B32FF00323987 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		759995089424FAA29F482F85 /* Pods-swift-score.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.release.xcconfig"; sourceTree = "<group>"; };
 		DBD557EC705D108AE7F1C937 /* Pods-swift-score.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,7 +122,7 @@
 			children = (
 				462FBAF01E56023800323987 /* NoteView.swift */,
 				462FBAF21E562FFD00323987 /* ScoreView.swift */,
-				462FBAF41E56329F00323987 /* ScoreViewController.swift */,
+				462FBAF61E5B32FF00323987 /* LineView.swift */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -267,9 +267,9 @@
 				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */,
+				462FBAF71E5B32FF00323987 /* LineView.swift in Sources */,
 				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
 				462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */,
-				462FBAF51E56329F00323987 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
