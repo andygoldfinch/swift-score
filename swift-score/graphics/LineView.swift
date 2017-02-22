@@ -89,11 +89,12 @@ class LineView: UIView {
     /// Return an image representing the given note.
     func makeImageView(for note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
         let view = UIImageView()
-        view.frame = CGRect(x: x, y: y, width: 3*spacing, height: 4*spacing)
+        let height: CGFloat = note.type == .n1 ? spacing : 4 * spacing
+        view.frame = CGRect(x: x, y: y, width: 3*spacing, height: height)
         
         if let image = getImage(for: note) {
             let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
-            view.frame = CGRect(x: x, y: y, width: rect.width, height: 4*spacing)
+            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
             view.image = image
             view.contentMode = UIViewContentMode.scaleAspectFit
         }
@@ -104,7 +105,7 @@ class LineView: UIView {
  
     /// Return the y position for the given note.
     func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
-        let stempUp: Bool = (note.pitch?.octave ?? 0) < 5
+        let stempUp: Bool = (note.pitch?.octave ?? 0) < 5 && note.type != .n1
         let noteOffset: CGFloat =  stempUp ? 3.5 * spacing : 0.5 * spacing
         var stepY: CGFloat!
         var lines: LedgerLines? = nil
