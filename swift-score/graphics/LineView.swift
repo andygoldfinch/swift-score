@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 /// This class draws a single line of music, represented as a list of measures. 
 /// Measures should be added one at a time, and the add method will return false when there is no space left on this line.
 class LineView: UIView {
+    let spacing: CGFloat = 10.0
     private var measures: [Measure] = []
     
     /// Add a single measure to the LineView, returning false if there is not space to add the given measure.
@@ -26,11 +28,8 @@ class LineView: UIView {
             return
         }
         
-        print("LineView rect: minX = \(rect.minX), minY = \(rect.minY), maxX = \(rect.maxX), maxY = \(rect.maxY)")
-        
         self.backgroundColor = UIColor.clear
         
-        let spacing: CGFloat = 10.0
         let center = rect.midY
         let ys: [CGFloat] = [center - 2 * spacing,
                              center - spacing,
@@ -54,43 +53,60 @@ class LineView: UIView {
         var xCounter: CGFloat = 10.0
         
         for measure in measures {
+            let path = UIBezierPath()
+            
             for note in measure.notes {
-                
-                let y = ys[0]
-                /*let noteView = NoteView(headCenter: CGPoint(x: xCounter, y: y), height: 4 * spacing, stemUp: true)
-                noteView.backgroundColor = UIColor.clear
-                self.addSubview(noteView)*/
-                
-                let noteView = makeImageView(for: note, atX: xCounter, withSpacing: spacing, withYs: ys)
+                let position = getPosition(note: note, midY: ys[2])
+                let noteView = makeImageView(for: note, x: xCounter, y: position.y)
                 self.addSubview(noteView)
-                xCounter += 20.0
+                
+                if let ledger = position.lines {
+                    var y = ledger.above ? (ys[0] - spacing) : (ys[4] + spacing)
+                    let space = ledger.above ? -spacing : spacing
+                    let startX = xCounter - 0.4 * spacing
+                    let endX = xCounter + 1.4 * spacing
+                    
+                    for _ in 1...ledger.count {
+                        path.move(to: CGPoint(x: startX, y: y))
+                        path.addLine(to: CGPoint(x: endX, y: y))
+                        
+                        y += space
+                    }
+                }
+                
+                xCounter += 2 * spacing
             }
             
-            xCounter += 10.0
-            let barline = UIBezierPath()
-            barline.move(to: CGPoint(x: xCounter, y: ys[0]))
-            barline.addLine(to: CGPoint(x: xCounter, y: ys[4]))
-            barline.stroke()
-            xCounter += 10.0
+            xCounter += spacing
+            path.move(to: CGPoint(x: xCounter, y: ys[0]))
+            path.addLine(to: CGPoint(x: xCounter, y: ys[4]))
+            path.stroke()
+            xCounter += spacing
         }
     }
     
     
     /// Return an image representing the given note.
-    func makeImageView(for note: Note, atX x: CGFloat, withSpacing spacing: CGFloat, withYs ys: [CGFloat]) -> UIImageView {
+    func makeImageView(for note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
         let view = UIImageView()
-        let y = getY(note: note, midY: ys[2], spacing: spacing)
         view.frame = CGRect(x: x, y: y, width: 3*spacing, height: 4*spacing)
-        view.image = getImage(for: note)
-        view.contentMode = UIViewContentMode.scaleAspectFit
+        
+        if let image = getImage(for: note) {
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
+            view.frame = CGRect(x: x, y: y, width: rect.width, height: 4*spacing)
+            view.image = image
+            view.contentMode = UIViewContentMode.scaleAspectFit
+        }
+        
         return view
     }
     
  
     /// Return the y position for the given note.
-    func getY(note: Note, midY: CGFloat, spacing: CGFloat) -> CGFloat {
+    func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
         let noteOffset = 3.5 * spacing
         var stepY: CGFloat!
+        var lines: LedgerLines? = nil
         
         if let pitch = note.pitch {
             
@@ -118,10 +134,19 @@ class LineView: UIView {
             
             stepY = stepY - (CGFloat(octave) * octaveSpace)
             
-            return stepY
+            if stepY < (midY - (2.5 * spacing) - noteOffset) {
+                let numLines = Int((midY - stepY - noteOffset) / spacing) - 2
+                lines = LedgerLines(count: numLines, above: true)
+            }
+            else if stepY > (midY + (2.5 * spacing) - noteOffset) {
+                let numLines = Int((stepY - midY + noteOffset) / spacing) - 2
+                lines = LedgerLines(count: numLines, above: false)
+            }
+            
+            return (stepY, lines)
         }
         else {
-            return midY //TODO add offset for rest height
+            return (midY, nil) //TODO add offset for rest height
         }
     }
     
@@ -152,6 +177,14 @@ class LineView: UIView {
         else {
             return nil
         }
+    }
+}
+
+struct LedgerLines {
+    let count: Int
+    let above: Bool
+    var below: Bool {
+        return !above
     }
 }
 

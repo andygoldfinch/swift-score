@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
         let builder = ScoreBuilder()
         
         print("Building partwise score")
-        let score = builder.partwise(xml: parser.getDocument(withName: "example-complex")!)
+        let score = builder.partwise(xml: parser.getDocument(withName: "example-custom")!)
         
         label.text = scoreToText(score: score)
         scoreView.drawScore(score: score)
