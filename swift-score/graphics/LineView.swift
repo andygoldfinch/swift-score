@@ -58,6 +58,7 @@ class LineView: UIView {
             for note in measure.notes {
                 let position = getPosition(note: note, midY: ys[2])
                 let noteView = makeImageView(for: note, x: xCounter, y: position.y)
+                let noteSpacing = noteView.frame.width + spacing
                 self.addSubview(noteView)
                 
                 if let ledger = position.lines {
@@ -74,10 +75,9 @@ class LineView: UIView {
                     }
                 }
                 
-                xCounter += 2 * spacing
+                xCounter += noteSpacing
             }
             
-            xCounter += spacing
             path.move(to: CGPoint(x: xCounter, y: ys[0]))
             path.addLine(to: CGPoint(x: xCounter, y: ys[4]))
             path.stroke()
@@ -104,7 +104,8 @@ class LineView: UIView {
  
     /// Return the y position for the given note.
     func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
-        let noteOffset = 3.5 * spacing
+        let stempUp: Bool = (note.pitch?.octave ?? 0) < 5
+        let noteOffset: CGFloat =  stempUp ? 3.5 * spacing : 0.5 * spacing
         var stepY: CGFloat!
         var lines: LedgerLines? = nil
         
@@ -170,7 +171,12 @@ class LineView: UIView {
                 name = "crotchet"
             }
             
-            name.append("-up") //TODO choose direction based on pitch
+            if note.pitch?.octave ?? 0 >= 5 {
+                name.append("-down") //TODO choose direction based on pitch
+            }
+            else {
+                name.append("-up")
+            }
             
             return UIImage(named: name)
         }
