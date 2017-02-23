@@ -39,6 +39,13 @@ class LineView: UIView {
         
         for measure in measures {
             for note in measure.notes {
+                if needsAccidental(note: note, measure: measure) {
+                    // get position
+                    // get view
+                    // add spacing to xCounter
+                    // self.addSubview(accidentalView)
+                }
+                
                 let position = getPosition(note: note, midY: midY)
                 let noteView = makeImageView(note: note, x: xCounter, y: position.y)
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
@@ -252,6 +259,27 @@ class LineView: UIView {
             return nil
         }
     }
+    
+    func needsAccidental(note: Note, measure: Measure) -> Bool {
+        guard let pitch = note.pitch else {
+            return false
+        }
+        
+        guard let alter = pitch.alter else {
+            return false
+        }
+        
+        if alter > 1 || alter < -1 {
+            return true
+        }
+        
+        let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
+        let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
+
+        //TODO make this return clever (if alter is different to key or measure contains note with same pitch and different alter)
+        return true
+    }
+
 }
 
 struct LedgerLines {
