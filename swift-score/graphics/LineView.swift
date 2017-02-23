@@ -85,7 +85,10 @@ class LineView: UIView {
                     }
                     
                     let y: CGFloat!
-                    if note.pitch?.octave ?? 0 >= 5 {
+                    if note.pitch == nil {
+                        y = ys[1] + (1/3) * spacing
+                    }
+                    else if note.pitch!.octave >= 5 {
                         y = noteView.frame.minY + (2/3) * spacing
                     }
                     else {
@@ -123,7 +126,8 @@ class LineView: UIView {
     /// Return an image representing the given note.
     func makeImageView(for note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
         let view = UIImageView()
-        let height: CGFloat = note.type == .n1 ? spacing : 4 * spacing
+        let isSemibreve: Bool = note.type == .n1 && !note.isRest
+        let height: CGFloat = isSemibreve ? spacing : 4 * spacing
         view.frame = CGRect(x: x, y: y, width: 3*spacing, height: height)
         
         if let image = getImage(for: note) {
@@ -183,7 +187,7 @@ class LineView: UIView {
             return (stepY, lines)
         }
         else {
-            return (midY, nil) //TODO add offset for rest height
+            return (midY - 2 * spacing, nil) //TODO add offset for rest height
         }
     }
     
@@ -202,16 +206,21 @@ class LineView: UIView {
                 name = "minim"
             case .n1:
                 name = "semibreve"
-                return UIImage(named: name)
             default:
                 name = "crotchet"
             }
             
-            if note.pitch?.octave ?? 0 >= 5 {
-                name.append("-down") //TODO choose direction based on pitch
+            
+            if let pitch = note.pitch {
+                if pitch.octave >= 5 {
+                    name.append("-down")
+                }
+                else {
+                    name.append("-up")
+                }
             }
             else {
-                name.append("-up")
+                name.append("-rest")
             }
             
             return UIImage(named: name)

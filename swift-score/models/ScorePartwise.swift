@@ -56,6 +56,9 @@ struct Note {
     var duration: Int!
     var type: NoteType!
     var dots: Int!
+    var isRest: Bool {
+        return pitch == nil
+    }
 }
 
 enum NoteType: String {
