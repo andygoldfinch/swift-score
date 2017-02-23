@@ -29,92 +29,87 @@ class LineView: UIView {
         }
         
         self.backgroundColor = UIColor.clear
-        
-        let center = rect.midY
-        let ys: [CGFloat] = [center - 2 * spacing,
-                             center - spacing,
-                             center,
-                             center + spacing,
-                             center + 2 * spacing]
-        
-        let startX = rect.minX
-        let endX = rect.maxX
-        
-        let linePath = UIBezierPath()
-        
-        for i in 0...4 {
-            linePath.move(to: CGPoint(x: startX, y: ys[i]))
-            linePath.addLine(to: CGPoint(x: endX, y: ys[i]))
-        }
-        
         UIColor.black.setStroke()
-        linePath.stroke()
         
-        var xCounter: CGFloat = 10.0
+        let midY = rect.midY
+        
+        drawStaff(midY: midY, startX: rect.minX, endX: rect.maxX)
+        
+        var xCounter: CGFloat = spacing
         
         for measure in measures {
-            let path = UIBezierPath()
-            
             for note in measure.notes {
-                let position = getPosition(note: note, midY: ys[2])
-                let noteView = makeImageView(for: note, x: xCounter, y: position.y)
-                let noteSpacing = noteView.frame.width + spacing
+                let position = getPosition(note: note, midY: midY)
+                let noteView = makeImageView(note: note, x: xCounter, y: position.y)
+                let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
-                if let ledger = position.lines {
-                    var y = ledger.above ? (ys[0] - spacing) : (ys[4] + spacing)
-                    let space = ledger.above ? -spacing : spacing
-                    let startX = xCounter - 0.4 * spacing
-                    let endX = xCounter + 1.4 * spacing
-                    
-                    for _ in 1...ledger.count {
-                        path.move(to: CGPoint(x: startX, y: y))
-                        path.addLine(to: CGPoint(x: endX, y: y))
-                        
-                        y += space
-                    }
-                }
-                
-                if note.dots > 0 {
-                    var x: CGFloat!
-                    if note.type == .n1 {
-                        x = noteSpacing - 0.6 * spacing
-                    }
-                    else {
-                        x = xCounter + 1.4 * spacing
-                    }
-                    
-                    let y: CGFloat!
-                    if note.pitch == nil {
-                        y = ys[1] + (1/3) * spacing
-                    }
-                    else if note.pitch!.octave >= 5 {
-                        y = noteView.frame.minY + (2/3) * spacing
-                    }
-                    else {
-                        y = noteView.frame.maxY - (1/3) * spacing
-                    }
-                    
-                    for _ in 1...note.dots {
-                        drawDot(x: x, y: y)
-                        x = x + 0.5 * spacing
-                    }
-                    
-                    xCounter += CGFloat(note.dots) * 0.5 * spacing
-                }
-                
+                drawLedgerLines(lines: position.lines, x: xCounter, midY: midY)
+                drawDots(note: note, noteFrame: noteView.frame)
+ 
                 xCounter += noteSpacing
             }
+ 
+            drawBarline(x: xCounter, midY: midY)
             
-            path.move(to: CGPoint(x: xCounter, y: ys[0]))
-            path.addLine(to: CGPoint(x: xCounter, y: ys[4]))
-            path.stroke()
             xCounter += spacing
+        }
+    }
+ 
+    
+    /// Draw the a representation of the given ledger lines object.
+    func drawLedgerLines(lines: LedgerLines?, x: CGFloat, midY: CGFloat) {
+        if let ledger = lines {
+            var y = ledger.above ? (midY -  3 * spacing) : (midY + 3 * spacing)
+            let space = ledger.above ? -spacing : spacing
+            let startX = x - 0.4 * spacing
+            let endX = x + 1.4 * spacing
+            
+            let path = UIBezierPath()
+            
+            for _ in 1...ledger.count {
+                path.move(to: CGPoint(x: startX, y: y))
+                path.addLine(to: CGPoint(x: endX, y: y))
+                
+                y += space
+            }
+            
+            path.stroke()
         }
     }
     
     
-    /// Draw a dot at the given location
+    /// Draw the dots for the given note, relative to the given note frame.
+    func drawDots(note: Note, noteFrame: CGRect) {
+        if note.dots > 0 {
+            var x: CGFloat!
+            if note.type == .n1 {
+                x = noteFrame.maxX + 0.4 * spacing
+            }
+            else {
+                x = noteFrame.minX + 1.4 * spacing
+            }
+            
+            let y: CGFloat!
+            if note.pitch == nil {
+                y = noteFrame.minY + (4/3) * spacing
+            }
+            else if note.pitch!.octave >= 5 {
+                y = noteFrame.minY + (2/3) * spacing
+            }
+            else {
+                y = noteFrame.maxY - (1/3) * spacing
+            }
+            
+            for _ in 1...note.dots {
+                drawDot(x: x, y: y)
+                x = x + 0.5 * spacing
+            }
+        }
+    }
+    
+    
+    /// Draw a dot at the given location.
     func drawDot(x: CGFloat, y: CGFloat) {
         let frame = CGRect(x: x, y: y, width: spacing/4, height: spacing/4)
         let path = UIBezierPath(ovalIn: frame)
@@ -123,8 +118,36 @@ class LineView: UIView {
     }
     
     
+    /// Draw a barline in the given place.
+    func drawBarline(x: CGFloat, midY: CGFloat) {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: x, y: midY - 2 * spacing))
+        path.addLine(to: CGPoint(x: x, y: midY + 2 * spacing))
+        path.stroke()
+    }
+    
+    
+    /// Draw the staff
+    func drawStaff(midY: CGFloat, startX: CGFloat, endX: CGFloat) {
+        let ys: [CGFloat] = [midY - 2 * spacing,
+                             midY - spacing,
+                             midY,
+                             midY + spacing,
+                             midY + 2 * spacing]
+        
+        let linePath = UIBezierPath()
+        
+        for y in ys {
+            linePath.move(to: CGPoint(x: startX, y: y))
+            linePath.addLine(to: CGPoint(x: endX, y: y))
+        }
+        
+        linePath.stroke()
+    }
+    
+    
     /// Return an image representing the given note.
-    func makeImageView(for note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
+    func makeImageView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
         let view = UIImageView()
         let isSemibreve: Bool = note.type == .n1 && !note.isRest
         let height: CGFloat = isSemibreve ? spacing : 4 * spacing
