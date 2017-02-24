@@ -40,10 +40,10 @@ class LineView: UIView {
         for measure in measures {
             for note in measure.notes {
                 if needsAccidental(note: note, measure: measure) {
-                    // get position
-                    // get view
-                    // add spacing to xCounter
-                    // self.addSubview(accidentalView)
+                    let y = getAccidentalPosition(note: note, midY: midY)
+                    let accidentalView = makeAccidentalImageView(note: note, x: xCounter, y: y)
+                    xCounter += accidentalView.frame.width + (1/5) * spacing
+                    self.addSubview(accidentalView)
                 }
                 
                 let position = getPosition(note: note, midY: midY)
@@ -170,6 +170,38 @@ class LineView: UIView {
         return view
     }
     
+    
+    /// Return an image view representing the accidental for the given note.
+    func makeAccidentalImageView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
+        guard let alter = note.pitch?.alter else {
+            return UIImageView()
+        }
+        
+        let view = UIImageView()
+        let height: CGFloat!
+        
+        if alter <  0 {
+            height = 2.4 * spacing
+        }
+        else if alter < 2 {
+            height = 2.6 * spacing
+        }
+        else {
+            height = spacing
+        }
+        
+        view.frame = CGRect(x: x, y: y, width: 2 * spacing, height: height)
+        
+        if let image = getAccidentalImage(alter: alter) {
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
+            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
+            view.image = image
+            view.contentMode = UIViewContentMode.scaleAspectFit
+        }
+        
+        return view
+    }
+    
  
     /// Return the y position for the given note.
     func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
@@ -221,6 +253,57 @@ class LineView: UIView {
         }
     }
     
+    
+    /// Return the y position for the accidental for the given note.
+    func getAccidentalPosition(note: Note, midY: CGFloat) -> CGFloat {
+        guard let pitch = note.pitch else {
+            return midY
+        }
+        guard let alter = pitch.alter else {
+            return midY
+        }
+        
+        let offset: CGFloat!
+        var stepY: CGFloat!
+        
+        if alter >= 2 {
+            offset = 0.5 * spacing
+        }
+        else if alter < 0 {
+            offset = 1.7 * spacing
+        }
+        else {
+            offset = 1.3 * spacing
+        }
+        
+        let step = pitch.step!
+        
+        switch step {
+        case .c:
+            stepY = midY + (3 * spacing) - offset
+        case .d:
+            stepY = midY + (2.5 * spacing) - offset
+        case .e:
+            stepY = midY + (2 * spacing) - offset
+        case .f:
+            stepY = midY + (1.5 * spacing) - offset
+        case .g:
+            stepY = midY + (1 * spacing) - offset
+        case .a:
+            stepY = midY + (0.5 * spacing) - offset
+        default:
+            stepY = midY - offset
+        }
+        
+        let octaveSpace = 3.5 * spacing
+        let octave = pitch.octave - 4
+        
+        stepY = stepY - (CGFloat(octave) * octaveSpace)
+        
+        return stepY
+    }
+    
+    
     /// Return an image for the given note
     func getImage(for note: Note) -> UIImage? {
         var name: String!
@@ -260,6 +343,24 @@ class LineView: UIView {
         }
     }
     
+    
+    /// Return an image for the accidental of the given note.
+    func getAccidentalImage(alter: Int) -> UIImage? {
+        switch alter {
+        case -2:
+            return UIImage(named: "flat-double")
+        case -1:
+            return UIImage(named: "flat")
+        case 1:
+            return UIImage(named: "sharp")
+        case 2:
+            return UIImage(named: "sharp-double")
+        default:
+            return UIImage(named: "natural")
+        }
+    }
+    
+    /// Does the given note need an accidental?
     func needsAccidental(note: Note, measure: Measure) -> Bool {
         guard let pitch = note.pitch else {
             return false
@@ -269,14 +370,38 @@ class LineView: UIView {
             return false
         }
         
+        
+        
+        let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
+        let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
+        let fifths: Int = measure.attributes.key.fifths
+        var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<fifths]
+        if fifths == 0 {
+            key = ArraySlice<PitchStep>()
+        }
+
+
+        //TODO make this return clever (if alter is different to key or measure contains note with same pitch and different alter)
+        return alterDifferentToKey(note: note, key: Array(key), isSharp: alter > 0)
+    }
+    
+    func alterDifferentToKey(note: Note, key: [PitchStep], isSharp: Bool) -> Bool {
+        guard let alter = note.pitch?.alter else {
+            return false
+        }
+        
         if alter > 1 || alter < -1 {
             return true
         }
         
-        let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
-        let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
-
-        //TODO make this return clever (if alter is different to key or measure contains note with same pitch and different alter)
+        if alter > 0 && isSharp && key.contains(note.pitch!.step) {
+            return false
+        }
+        
+        if alter < 0 && !isSharp && key.contains(note.pitch!.step) {
+            return false
+        }
+        
         return true
     }
 
