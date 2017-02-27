@@ -360,49 +360,57 @@ class LineView: UIView {
         }
     }
     
+    
     /// Does the given note need an accidental?
     func needsAccidental(note: Note, measure: Measure) -> Bool {
         guard let pitch = note.pitch else {
             return false
         }
         
-        guard let alter = pitch.alter else {
-            return false
-        }
-        
-        
-        
         let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
         let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
+        
         let fifths: Int = measure.attributes.key.fifths
         var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<fifths]
         if fifths == 0 {
             key = ArraySlice<PitchStep>()
         }
+        
+        let alterNotInKey = !alterInKey(note: note, key: Array(key), isSharp: fifths > 0)
+        let measureHasDifferentAlters = hasDifferentAlters(pitch: pitch, measure: measure)
 
-
-        //TODO make this return clever (if alter is different to key or measure contains note with same pitch and different alter)
-        return alterDifferentToKey(note: note, key: Array(key), isSharp: alter > 0)
+        return alterNotInKey || measureHasDifferentAlters
     }
     
-    func alterDifferentToKey(note: Note, key: [PitchStep], isSharp: Bool) -> Bool {
+    
+    /// Check if the alter of a given note is in the key signature.
+    func alterInKey(note: Note, key: [PitchStep], isSharp: Bool) -> Bool {
         guard let alter = note.pitch?.alter else {
             return false
         }
         
-        if alter > 1 || alter < -1 {
-            return true
-        }
-        
-        if alter > 0 && isSharp && key.contains(note.pitch!.step) {
+        switch alter {
+        case 1:
+            return isSharp && key.contains(note.pitch!.step)
+        case 0:
+            return !key.contains(note.pitch!.step)
+        case -1:
+            return !isSharp && key.contains(note.pitch!.step)
+        default:
             return false
         }
-        
-        if alter < 0 && !isSharp && key.contains(note.pitch!.step) {
-            return false
+    }
+    
+    
+    /// Check if there are any notes in the measure with the same pitch and a different alter
+    func hasDifferentAlters(pitch: Pitch, measure: Measure) -> Bool {
+        for note in measure.notes {
+            if note.pitch?.step == pitch.step && note.pitch?.octave == pitch.octave && note.pitch?.alter != pitch.alter {
+                return true
+            }
         }
         
-        return true
+        return false
     }
 
 }
