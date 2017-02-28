@@ -16,11 +16,13 @@
 		462FBAC41E5216B200323987 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC31E5216B200323987 /* Parser.swift */; };
 		462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC61E533A9100323987 /* ScorePartwise.swift */; };
 		462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC91E533E9D00323987 /* ScoreBuilder.swift */; };
-		462FBACC1E546D4100323987 /* complex.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* complex.xml */; };
+		462FBACC1E546D4100323987 /* complex-1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* complex-1.xml */; };
 		462FBAF11E56023800323987 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF01E56023800323987 /* NoteView.swift */; };
 		462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF21E562FFD00323987 /* ScoreView.swift */; };
 		462FBAF71E5B32FF00323987 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF61E5B32FF00323987 /* LineView.swift */; };
 		462FBAF91E5DB97500323987 /* custom.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAF81E5DB97500323987 /* custom.xml */; };
+		469927321E658B760013B200 /* KeyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927311E658B760013B200 /* KeyBuilder.swift */; };
+		469927341E65BED90013B200 /* complex-2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 469927331E65BED90013B200 /* complex-2.xml */; };
 		64EA86779FFC57440D87E0E4 /* Pods_swift_score.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A864E826769E06360C2E5A5 /* Pods_swift_score.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,11 +39,13 @@
 		462FBAC31E5216B200323987 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		462FBAC61E533A9100323987 /* ScorePartwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePartwise.swift; sourceTree = "<group>"; };
 		462FBAC91E533E9D00323987 /* ScoreBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBuilder.swift; sourceTree = "<group>"; };
-		462FBACB1E546D4100323987 /* complex.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = complex.xml; sourceTree = "<group>"; };
+		462FBACB1E546D4100323987 /* complex-1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-1.xml"; sourceTree = "<group>"; };
 		462FBAF01E56023800323987 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		462FBAF21E562FFD00323987 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		462FBAF61E5B32FF00323987 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		462FBAF81E5DB97500323987 /* custom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = custom.xml; sourceTree = "<group>"; };
+		469927311E658B760013B200 /* KeyBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyBuilder.swift; path = "swift-score/builders/KeyBuilder.swift"; sourceTree = SOURCE_ROOT; };
+		469927331E65BED90013B200 /* complex-2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-2.xml"; sourceTree = "<group>"; };
 		759995089424FAA29F482F85 /* Pods-swift-score.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.release.xcconfig"; sourceTree = "<group>"; };
 		DBD557EC705D108AE7F1C937 /* Pods-swift-score.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +117,7 @@
 		462FBAC81E533E3B00323987 /* builders */ = {
 			isa = PBXGroup;
 			children = (
+				469927311E658B760013B200 /* KeyBuilder.swift */,
 				462FBAC91E533E9D00323987 /* ScoreBuilder.swift */,
 			);
 			path = builders;
@@ -132,7 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				462FBAF81E5DB97500323987 /* custom.xml */,
-				462FBACB1E546D4100323987 /* complex.xml */,
+				462FBACB1E546D4100323987 /* complex-1.xml */,
+				469927331E65BED90013B200 /* complex-2.xml */,
 				462FBAC11E52163E00323987 /* simple.xml */,
 			);
 			path = examples;
@@ -210,11 +216,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				462FBACC1E546D4100323987 /* complex.xml in Resources */,
+				462FBACC1E546D4100323987 /* complex-1.xml in Resources */,
 				462FBAC21E52163E00323987 /* simple.xml in Resources */,
 				462FBAB81E51FE2400323987 /* LaunchScreen.storyboard in Resources */,
 				462FBAB51E51FE2400323987 /* Assets.xcassets in Resources */,
 				462FBAB31E51FE2400323987 /* Main.storyboard in Resources */,
+				469927341E65BED90013B200 /* complex-2.xml in Resources */,
 				462FBAF91E5DB97500323987 /* custom.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +286,7 @@
 				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */,
+				469927321E658B760013B200 /* KeyBuilder.swift in Sources */,
 				462FBAF71E5B32FF00323987 /* LineView.swift in Sources */,
 				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
 				462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */,

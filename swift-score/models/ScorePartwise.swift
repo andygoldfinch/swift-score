@@ -25,15 +25,15 @@ struct Part {
 
 struct Measure {
     var number: String!
-    var attributes: Attributes!
+    var attributes: Attributes?
     var notes: [Note]!
 }
 
 struct Attributes {
-    var divisions: Int!
-    var key: Key!
-    var time: Time!
-    var clef: Clef!
+    var divisions: Int?
+    var key: Key?
+    var time: Time?
+    var clef: Clef?
 }
 
 struct Key {

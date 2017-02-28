@@ -15,6 +15,9 @@ class LineView: UIView {
     let spacing: CGFloat = 10.0
     private var measures: [Measure] = []
     
+    private let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
+    private let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
+    
     /// Add a single measure to the LineView, returning false if there is not space to add the given measure.
     func addMeasure(_ measure: Measure) -> Bool {
         measures.append(measure)
@@ -36,8 +39,30 @@ class LineView: UIView {
         drawStaff(midY: midY, startX: rect.minX, endX: rect.maxX)
         
         var xCounter: CGFloat = spacing
+        var previousMeasure: Measure?
         
+        // Main rendering loop
         for measure in measures {
+            // Key signatures
+            let fifths = measure.attributes.key.fifths
+            let previousFifths = previousMeasure?.attributes.key.fifths
+            if previousMeasure == nil ||  previousFifths != fifths {
+                var keyNotes = KeyBuilder().makeKey(fifths: measure.attributes.key.fifths)
+                if previousMeasure != nil && ((previousFifths! < 0 && previousFifths! < fifths!) || (previousFifths! > 0 && previousFifths! > fifths!)) {
+                    keyNotes = KeyBuilder().makeNaturals(oldFifths: previousFifths!, newFifths: fifths!) + keyNotes
+                }
+                
+                for note in keyNotes {
+                    let y = getAccidentalPosition(note: note, midY: midY)
+                    let accidentalView = makeAccidentalImageView(note: note, x: xCounter, y: y)
+                    xCounter += accidentalView.frame.width + 0.2 * spacing
+                    self.addSubview(accidentalView)
+                }
+                
+                xCounter += 0.2 * spacing
+            }
+            
+            // Note rendering loop
             for note in measure.notes {
                 if needsAccidental(note: note, measure: measure) {
                     let y = getAccidentalPosition(note: note, midY: midY)
@@ -51,7 +76,7 @@ class LineView: UIView {
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
-                drawLedgerLines(lines: position.lines, x: xCounter, midY: midY)
+                drawLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
                 drawDots(note: note, noteFrame: noteView.frame)
  
                 xCounter += noteSpacing
@@ -60,17 +85,19 @@ class LineView: UIView {
             drawBarline(x: xCounter, midY: midY)
             
             xCounter += spacing
+            previousMeasure = measure
         }
     }
  
     
     /// Draw the a representation of the given ledger lines object.
-    func drawLedgerLines(lines: LedgerLines?, x: CGFloat, midY: CGFloat) {
+    func drawLedgerLines(lines: LedgerLines?, type: NoteType, x: CGFloat, midY: CGFloat) {
         if let ledger = lines {
             var y = ledger.above ? (midY -  3 * spacing) : (midY + 3 * spacing)
             let space = ledger.above ? -spacing : spacing
             let startX = x - 0.4 * spacing
-            let endX = x + 1.4 * spacing
+            let length: CGFloat = type == .n1 ? 2.0 : 1.4
+            let endX = x + length * spacing
             
             let path = UIBezierPath()
             
@@ -367,11 +394,8 @@ class LineView: UIView {
             return false
         }
         
-        let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
-        let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
-        
         let fifths: Int = measure.attributes.key.fifths
-        var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<fifths]
+        var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<(-fifths)]
         if fifths == 0 {
             key = ArraySlice<PitchStep>()
         }
