@@ -40,16 +40,23 @@ class LineView: UIView {
         
         var xCounter: CGFloat = spacing
         var previousMeasure: Measure?
+        var currentAttributes: Attributes = Attributes()
+        var previousAttributes: Attributes = Attributes()
         
         // Main rendering loop
         for measure in measures {
+            previousAttributes = currentAttributes
+            currentAttributes = update(currentAttributes: currentAttributes, newAttributes: measure.attributes)
+            previousAttributes = previousAttributes == Attributes() ? currentAttributes : previousAttributes
+            
             // Key signatures
-            let fifths = measure.attributes.key.fifths
-            let previousFifths = previousMeasure?.attributes.key.fifths
-            if previousMeasure == nil ||  previousFifths != fifths {
-                var keyNotes = KeyBuilder().makeKey(fifths: measure.attributes.key.fifths)
-                if previousMeasure != nil && ((previousFifths! < 0 && previousFifths! < fifths!) || (previousFifths! > 0 && previousFifths! > fifths!)) {
-                    keyNotes = KeyBuilder().makeNaturals(oldFifths: previousFifths!, newFifths: fifths!) + keyNotes
+            let fifths = currentAttributes.key?.fifths
+            let previousFifths = previousAttributes.key?.fifths
+            
+            if let fifths = fifths, previousMeasure == nil || previousFifths != fifths {
+                var keyNotes = KeyBuilder().makeKey(fifths: fifths)
+                if previousMeasure != nil && ((previousFifths! < 0 && previousFifths! < fifths) || (previousFifths! > 0 && previousFifths! > fifths)) {
+                    keyNotes = KeyBuilder().makeNaturals(oldFifths: previousFifths!, newFifths: fifths) + keyNotes
                 }
                 
                 for note in keyNotes {
@@ -64,7 +71,7 @@ class LineView: UIView {
             
             // Note rendering loop
             for note in measure.notes {
-                if needsAccidental(note: note, measure: measure) {
+                if needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
                     let y = getAccidentalPosition(note: note, midY: midY)
                     let accidentalView = makeAccidentalImageView(note: note, x: xCounter, y: y)
                     xCounter += accidentalView.frame.width + (1/5) * spacing
@@ -389,12 +396,12 @@ class LineView: UIView {
     
     
     /// Does the given note need an accidental?
-    func needsAccidental(note: Note, measure: Measure) -> Bool {
+    func needsAccidental(note: Note, measure: Measure, attributes: Attributes) -> Bool {
         guard let pitch = note.pitch else {
             return false
         }
         
-        let fifths: Int = measure.attributes.key.fifths
+        let fifths: Int = attributes.key?.fifths ?? 0
         var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<(-fifths)]
         if fifths == 0 {
             key = ArraySlice<PitchStep>()
@@ -435,6 +442,34 @@ class LineView: UIView {
         }
         
         return false
+    }
+    
+    
+    /// Return an updated attributes object.
+    func update(currentAttributes: Attributes, newAttributes: Attributes?) -> Attributes {
+        guard let new = newAttributes else {
+            return currentAttributes
+        }
+        
+        var current = currentAttributes
+        
+        if new.clef != nil && new.clef != current.clef {
+            current.clef = new.clef
+        }
+        
+        if new.divisions != nil && new.divisions != current.divisions {
+            current.divisions = new.divisions
+        }
+        
+        if new.key != nil && new.key != current.key {
+            current.key = new.key
+        }
+        
+        if new.time != nil && new.time != current.time {
+            current.time = new.time
+        }
+        
+        return current
     }
 
 }

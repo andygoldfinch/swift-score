@@ -76,6 +76,10 @@ class ScoreBuilder {
     
     /// Take a single <measure> element and return a Measure
     private func makeMeasure(element: AEXMLElement) -> Measure? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var measure = Measure()
         
         measure.number = element.attributes["number"]
@@ -99,6 +103,10 @@ class ScoreBuilder {
     
     /// Take a single <attributes> element and return an Attributes object
     private func makeAttributes(element: AEXMLElement) -> Attributes? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var attributes = Attributes()
         attributes.divisions = element["divisions"].int
         attributes.key = makeKey(element: element["key"])
@@ -111,6 +119,10 @@ class ScoreBuilder {
     
     /// Take a single <key> element and return a Key
     private func makeKey(element: AEXMLElement) -> Key? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var key = Key()
         key.fifths = element["fifths"].int
         
@@ -120,6 +132,10 @@ class ScoreBuilder {
     
     /// Take a single <time> element and return a Time
     private func makeTime(element: AEXMLElement) -> Time? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var time = Time()
         time.beats = element["beats"].int
         time.beatType = element["beat-type"].int
@@ -129,7 +145,11 @@ class ScoreBuilder {
     
     
     /// Take a single <clef> element and return a Clef
-    private func makeClef(element: AEXMLElement) -> Clef {
+    private func makeClef(element: AEXMLElement) -> Clef? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var clef = Clef()
         clef.sign = element["sign"].string
         clef.line = element["line"].int
@@ -140,6 +160,10 @@ class ScoreBuilder {
     
     /// Take a single <note> element and return a Note
     private func makeNote(element: AEXMLElement) -> Note? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var note = Note()
         note.chord = element["chord"].count != 0 ? true : false
         note.pitch = makePitch(element: element["pitch"])
@@ -153,6 +177,10 @@ class ScoreBuilder {
     
     /// Take a single <pitch> element and return a Pitch
     private func makePitch(element: AEXMLElement) -> Pitch? {
+        guard !element.children.isEmpty else {
+            return nil
+        }
+        
         var pitch = Pitch()
         pitch.step = PitchStep(rawValue: element["step"].string)
         pitch.octave = element["octave"].int
