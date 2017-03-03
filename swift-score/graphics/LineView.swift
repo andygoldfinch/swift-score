@@ -49,6 +49,17 @@ class LineView: UIView {
             currentAttributes = update(currentAttributes: currentAttributes, newAttributes: measure.attributes)
             previousAttributes = previousAttributes == Attributes() ? currentAttributes : previousAttributes
             
+            // Clefs
+            let clef = currentAttributes.clef
+            let previousClef = previousAttributes.clef
+            
+            if let clef = clef, previousMeasure == nil || previousClef != clef {
+                let y = getClefPosition(clef: clef, midY: midY)
+                let clefView = makeClefImageView(clef: clef, x: xCounter, y: y)
+                xCounter += clefView.frame.width + 0.8 * spacing
+                self.addSubview(clefView)
+            }
+            
             // Time signatures
             let time = currentAttributes.time
             let previousTime = previousAttributes.time
@@ -248,6 +259,24 @@ class LineView: UIView {
         return view
     }
     
+    
+    /// Return an image view representing the given clef
+    func makeClefImageView(clef: Clef, x: CGFloat, y: CGFloat) -> UIImageView {
+        let view = UIImageView()
+        let height = getClefHeight(clef: clef)
+        
+        view.frame = CGRect(x: x, y: y, width: 3 * spacing, height: height)
+        
+        if let image = getClefImage(clef: clef) {
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
+            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
+            view.image = image
+            view.contentMode = .scaleAspectFit
+        }
+        
+        return view
+    }
+    
  
     /// Return the y position for the given note.
     func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
@@ -350,6 +379,38 @@ class LineView: UIView {
     }
     
     
+    /// Calculate the Y position for the given clef
+    func getClefPosition(clef: Clef, midY: CGFloat) -> CGFloat {
+        var typeOffset: CGFloat!
+        
+        switch clef.sign.lowercased() {
+        case "g":
+            typeOffset = (14 * spacing) / 11 + (3 * spacing)
+        case "f":
+            typeOffset = spacing
+        default:
+            typeOffset = 2 * spacing
+        }
+        
+        let lineOffset: CGFloat = CGFloat(-(clef.line - 3)) * spacing
+        
+        return midY + lineOffset - typeOffset
+    }
+    
+    
+    /// Calculate the height for the given clef
+    func getClefHeight(clef: Clef) -> CGFloat {
+        switch clef.sign.lowercased() {
+        case "g":
+            return (75 * spacing) / 11
+        case "f":
+            return 3.25 * spacing
+        default:
+            return 4 * spacing
+        }
+    }
+    
+    
     /// Return an image for the given note
     func getImage(for note: Note) -> UIImage? {
         var name: String!
@@ -404,6 +465,14 @@ class LineView: UIView {
         default:
             return UIImage(named: "natural")
         }
+    }
+    
+    
+    /// Return an image of the given clef.
+    func getClefImage(clef: Clef) -> UIImage? {
+        let name: String = "clef-" + clef.sign.lowercased()
+        
+        return UIImage(named: name)
     }
     
     
