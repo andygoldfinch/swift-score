@@ -21,11 +21,14 @@
 		462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF21E562FFD00323987 /* ScoreView.swift */; };
 		462FBAF71E5B32FF00323987 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF61E5B32FF00323987 /* LineView.swift */; };
 		462FBAF91E5DB97500323987 /* custom.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAF81E5DB97500323987 /* custom.xml */; };
-		469927321E658B760013B200 /* KeyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927311E658B760013B200 /* KeyBuilder.swift */; };
+		469927321E658B760013B200 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927311E658B760013B200 /* KeyGenerator.swift */; };
 		469927341E65BED90013B200 /* complex-2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 469927331E65BED90013B200 /* complex-2.xml */; };
 		469927371E65CADF0013B200 /* ScoreExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927361E65CADF0013B200 /* ScoreExtension.swift */; };
 		4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927391E6885130013B200 /* MainTableViewController.swift */; };
 		4699273C1E6885280013B200 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273B1E6885280013B200 /* MainTableViewCell.swift */; };
+		4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */; };
+		469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273F1E69AC8C0013B200 /* PositionCalculator.swift */; };
+		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
 		64EA86779FFC57440D87E0E4 /* Pods_swift_score.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A864E826769E06360C2E5A5 /* Pods_swift_score.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,11 +50,14 @@
 		462FBAF21E562FFD00323987 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		462FBAF61E5B32FF00323987 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		462FBAF81E5DB97500323987 /* custom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = custom.xml; sourceTree = "<group>"; };
-		469927311E658B760013B200 /* KeyBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyBuilder.swift; path = "swift-score/builders/KeyBuilder.swift"; sourceTree = SOURCE_ROOT; };
+		469927311E658B760013B200 /* KeyGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyGenerator.swift; path = "swift-score/graphics/KeyGenerator.swift"; sourceTree = SOURCE_ROOT; };
 		469927331E65BED90013B200 /* complex-2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-2.xml"; sourceTree = "<group>"; };
 		469927361E65CADF0013B200 /* ScoreExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreExtension.swift; sourceTree = "<group>"; };
 		469927391E6885130013B200 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		4699273B1E6885280013B200 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewGenerator.swift; sourceTree = "<group>"; };
+		4699273F1E69AC8C0013B200 /* PositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCalculator.swift; sourceTree = "<group>"; };
+		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
 		759995089424FAA29F482F85 /* Pods-swift-score.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.release.xcconfig"; sourceTree = "<group>"; };
 		DBD557EC705D108AE7F1C937 /* Pods-swift-score.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +130,6 @@
 		462FBAC81E533E3B00323987 /* builders */ = {
 			isa = PBXGroup;
 			children = (
-				469927311E658B760013B200 /* KeyBuilder.swift */,
 				462FBAC91E533E9D00323987 /* ScoreBuilder.swift */,
 			);
 			path = builders;
@@ -136,6 +141,10 @@
 				462FBAF01E56023800323987 /* NoteView.swift */,
 				462FBAF21E562FFD00323987 /* ScoreView.swift */,
 				462FBAF61E5B32FF00323987 /* LineView.swift */,
+				4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */,
+				4699273F1E69AC8C0013B200 /* PositionCalculator.swift */,
+				469927411E69AFF80013B200 /* AccidentalManager.swift */,
+				469927311E658B760013B200 /* KeyGenerator.swift */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -312,11 +321,14 @@
 				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */,
-				469927321E658B760013B200 /* KeyBuilder.swift in Sources */,
+				469927321E658B760013B200 /* KeyGenerator.swift in Sources */,
 				462FBAF71E5B32FF00323987 /* LineView.swift in Sources */,
+				469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */,
 				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
 				469927371E65CADF0013B200 /* ScoreExtension.swift in Sources */,
+				469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */,
 				4699273C1E6885280013B200 /* MainTableViewCell.swift in Sources */,
+				4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */,
 				462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

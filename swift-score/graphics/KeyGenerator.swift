@@ -9,7 +9,7 @@
 import Foundation
 
 /// A class to build lists of notes in certain keys, for the purpose of displaying key signatures.
-class KeyBuilder {
+class KeyGenerator {
     
     /// Generate a list of notes in the key represented by the given fifths value.
     func makeKey(fifths: Int) -> [Note] {

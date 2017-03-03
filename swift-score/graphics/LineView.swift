@@ -15,17 +15,6 @@ class LineView: UIView {
     let spacing: CGFloat = 10.0
     private var measures: [Measure] = []
     
-    private let flats: [PitchStep]  = [.b, .e, .a, .d, .g, .c, .f]
-    private let sharps: [PitchStep] = [.f, .c, .g, .d, .a, .e, .b]
-    
-    /// Add a single measure to the LineView, returning false if there is not space to add the given measure.
-    func addMeasure(_ measure: Measure) -> Bool {
-        measures.append(measure)
-        
-        // TODO return false if not enough space
-        return true
-    }
-
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
             return
@@ -35,6 +24,10 @@ class LineView: UIView {
         UIColor.black.setStroke()
         
         let midY = rect.midY
+        
+        let imageViewGenerator = ImageViewGenerator(spacing: spacing)
+        let positionCalculator = PositionCalculator(spacing: spacing, midY: midY)
+        let accidentalManager = AccidentalManager()
         
         drawStaff(midY: midY, startX: rect.minX, endX: rect.maxX)
         
@@ -54,8 +47,8 @@ class LineView: UIView {
             let previousClef = previousAttributes.clef
             
             if let clef = clef, previousMeasure == nil || previousClef != clef {
-                let y = getClefPosition(clef: clef, midY: midY)
-                let clefView = makeClefImageView(clef: clef, x: xCounter, y: y)
+                let y = positionCalculator.getClefPosition(clef: clef)
+                let clefView = imageViewGenerator.makeClefView(clef: clef, x: xCounter, y: y)
                 xCounter += clefView.frame.width + 0.8 * spacing
                 self.addSubview(clefView)
             }
@@ -77,14 +70,15 @@ class LineView: UIView {
             let previousFifths = previousAttributes.key?.fifths
             
             if let fifths = fifths, previousMeasure == nil || previousFifths != fifths {
-                var keyNotes = KeyBuilder().makeKey(fifths: fifths)
+                let keyGenerator = KeyGenerator()
+                var keyNotes = keyGenerator.makeKey(fifths: fifths)
                 if previousMeasure != nil && ((previousFifths! < 0 && previousFifths! < fifths) || (previousFifths! > 0 && previousFifths! > fifths)) {
-                    keyNotes = KeyBuilder().makeNaturals(oldFifths: previousFifths!, newFifths: fifths) + keyNotes
+                    keyNotes = keyGenerator.makeNaturals(oldFifths: previousFifths!, newFifths: fifths) + keyNotes
                 }
                 
                 for note in keyNotes {
-                    let y = getAccidentalPosition(note: note, midY: midY)
-                    let accidentalView = makeAccidentalImageView(note: note, x: xCounter, y: y)
+                    let y = positionCalculator.getAccidentalPosition(note: note)
+                    let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
                     xCounter += accidentalView.frame.width + 0.2 * spacing
                     self.addSubview(accidentalView)
                 }
@@ -94,15 +88,15 @@ class LineView: UIView {
             
             // Note rendering loop
             for note in measure.notes {
-                if needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
-                    let y = getAccidentalPosition(note: note, midY: midY)
-                    let accidentalView = makeAccidentalImageView(note: note, x: xCounter, y: y)
+                if accidentalManager.needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
+                    let y = positionCalculator.getAccidentalPosition(note: note)
+                    let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
                     xCounter += accidentalView.frame.width + (1/5) * spacing
                     self.addSubview(accidentalView)
                 }
                 
-                let position = getPosition(note: note, midY: midY)
-                let noteView = makeImageView(note: note, x: xCounter, y: position.y)
+                let position = positionCalculator.getNotePosition(note: note)
+                let noteView = imageViewGenerator.makeNoteView(note: note, x: xCounter, y: position.y)
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
@@ -208,323 +202,7 @@ class LineView: UIView {
         
         linePath.stroke()
     }
-    
-    
-    /// Return an image representing the given note.
-    func makeImageView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
-        let view = UIImageView()
-        let isSemibreve: Bool = note.type == .n1 && !note.isRest
-        let height: CGFloat = isSemibreve ? spacing : 4 * spacing
-        view.frame = CGRect(x: x, y: y, width: 3*spacing, height: height)
-        
-        if let image = getImage(for: note) {
-            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
-            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
-            view.image = image
-            view.contentMode = UIViewContentMode.scaleAspectFit
-        }
-        
-        return view
-    }
-    
-    
-    /// Return an image view representing the accidental for the given note.
-    func makeAccidentalImageView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
-        guard let alter = note.pitch?.alter else {
-            return UIImageView()
-        }
-        
-        let view = UIImageView()
-        let height: CGFloat!
-        
-        if alter <  0 {
-            height = 2.4 * spacing
-        }
-        else if alter < 2 {
-            height = 2.6 * spacing
-        }
-        else {
-            height = spacing
-        }
-        
-        view.frame = CGRect(x: x, y: y, width: 2 * spacing, height: height)
-        
-        if let image = getAccidentalImage(alter: alter) {
-            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
-            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
-            view.image = image
-            view.contentMode = UIViewContentMode.scaleAspectFit
-        }
-        
-        return view
-    }
-    
-    
-    /// Return an image view representing the given clef
-    func makeClefImageView(clef: Clef, x: CGFloat, y: CGFloat) -> UIImageView {
-        let view = UIImageView()
-        let height = getClefHeight(clef: clef)
-        
-        view.frame = CGRect(x: x, y: y, width: 3 * spacing, height: height)
-        
-        if let image = getClefImage(clef: clef) {
-            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
-            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
-            view.image = image
-            view.contentMode = .scaleAspectFit
-        }
-        
-        return view
-    }
-    
- 
-    /// Return the y position for the given note.
-    func getPosition(note: Note, midY: CGFloat) -> (y: CGFloat, lines: LedgerLines?) {
-        let octave = note.pitch?.octave ?? 0
-        let stemUp: Bool = octave < 5 && note.type != .n1
-        let noteOffset: CGFloat =  stemUp ? 3.5 * spacing : 0.5 * spacing
-        var stepY: CGFloat!
-        var lines: LedgerLines? = nil
-        
-        if let pitch = note.pitch {
-            
-            let step = pitch.step!
-            
-            switch step {
-            case .c:
-                stepY = midY + (3 * spacing) - noteOffset
-            case .d:
-                stepY = midY + (2.5 * spacing) - noteOffset
-            case .e:
-                stepY = midY + (2 * spacing) - noteOffset
-            case .f:
-                stepY = midY + (1.5 * spacing) - noteOffset
-            case .g:
-                stepY = midY + (1 * spacing) - noteOffset
-            case .a:
-                stepY = midY + (0.5 * spacing) - noteOffset
-            default:
-                stepY = midY - noteOffset
-            }
-            
-            let octaveSpace = 3.5 * spacing
-            let octave = pitch.octave - 4
-            
-            stepY = stepY - (CGFloat(octave) * octaveSpace)
-            
-            if stepY < (midY - (2.5 * spacing) - noteOffset) {
-                let numLines = Int((midY - stepY - noteOffset) / spacing) - 2
-                lines = LedgerLines(count: numLines, above: true)
-            }
-            else if stepY > (midY + (2.5 * spacing) - noteOffset) {
-                let numLines = Int((stepY - midY + noteOffset) / spacing) - 2
-                lines = LedgerLines(count: numLines, above: false)
-            }
-            
-            return (stepY, lines)
-        }
-        else {
-            return (midY - 2 * spacing, nil) //TODO add offset for rest height
-        }
-    }
-    
-    
-    /// Return the y position for the accidental for the given note.
-    func getAccidentalPosition(note: Note, midY: CGFloat) -> CGFloat {
-        guard let pitch = note.pitch else {
-            return midY
-        }
-        guard let alter = pitch.alter else {
-            return midY
-        }
-        
-        let offset: CGFloat!
-        var stepY: CGFloat!
-        
-        if alter >= 2 {
-            offset = 0.5 * spacing
-        }
-        else if alter < 0 {
-            offset = 1.7 * spacing
-        }
-        else {
-            offset = 1.3 * spacing
-        }
-        
-        let step = pitch.step!
-        
-        switch step {
-        case .c:
-            stepY = midY + (3 * spacing) - offset
-        case .d:
-            stepY = midY + (2.5 * spacing) - offset
-        case .e:
-            stepY = midY + (2 * spacing) - offset
-        case .f:
-            stepY = midY + (1.5 * spacing) - offset
-        case .g:
-            stepY = midY + (1 * spacing) - offset
-        case .a:
-            stepY = midY + (0.5 * spacing) - offset
-        default:
-            stepY = midY - offset
-        }
-        
-        let octaveSpace = 3.5 * spacing
-        let octave = pitch.octave - 4
-        
-        stepY = stepY - (CGFloat(octave) * octaveSpace)
-        
-        return stepY
-    }
-    
-    
-    /// Calculate the Y position for the given clef
-    func getClefPosition(clef: Clef, midY: CGFloat) -> CGFloat {
-        var typeOffset: CGFloat!
-        
-        switch clef.sign.lowercased() {
-        case "g":
-            typeOffset = (14 * spacing) / 11 + (3 * spacing)
-        case "f":
-            typeOffset = spacing
-        default:
-            typeOffset = 2 * spacing
-        }
-        
-        let lineOffset: CGFloat = CGFloat(-(clef.line - 3)) * spacing
-        
-        return midY + lineOffset - typeOffset
-    }
-    
-    
-    /// Calculate the height for the given clef
-    func getClefHeight(clef: Clef) -> CGFloat {
-        switch clef.sign.lowercased() {
-        case "g":
-            return (75 * spacing) / 11
-        case "f":
-            return 3.25 * spacing
-        default:
-            return 4 * spacing
-        }
-    }
-    
-    
-    /// Return an image for the given note
-    func getImage(for note: Note) -> UIImage? {
-        var name: String!
-        if let type = note.type {
-            switch type {
-            case .n16:
-                name = "semiquaver"
-            case .n8:
-                name = "quaver"
-            case .n4:
-                name = "crotchet"
-            case .n2:
-                name = "minim"
-            case .n1:
-                name = "semibreve"
-            default:
-                name = "crotchet"
-            }
-            
-            
-            if let pitch = note.pitch {
-                if pitch.octave >= 5 {
-                    name.append("-down")
-                }
-                else {
-                    name.append("-up")
-                }
-            }
-            else {
-                name.append("-rest")
-            }
-            
-            return UIImage(named: name)
-        }
-        else {
-            return nil
-        }
-    }
-    
-    
-    /// Return an image for the accidental of the given note.
-    func getAccidentalImage(alter: Int) -> UIImage? {
-        switch alter {
-        case -2:
-            return UIImage(named: "flat-double")
-        case -1:
-            return UIImage(named: "flat")
-        case 1:
-            return UIImage(named: "sharp")
-        case 2:
-            return UIImage(named: "sharp-double")
-        default:
-            return UIImage(named: "natural")
-        }
-    }
-    
-    
-    /// Return an image of the given clef.
-    func getClefImage(clef: Clef) -> UIImage? {
-        let name: String = "clef-" + clef.sign.lowercased()
-        
-        return UIImage(named: name)
-    }
-    
-    
-    /// Does the given note need an accidental?
-    func needsAccidental(note: Note, measure: Measure, attributes: Attributes) -> Bool {
-        guard let pitch = note.pitch else {
-            return false
-        }
-        
-        let fifths: Int = attributes.key?.fifths ?? 0
-        var key = fifths > 0 ? sharps[0..<fifths] : flats[0..<(-fifths)]
-        if fifths == 0 {
-            key = ArraySlice<PitchStep>()
-        }
-        
-        let alterNotInKey = !alterInKey(note: note, key: Array(key), isSharp: fifths > 0)
-        let measureHasDifferentAlters = hasDifferentAlters(pitch: pitch, measure: measure)
 
-        return alterNotInKey || measureHasDifferentAlters
-    }
-    
-    
-    /// Check if the alter of a given note is in the key signature.
-    func alterInKey(note: Note, key: [PitchStep], isSharp: Bool) -> Bool {
-        guard let alter = note.pitch?.alter else {
-            return false
-        }
-        
-        switch alter {
-        case 1:
-            return isSharp && key.contains(note.pitch!.step)
-        case 0:
-            return !key.contains(note.pitch!.step)
-        case -1:
-            return !isSharp && key.contains(note.pitch!.step)
-        default:
-            return false
-        }
-    }
-    
-    
-    /// Check if there are any notes in the measure with the same pitch and a different alter
-    func hasDifferentAlters(pitch: Pitch, measure: Measure) -> Bool {
-        for note in measure.notes {
-            if note.pitch?.step == pitch.step && note.pitch?.octave == pitch.octave && note.pitch?.alter != pitch.alter {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
     
     /// Draw the given time signature in the given rect
     func drawTimeSignature(top: Int, bottom: Int, rect: CGRect) {
@@ -576,15 +254,15 @@ class LineView: UIView {
         
         return current
     }
-
-}
-
-struct LedgerLines {
-    let count: Int
-    let above: Bool
-    var below: Bool {
-        return !above
+    
+    
+    /// Add a single measure to the LineView, returning false if there is not space to add the given measure.
+    func addMeasure(_ measure: Measure) -> Bool {
+        measures.append(measure)
+        
+        // TODO return false if not enough space
+        return true
     }
-}
 
+}
 
