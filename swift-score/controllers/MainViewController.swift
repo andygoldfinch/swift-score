@@ -11,6 +11,8 @@ import UIKit
 class MainViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var scoreView: ScoreView!
+    
+    var scoreName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +21,7 @@ class MainViewController: UIViewController {
         let builder = ScoreBuilder()
         
         print("Building partwise score")
-        let score = builder.partwise(xml: parser.getDocument(withName: "complex-1")!)
+        let score = builder.partwise(xml: parser.getDocument(withName: scoreName)!)
         
         label.text = scoreToText(score: score)
         scoreView.drawScore(score: score)
