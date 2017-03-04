@@ -14,6 +14,7 @@ import AVFoundation
 class LineView: UIView {
     let spacing: CGFloat = 10.0
     private var measures: [Measure] = []
+    var lengthClosure: ((CGFloat) -> Void)?
     
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
@@ -26,15 +27,17 @@ class LineView: UIView {
         let midY = rect.midY
         
         let imageViewGenerator = ImageViewGenerator(spacing: spacing)
+        let pathGenerator = PathGenerator(spacing: spacing)
         let positionCalculator = PositionCalculator(spacing: spacing, midY: midY)
         let accidentalManager = AccidentalManager()
-        
-        drawStaff(midY: midY, startX: rect.minX, endX: rect.maxX)
         
         var xCounter: CGFloat = spacing
         var previousMeasure: Measure?
         var currentAttributes: Attributes = Attributes()
         var previousAttributes: Attributes = Attributes()
+        
+        let pathStroke = UIBezierPath()
+        let pathFill = UIBezierPath()
         
         // Main rendering loop
         for measure in measures {
@@ -100,108 +103,40 @@ class LineView: UIView {
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
-                drawLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
-                drawDots(note: note, noteFrame: noteView.frame)
+                let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
+                pathStroke.append(ledgerPath)
+                let dotPath = pathGenerator.makeDots(note: note, noteFrame: noteView.frame)
+                pathFill.append(dotPath)
  
                 xCounter += noteSpacing
             }
  
-            drawBarline(x: xCounter, midY: midY)
+            let barlinePath = pathGenerator.makeBarline(x: xCounter, midY: midY)
+            pathStroke.append(barlinePath)
             
             xCounter += spacing
             previousMeasure = measure
         }
+        
+        frame.size = CGSize(width: xCounter, height: rect.height)
+
+        frame.size = CGSize(width: xCounter, height: rect.height)
+        let staffPath = pathGenerator.makeStaff(midY: midY, startX: rect.minX, endX: xCounter - spacing)
+        pathStroke.append(staffPath)
+        let staff = PathView(frame: CGRect(x: rect.minX, y: rect.minY, width: xCounter, height: rect.height))
+        staff.pathStroke = pathStroke
+        staff.pathFill = pathFill
+        staff.backgroundColor = UIColor.clear
+        self.addSubview(staff)
+        staff.setNeedsDisplay()
+        
+        if lengthClosure != nil {
+            lengthClosure!(xCounter)
+        }
     }
  
     
-    /// Draw the a representation of the given ledger lines object.
-    func drawLedgerLines(lines: LedgerLines?, type: NoteType, x: CGFloat, midY: CGFloat) {
-        if let ledger = lines {
-            var y = ledger.above ? (midY -  3 * spacing) : (midY + 3 * spacing)
-            let space = ledger.above ? -spacing : spacing
-            let startX = x - 0.4 * spacing
-            let length: CGFloat = type == .n1 ? 2.0 : 1.4
-            let endX = x + length * spacing
-            
-            let path = UIBezierPath()
-            
-            for _ in 1...ledger.count {
-                path.move(to: CGPoint(x: startX, y: y))
-                path.addLine(to: CGPoint(x: endX, y: y))
-                
-                y += space
-            }
-            
-            path.stroke()
-        }
-    }
-    
-    
-    /// Draw the dots for the given note, relative to the given note frame.
-    func drawDots(note: Note, noteFrame: CGRect) {
-        if note.dots > 0 {
-            var x: CGFloat!
-            if note.type == .n1 {
-                x = noteFrame.maxX + 0.4 * spacing
-            }
-            else {
-                x = noteFrame.minX + 1.4 * spacing
-            }
-            
-            let y: CGFloat!
-            if note.pitch == nil {
-                y = noteFrame.minY + (4/3) * spacing
-            }
-            else if note.pitch!.octave >= 5 {
-                y = noteFrame.minY + (2/3) * spacing
-            }
-            else {
-                y = noteFrame.maxY - (1/3) * spacing
-            }
-            
-            for _ in 1...note.dots {
-                drawDot(x: x, y: y)
-                x = x + 0.5 * spacing
-            }
-        }
-    }
-    
-    
-    /// Draw a dot at the given location.
-    func drawDot(x: CGFloat, y: CGFloat) {
-        let frame = CGRect(x: x, y: y, width: spacing/4, height: spacing/4)
-        let path = UIBezierPath(ovalIn: frame)
-        path.stroke()
-        path.fill()
-    }
-    
-    
-    /// Draw a barline in the given place.
-    func drawBarline(x: CGFloat, midY: CGFloat) {
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: x, y: midY - 2 * spacing))
-        path.addLine(to: CGPoint(x: x, y: midY + 2 * spacing))
-        path.stroke()
-    }
-    
-    
-    /// Draw the staff
-    func drawStaff(midY: CGFloat, startX: CGFloat, endX: CGFloat) {
-        let ys: [CGFloat] = [midY - 2 * spacing,
-                             midY - spacing,
-                             midY,
-                             midY + spacing,
-                             midY + 2 * spacing]
-        
-        let linePath = UIBezierPath()
-        
-        for y in ys {
-            linePath.move(to: CGPoint(x: startX, y: y))
-            linePath.addLine(to: CGPoint(x: endX, y: y))
-        }
-        
-        linePath.stroke()
-    }
+
 
     
     /// Draw the given time signature in the given rect

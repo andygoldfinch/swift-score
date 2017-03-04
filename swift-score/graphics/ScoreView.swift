@@ -9,7 +9,19 @@
 import UIKit
 
 class ScoreView: UIView {
+    @IBInspectable var margin: CGFloat = 32.0
+    
+    var widthClosure: ((CGFloat) -> Void)?
+    var heightClosure: ((CGFloat) -> Void)?
+    
     var lines: [LineView] = []
+    var lengths: [CGFloat] = [] {
+        didSet {
+            if let giveWidth = widthClosure {
+                giveWidth(lengths.max() ?? 0)
+            }
+        }
+    }
 
     func drawScore(score: ScorePartwise?) {
         guard let score = score else {
@@ -19,6 +31,9 @@ class ScoreView: UIView {
         for i in 0..<score.parts.count {
             let part = score.parts[i]
             let line = LineView(frame: CGRect.zero)
+            line.lengthClosure = {
+                self.lengths.append($0)
+            }
             line.backgroundColor = UIColor.clear
             
             for measure in part.measures {
@@ -39,13 +54,21 @@ class ScoreView: UIView {
         super.layoutSubviews()
         
         // Frame created here with manual offsets to compensate for a bug where some layout constraints of self are applied twice.
-        let frame = CGRect(x: self.frame.minX - 36, y: self.frame.minY - 28, width: self.frame.width, height: self.frame.height)
+        //let frame = CGRect(x: self.frame.minX - 36, y: self.frame.minY - 28, width: self.frame.width, height: self.frame.height)
+        let frame = CGRect(x: self.frame.minX + margin, y: self.frame.minY + margin, width: self.frame.width - 2 * margin, height: self.frame.height - 2 * margin)
         let numLines = lines.count
+        var totalHeight: CGFloat = 0.0
         
         for i in 0..<numLines {
-            let height: CGFloat = frame.height/CGFloat(numLines)
-            let y = frame.minY + CGFloat(i) * height
+            //let height: CGFloat = frame.height/CGFloat(numLines)
+            let height = 20 * lines[i].spacing
+            let y = frame.minY + totalHeight
+            totalHeight += height
             lines[i].frame = CGRect(x: frame.minX, y: y, width: frame.width, height: height)
+        }
+        
+        if let giveHeight = heightClosure {
+            giveHeight(totalHeight)
         }
     }
 
