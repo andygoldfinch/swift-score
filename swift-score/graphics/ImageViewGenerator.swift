@@ -34,6 +34,23 @@ class ImageViewGenerator {
     }
     
     
+    /// Return an image representing the head of the given note.
+    func makeHeadView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
+        let view = UIImageView()
+        let height: CGFloat = spacing
+        view.frame = CGRect(x: x, y: y, width: 3*spacing, height: height)
+        
+        if let image = getHeadImage(for: note) {
+            let rect = AVMakeRect(aspectRatio: image.size, insideRect: view.bounds)
+            view.frame = CGRect(x: x, y: y, width: rect.width, height: height)
+            view.image = image
+            view.contentMode = UIViewContentMode.scaleAspectFit
+        }
+        
+        return view
+    }
+    
+    
     /// Return an image view representing the accidental for the given note.
     func makeAccidentalView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
         guard let alter = note.pitch?.alter else {
@@ -129,6 +146,27 @@ class ImageViewGenerator {
                 name.append("-rest")
             }
             
+            return UIImage(named: name)
+        }
+        else {
+            return nil
+        }
+    }
+    
+    
+    /// Return an image for the head of the given note
+    private func getHeadImage(for note: Note) -> UIImage? {
+        var name: String!
+        if let type = note.type {
+            switch type {
+            case .n2:
+                name = "head-empty"
+            case .n1:
+                name = "semibreve"
+            default:
+                name = "head-solid"
+            }
+
             return UIImage(named: name)
         }
         else {

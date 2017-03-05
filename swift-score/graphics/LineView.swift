@@ -89,26 +89,53 @@ class LineView: UIView {
                 xCounter += 0.2 * spacing
             }
             
+            var previousNotes: [Note] = []
+            var previousNoteX: CGFloat = 0.0
+            
             // Note rendering loop
             for note in measure.notes {
+                let isChord = note.chord ?? false
+
                 if accidentalManager.needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
                     let y = positionCalculator.getAccidentalPosition(note: note)
                     let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
-                    xCounter += accidentalView.frame.width + (1/5) * spacing
+                    let width = accidentalView.frame.width + (1/5) * spacing
+                    if isChord {
+                        accidentalView.frame.origin.x = previousNoteX - width
+                    }
+                    else {
+                        xCounter += width
+                    }
                     self.addSubview(accidentalView)
                 }
                 
-                let position = positionCalculator.getNotePosition(note: note)
-                let noteView = imageViewGenerator.makeNoteView(note: note, x: xCounter, y: position.y)
+                let position = isChord ?
+                    positionCalculator.getHeadPosition(note: note) :
+                    positionCalculator.getNotePosition(note: note)
+                let noteView = isChord ?
+                    imageViewGenerator.makeHeadView(note: note, x: previousNoteX, y: position.y) :
+                    imageViewGenerator.makeNoteView(note: note, x: xCounter, y: position.y)
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
                 let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
                 pathStroke.append(ledgerPath)
-                let dotPath = pathGenerator.makeDots(note: note, noteFrame: noteView.frame)
-                pathFill.append(dotPath)
- 
-                xCounter += noteSpacing
+                if !isChord {
+                    let dotPath = pathGenerator.makeDots(note: note, noteFrame: noteView.frame)
+                    pathFill.append(dotPath)
+                }
+                
+                if !isChord {
+                    previousNoteX = xCounter
+                    xCounter += noteSpacing
+                }
+                
+                if !note.chord {
+                    previousNotes = [note]
+                }
+                else {
+                    previousNotes.append(note)
+                }
             }
  
             let barlinePath = pathGenerator.makeBarline(x: xCounter, midY: midY)
@@ -134,9 +161,6 @@ class LineView: UIView {
             lengthClosure!(xCounter)
         }
     }
- 
-    
-
 
     
     /// Draw the given time signature in the given rect

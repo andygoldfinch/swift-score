@@ -68,6 +68,55 @@ class PositionCalculator {
         }
     }
     
+    /// Return the y position for the given note.
+    func getHeadPosition(note: Note) -> (y: CGFloat, lines: LedgerLines?) {
+        //let octave = previousNotes[0].pitch?.octave ?? 0
+        let noteOffset: CGFloat = 0.5 * spacing
+        var stepY: CGFloat!
+        var lines: LedgerLines? = nil
+        
+        if let pitch = note.pitch {
+            
+            let step = pitch.step!
+            
+            switch step {
+            case .c:
+                stepY = midY + (3 * spacing) - noteOffset
+            case .d:
+                stepY = midY + (2.5 * spacing) - noteOffset
+            case .e:
+                stepY = midY + (2 * spacing) - noteOffset
+            case .f:
+                stepY = midY + (1.5 * spacing) - noteOffset
+            case .g:
+                stepY = midY + (1 * spacing) - noteOffset
+            case .a:
+                stepY = midY + (0.5 * spacing) - noteOffset
+            default:
+                stepY = midY - noteOffset
+            }
+            
+            let octaveSpace = 3.5 * spacing
+            let octave = pitch.octave - 4
+            
+            stepY = stepY - (CGFloat(octave) * octaveSpace)
+            
+            if stepY < (midY - (2.5 * spacing) - noteOffset) {
+                let numLines = Int((midY - stepY - noteOffset) / spacing) - 2
+                lines = LedgerLines(count: numLines, above: true)
+            }
+            else if stepY > (midY + (2.5 * spacing) - noteOffset) {
+                let numLines = Int((stepY - midY + noteOffset) / spacing) - 2
+                lines = LedgerLines(count: numLines, above: false)
+            }
+            
+            return (stepY, lines)
+        }
+        else {
+            return (midY - 2 * spacing, nil)
+        }
+    }
+    
     
     /// Return the y position for the accidental for the given note.
     func getAccidentalPosition(note: Note) -> CGFloat {
