@@ -9,7 +9,7 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-    let files: [String] = ["custom", "complex-1", "complex-2", "simple"]
+    let files: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

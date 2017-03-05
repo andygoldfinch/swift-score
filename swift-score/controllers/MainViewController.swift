@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         scoreView.heightClosure = {
-            self.scoreBottomConstraint.constant = $0 - self.scrollView.frame.height
+            self.scoreBottomConstraint.constant = $0 - self.scrollView.frame.height + 64
         }
         
         scoreView.widthClosure = {

@@ -89,13 +89,14 @@ class LineView: UIView {
                 xCounter += 0.2 * spacing
             }
             
+            // Note rendering loop
             var previousNotes: [Note] = []
             var previousNoteX: CGFloat = 0.0
             
-            // Note rendering loop
             for note in measure.notes {
                 let isChord = note.chord ?? false
 
+                // Accidentals
                 if accidentalManager.needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
                     let y = positionCalculator.getAccidentalPosition(note: note)
                     let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
@@ -109,6 +110,7 @@ class LineView: UIView {
                     self.addSubview(accidentalView)
                 }
                 
+                // Notes
                 let position = isChord ?
                     positionCalculator.getHeadPosition(note: note) :
                     positionCalculator.getNotePosition(note: note)
@@ -118,8 +120,11 @@ class LineView: UIView {
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
                 
+                // Ledger lines
                 let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
                 pathStroke.append(ledgerPath)
+                
+                // Dots
                 if !isChord {
                     let dotPath = pathGenerator.makeDots(note: note, noteFrame: noteView.frame)
                     pathFill.append(dotPath)
@@ -138,14 +143,13 @@ class LineView: UIView {
                 }
             }
  
+            // Barline
             let barlinePath = pathGenerator.makeBarline(x: xCounter, midY: midY)
             pathStroke.append(barlinePath)
             
             xCounter += spacing
             previousMeasure = measure
         }
-        
-        frame.size = CGSize(width: xCounter, height: rect.height)
 
         frame.size = CGSize(width: xCounter, height: rect.height)
         let staffPath = pathGenerator.makeStaff(midY: midY, startX: rect.minX, endX: xCounter - spacing)
