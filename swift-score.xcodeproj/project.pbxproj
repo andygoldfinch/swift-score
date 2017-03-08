@@ -10,6 +10,8 @@
 		46022FDE1E6AD832009B491B /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FDD1E6AD832009B491B /* PathView.swift */; };
 		46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FDF1E6AE633009B491B /* PathGenerator.swift */; };
 		46022FE21E6C2335009B491B /* complex-3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46022FE11E6C2335009B491B /* complex-3.xml */; };
+		46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FE31E6DC58D009B491B /* NoteInputViewController.swift */; };
+		46022FE61E6DC58E009B491B /* NoteInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46022FE41E6DC58E009B491B /* NoteInputViewController.xib */; };
 		462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAAD1E51FE2400323987 /* AppDelegate.swift */; };
 		462FBAB31E51FE2400323987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAB11E51FE2400323987 /* Main.storyboard */; };
 		462FBAB51E51FE2400323987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAB41E51FE2400323987 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		46022FDD1E6AD832009B491B /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathView.swift; sourceTree = "<group>"; };
 		46022FDF1E6AE633009B491B /* PathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathGenerator.swift; sourceTree = "<group>"; };
 		46022FE11E6C2335009B491B /* complex-3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-3.xml"; sourceTree = "<group>"; };
+		46022FE31E6DC58D009B491B /* NoteInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteInputViewController.swift; sourceTree = "<group>"; };
+		46022FE41E6DC58E009B491B /* NoteInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteInputViewController.xib; sourceTree = "<group>"; };
 		462FBAAA1E51FE2400323987 /* swift-score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-score.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		462FBAAD1E51FE2400323987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		462FBAB21E51FE2400323987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46022FE71E6DC5A7009B491B /* nibs */ = {
+			isa = PBXGroup;
+			children = (
+				46022FE41E6DC58E009B491B /* NoteInputViewController.xib */,
+			);
+			path = nibs;
+			sourceTree = "<group>";
+		};
 		462FBAA11E51FE2400323987 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +121,7 @@
 		462FBAAC1E51FE2400323987 /* swift-score */ = {
 			isa = PBXGroup;
 			children = (
+				46022FE71E6DC5A7009B491B /* nibs */,
 				469927381E6884D60013B200 /* controllers */,
 				469927351E65CABC0013B200 /* extensions */,
 				462FBAFA1E5DE07200323987 /* examples */,
@@ -183,6 +196,7 @@
 				469927391E6885130013B200 /* MainTableViewController.swift */,
 				4699273B1E6885280013B200 /* MainTableViewCell.swift */,
 				462FBABF1E520A6000323987 /* MainViewController.swift */,
+				46022FE31E6DC58D009B491B /* NoteInputViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -259,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46022FE61E6DC58E009B491B /* NoteInputViewController.xib in Resources */,
 				46022FE21E6C2335009B491B /* complex-3.xml in Resources */,
 				462FBACC1E546D4100323987 /* complex-1.xml in Resources */,
 				462FBAC21E52163E00323987 /* simple.xml in Resources */,
@@ -328,6 +343,7 @@
 				4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */,
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
+				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
 				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */,

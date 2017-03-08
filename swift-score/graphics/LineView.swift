@@ -9,9 +9,20 @@
 import UIKit
 import AVFoundation
 
-/// This class draws a single line of music, represented as a list of measures. 
+/// This class draws a single line of music, represented as a list of measures.
 /// Measures should be added one at a time, and the add method will return false when there is no space left on this line.
 class LineView: UIView {
+    var noteInputViewController: NoteInputViewController?
+    override var canBecomeFirstResponder: Bool { return true }
+    override var inputView: UIView? {
+        if noteInputViewController == nil {
+            noteInputViewController = NoteInputViewController(nibName: "NoteInputViewController", bundle: nil)
+            noteInputViewController?.delegate = self
+        }
+        
+        return noteInputViewController?.view
+    }
+    
     let spacing: CGFloat = 10.0
     private var measures: [Measure] = []
     var lengthClosure: ((CGFloat) -> Void)?
@@ -226,6 +237,22 @@ class LineView: UIView {
         // TODO return false if not enough space
         return true
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if !self.isFirstResponder {
+            self.becomeFirstResponder()
+        }
+    }
+    
+}
 
+extension LineView: NoteInputDelegate {
+    func selectedInput(inputType: NoteInputType) {
+        print("LineView received input: \(inputType)")
+    }
+    
+    func closeTapped() {
+        self.resignFirstResponder()
+    }
 }
 
