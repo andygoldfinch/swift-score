@@ -13,6 +13,7 @@
 		46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FE31E6DC58D009B491B /* NoteInputViewController.swift */; };
 		46022FE61E6DC58E009B491B /* NoteInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46022FE41E6DC58E009B491B /* NoteInputViewController.xib */; };
 		46022FE91E703B8E009B491B /* InputViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FE81E703B8E009B491B /* InputViewButton.swift */; };
+		46022FEC1E704ABB009B491B /* InputViewKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46022FEB1E704ABB009B491B /* InputViewKeyboardButton.swift */; };
 		462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAAD1E51FE2400323987 /* AppDelegate.swift */; };
 		462FBAB31E51FE2400323987 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAB11E51FE2400323987 /* Main.storyboard */; };
 		462FBAB51E51FE2400323987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAB41E51FE2400323987 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		46022FE31E6DC58D009B491B /* NoteInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteInputViewController.swift; sourceTree = "<group>"; };
 		46022FE41E6DC58E009B491B /* NoteInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteInputViewController.xib; sourceTree = "<group>"; };
 		46022FE81E703B8E009B491B /* InputViewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewButton.swift; sourceTree = "<group>"; };
+		46022FEB1E704ABB009B491B /* InputViewKeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewKeyboardButton.swift; sourceTree = "<group>"; };
 		462FBAAA1E51FE2400323987 /* swift-score.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-score.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		462FBAAD1E51FE2400323987 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		462FBAB21E51FE2400323987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,12 +96,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		46022FE71E6DC5A7009B491B /* nibs */ = {
+		46022FEA1E7049E1009B491B /* keyboard */ = {
 			isa = PBXGroup;
 			children = (
 				46022FE41E6DC58E009B491B /* NoteInputViewController.xib */,
+				46022FE31E6DC58D009B491B /* NoteInputViewController.swift */,
+				46022FE81E703B8E009B491B /* InputViewButton.swift */,
+				46022FEB1E704ABB009B491B /* InputViewKeyboardButton.swift */,
 			);
-			path = nibs;
+			path = keyboard;
 			sourceTree = "<group>";
 		};
 		462FBAA11E51FE2400323987 = {
@@ -123,7 +128,7 @@
 		462FBAAC1E51FE2400323987 /* swift-score */ = {
 			isa = PBXGroup;
 			children = (
-				46022FE71E6DC5A7009B491B /* nibs */,
+				46022FEA1E7049E1009B491B /* keyboard */,
 				469927381E6884D60013B200 /* controllers */,
 				469927351E65CABC0013B200 /* extensions */,
 				462FBAFA1E5DE07200323987 /* examples */,
@@ -136,7 +141,6 @@
 				462FBAB61E51FE2400323987 /* LaunchScreen.storyboard */,
 				462FBAB91E51FE2400323987 /* Info.plist */,
 				462FBAC31E5216B200323987 /* Parser.swift */,
-				46022FE81E703B8E009B491B /* InputViewButton.swift */,
 			);
 			path = "swift-score";
 			sourceTree = "<group>";
@@ -199,7 +203,6 @@
 				469927391E6885130013B200 /* MainTableViewController.swift */,
 				4699273B1E6885280013B200 /* MainTableViewCell.swift */,
 				462FBABF1E520A6000323987 /* MainViewController.swift */,
-				46022FE31E6DC58D009B491B /* NoteInputViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				462FBAF71E5B32FF00323987 /* LineView.swift in Sources */,
 				469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */,
 				46022FDE1E6AD832009B491B /* PathView.swift in Sources */,
+				46022FEC1E704ABB009B491B /* InputViewKeyboardButton.swift in Sources */,
 				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
 				46022FE91E703B8E009B491B /* InputViewButton.swift in Sources */,
 				469927371E65CADF0013B200 /* ScoreExtension.swift in Sources */,
