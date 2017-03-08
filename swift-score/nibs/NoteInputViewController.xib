@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,60 +30,75 @@
             <rect key="frame" x="0.0" y="0.0" width="927" height="381"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-bT-ico">
-                    <rect key="frame" x="0.0" y="0.0" width="927" height="381"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-bT-ico">
+                    <rect key="frame" x="8" y="8" width="911" height="365"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-8r-fHM" userLabel="Left Control Stack View">
-                            <rect key="frame" x="0.0" y="0.0" width="186" height="381"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-8r-fHM" userLabel="Left Control Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="192.5" height="365"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="kAK-lS-mBE" userLabel="Note Stack View">
-                                    <rect key="frame" x="0.0" y="0.0" width="62" height="381"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="kAK-lS-mBE" userLabel="Note Stack View">
+                                    <rect key="frame" x="0.0" y="0.0" width="62" height="365"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLv-VX-jXh">
-                                            <rect key="frame" x="0.0" y="0.0" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLv-VX-jXh" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="TLv-VX-jXh" secondAttribute="height" multiplier="5:4" id="u72-Oa-WcO"/>
+                                            </constraints>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="semibreve"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="wF1-dd-2h6"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeM-Ok-eiO">
-                                            <rect key="frame" x="0.0" y="54.5" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeM-Ok-eiO" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="52.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="minim-up"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="yXX-gg-gyn"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bot-yB-3qL">
-                                            <rect key="frame" x="0.0" y="109" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bot-yB-3qL" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="105" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="crotchet-up"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="gFk-vk-hBl"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuU-zb-2h0">
-                                            <rect key="frame" x="0.0" y="163.5" width="62" height="54"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OuU-zb-2h0" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="157.5" width="62" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="quaver-up"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="J9d-YE-Hdr"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tr8-fJ-med">
-                                            <rect key="frame" x="0.0" y="217.5" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tr8-fJ-med" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="210.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="semiquaver-up"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="54y-la-xyr"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-bu-wVB">
-                                            <rect key="frame" x="0.0" y="272" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-bu-wVB" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="263" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Rest"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="vFJ-G3-9On"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2f-f3-OnJ">
-                                            <rect key="frame" x="0.0" y="326.5" width="62" height="54.5"/>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2f-f3-OnJ" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="315.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Chord"/>
                                             <connections>
@@ -91,135 +107,264 @@
                                         </button>
                                     </subviews>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x90-um-KSN">
-                                    <rect key="frame" x="62" y="0.0" width="62" height="381"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddD-qT-39q">
-                                    <rect key="frame" x="124" y="0.0" width="62" height="381"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="9zR-Po-t1Z" userLabel="Accent Stack View">
+                                    <rect key="frame" x="65" y="0.0" width="62" height="365"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPl-v3-Q3u" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="8Ve-v4-y6k"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlr-Ep-UoV" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="52.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="Myr-5K-eGA"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ty-rd-Qxx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="105" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="xmS-9o-oq0"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9D-Bu-xHx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="157.5" width="62" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="vxz-D2-0Xd"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6P-8X-aAb" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="210.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="ab9-1f-vhH"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Top-hq-YsW" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="263" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="9iT-8C-xCd"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwR-1p-AZj" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="315.5" width="62" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="Bpk-nN-M25"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Xe4-s9-ICF" userLabel="Text Stack View">
+                                    <rect key="frame" x="130" y="0.0" width="62.5" height="365"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdO-Pe-1vO" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="LXv-iX-byu"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NUw-P9-I7j" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="52.5" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="Yr8-L9-VST"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdA-04-2Zq" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="105" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="2Uu-zp-GaC"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jud-sK-3qF" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="157.5" width="62.5" height="50"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="koF-gS-9vK"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDc-WV-Qyk" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="210.5" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="amu-mQ-VSD"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nc-1f-GLO" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="263" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="y5K-i2-2sV"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OZ-a4-rlc" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="315.5" width="62.5" height="49.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="bVR-h2-42b"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Q07-uH-bDQ" userLabel="Keyboard Stack View">
-                            <rect key="frame" x="186" y="0.0" width="702" height="381"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q07-uH-bDQ" userLabel="Keyboard Stack View">
+                            <rect key="frame" x="197.5" y="0.0" width="644.5" height="365"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDx-iB-Uaa">
-                                    <rect key="frame" x="0.0" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="C4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4v-xW-VC7">
-                                    <rect key="frame" x="70" y="0.0" width="70.5" height="381"/>
+                                    <rect key="frame" x="64.5" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="D4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5H-K3-ntQ">
-                                    <rect key="frame" x="140.5" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="129" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="E4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvQ-E7-6ZH">
-                                    <rect key="frame" x="210.5" y="0.0" width="70.5" height="381"/>
+                                    <rect key="frame" x="193.5" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="F4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frt-n1-OIS">
-                                    <rect key="frame" x="281" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="258" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="G4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnI-bq-oSH">
-                                    <rect key="frame" x="351" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="322.5" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="A4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNe-fh-gc0">
-                                    <rect key="frame" x="421" y="0.0" width="70.5" height="381"/>
+                                    <rect key="frame" x="387" y="0.0" width="64" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="B4"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYw-Ml-cWQ">
-                                    <rect key="frame" x="491.5" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="452" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="C5"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyG-5N-Skz">
-                                    <rect key="frame" x="561.5" y="0.0" width="70.5" height="381"/>
+                                    <rect key="frame" x="516.5" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="D5"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BRj-Q9-c2j">
-                                    <rect key="frame" x="632" y="0.0" width="70" height="381"/>
+                                    <rect key="frame" x="581" y="0.0" width="63.5" height="365"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
                                     <state key="normal" title="E5"/>
                                 </button>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="SmL-UX-96Q" userLabel="Octave Stack View">
-                            <rect key="frame" x="888" y="0.0" width="39" height="381"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SmL-UX-96Q" userLabel="Octave Stack View">
+                            <rect key="frame" x="847" y="0.0" width="64" height="365"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzI-JH-1D2">
-                                    <rect key="frame" x="0.0" y="0.0" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzI-JH-1D2" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="64" height="58.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="+2"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-EV-eD9">
-                                    <rect key="frame" x="0.0" y="63.5" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-EV-eD9" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="61.5" width="64" height="58"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="+1"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjq-Wp-KTb">
-                                    <rect key="frame" x="0.0" y="127" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjq-Wp-KTb" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="122.5" width="64" height="58.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="0"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ije-MC-Cvd">
-                                    <rect key="frame" x="0.0" y="190.5" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ije-MC-Cvd" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="184" width="64" height="58.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="-1"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdN-ld-PIv">
-                                    <rect key="frame" x="0.0" y="254" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdN-ld-PIv" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="245.5" width="64" height="58"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="-2"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms4-5F-aS6">
-                                    <rect key="frame" x="0.0" y="317.5" width="39" height="63.5"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms4-5F-aS6" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="306.5" width="64" height="58.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Close"/>
+                                    <state key="normal" image="ic_keyboard_hide"/>
                                     <connections>
                                         <action selector="closeTappedWithSender:" destination="-1" eventType="touchUpInside" id="iBI-2w-WS6"/>
                                     </connections>
                                 </button>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="P3K-zg-mda"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                 </stackView>
                 <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EiL-t3-ChE" userLabel="Black Note View">
-                    <rect key="frame" x="186" y="0.0" width="702" height="254"/>
+                    <rect key="frame" x="205.5" y="8" width="644.5" height="243"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="DVc-bT-ico" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" id="024-8Z-l2w"/>
+                <constraint firstItem="DVc-bT-ico" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" constant="-16" id="024-8Z-l2w"/>
                 <constraint firstItem="EiL-t3-ChE" firstAttribute="height" secondItem="Q07-uH-bDQ" secondAttribute="height" multiplier="2:3" id="5hC-cc-Uf2"/>
-                <constraint firstItem="DVc-bT-ico" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="Dff-sM-Z5u"/>
+                <constraint firstItem="DVc-bT-ico" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="-16" id="Dff-sM-Z5u"/>
                 <constraint firstItem="EiL-t3-ChE" firstAttribute="width" secondItem="Q07-uH-bDQ" secondAttribute="width" id="FjD-Za-c2T"/>
                 <constraint firstItem="DVc-bT-ico" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Mlw-EK-LzS"/>
                 <constraint firstItem="DVc-bT-ico" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aEM-Dg-JcX"/>
@@ -238,6 +383,7 @@
     </objects>
     <resources>
         <image name="crotchet-up" width="17" height="60"/>
+        <image name="ic_keyboard_hide" width="24" height="24"/>
         <image name="minim-up" width="17" height="60"/>
         <image name="quaver-up" width="35" height="60"/>
         <image name="semibreve" width="25" height="15"/>
