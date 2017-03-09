@@ -245,6 +245,7 @@
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                             <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isLeft" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4v-xW-VC7" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
@@ -267,7 +268,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvQ-E7-6ZH" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="194" y="0.0" width="65" height="365"/>
+                                    <rect key="frame" x="194" y="0.0" width="65" height="365.5"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="16"/>
@@ -348,32 +349,94 @@
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                             <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isRight" value="YES"/>
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pq-fB-8Sx" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="43" y="0.0" width="43" height="243.5"/>
+                                    <rect key="frame" x="43" y="1" width="43" height="243.5"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R13-LF-ETv" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="108" y="0.0" width="43" height="243.5"/>
+                                    <rect key="frame" x="108" y="1" width="43" height="243.5"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSa-Q2-R65" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="238" y="1" width="43" height="243.5"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOm-wv-EHi" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="302" y="1" width="43" height="243.5"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeG-jg-yBN" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="367" y="1" width="43" height="243.5"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZd-fW-TBE" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="496" y="1" width="43" height="243.5"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIY-Iw-3k6" customClass="InputViewKeyboardButton" customModule="swift_score" customModuleProvider="target">
+                                    <rect key="frame" x="561" y="1" width="43" height="243.5"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isWhite" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="darkColor">
+                                            <color key="value" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="y5H-K3-ntQ" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="1Rk-WX-job"/>
-                                <constraint firstItem="R13-LF-ETv" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" id="2P9-yi-SS9"/>
+                                <constraint firstItem="R13-LF-ETv" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="2P9-yi-SS9"/>
+                                <constraint firstItem="DOm-wv-EHi" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="2vM-TX-M6h"/>
+                                <constraint firstItem="MeG-jg-yBN" firstAttribute="centerX" secondItem="gnI-bq-oSH" secondAttribute="trailing" id="56T-FC-7Rj"/>
                                 <constraint firstItem="cDx-iB-Uaa" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="5A7-xY-VFD"/>
                                 <constraint firstItem="gnI-bq-oSH" firstAttribute="leading" secondItem="Frt-n1-OIS" secondAttribute="trailing" id="5h8-ID-SFE"/>
                                 <constraint firstItem="tyG-5N-Skz" firstAttribute="leading" secondItem="RYw-Ml-cWQ" secondAttribute="trailing" id="5ma-5O-GJ3"/>
                                 <constraint firstItem="6Pq-fB-8Sx" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="6Nb-VP-UpA"/>
+                                <constraint firstItem="lZd-fW-TBE" firstAttribute="centerX" secondItem="RYw-Ml-cWQ" secondAttribute="trailing" id="7PF-k5-750"/>
                                 <constraint firstItem="g4v-xW-VC7" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="7YC-To-NYB"/>
                                 <constraint firstItem="cDx-iB-Uaa" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="1:10" id="8bg-WW-r3T"/>
+                                <constraint firstItem="MeG-jg-yBN" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="AAG-vD-Xhu"/>
+                                <constraint firstItem="DOm-wv-EHi" firstAttribute="centerX" secondItem="Frt-n1-OIS" secondAttribute="trailing" id="Clj-Uy-fB0"/>
+                                <constraint firstItem="lZd-fW-TBE" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="CmQ-7d-HIX"/>
+                                <constraint firstItem="RSa-Q2-R65" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="DUN-mc-qw3"/>
                                 <constraint firstItem="BRj-Q9-c2j" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="0.1" id="EfP-ya-r3N"/>
+                                <constraint firstItem="MeG-jg-yBN" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="GtG-RM-T8F"/>
+                                <constraint firstItem="DOm-wv-EHi" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="Gyj-6Z-HeN"/>
+                                <constraint firstItem="DOm-wv-EHi" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="J5d-7B-sNT"/>
                                 <constraint firstItem="vvQ-E7-6ZH" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="KQ7-iw-y8D"/>
                                 <constraint firstItem="Frt-n1-OIS" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="Kgj-UY-dUG"/>
                                 <constraint firstItem="RYw-Ml-cWQ" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="Lb3-7u-ndT"/>
@@ -392,18 +455,27 @@
                                 <constraint firstItem="g4v-xW-VC7" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="W3A-EP-0Ph"/>
                                 <constraint firstItem="tyG-5N-Skz" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="0.1" id="WuD-R3-JwS"/>
                                 <constraint firstItem="vvQ-E7-6ZH" firstAttribute="leading" secondItem="y5H-K3-ntQ" secondAttribute="trailing" id="Xwo-pC-Itf"/>
+                                <constraint firstItem="RSa-Q2-R65" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="Xyr-9R-sb6"/>
+                                <constraint firstItem="MeG-jg-yBN" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="Ybd-5D-DtA"/>
                                 <constraint firstItem="Frt-n1-OIS" firstAttribute="leading" secondItem="vvQ-E7-6ZH" secondAttribute="trailing" id="Z3x-FH-cyZ"/>
                                 <constraint firstItem="y5H-K3-ntQ" firstAttribute="leading" secondItem="g4v-xW-VC7" secondAttribute="trailing" id="atG-NW-2uT"/>
+                                <constraint firstItem="lZd-fW-TBE" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="bJY-ZV-T4i"/>
+                                <constraint firstItem="RSa-Q2-R65" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="cap-QZ-MNP"/>
                                 <constraint firstItem="BRj-Q9-c2j" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="ckl-ae-Wav"/>
+                                <constraint firstItem="RSa-Q2-R65" firstAttribute="centerX" secondItem="vvQ-E7-6ZH" secondAttribute="trailing" id="cna-Dd-ynF"/>
                                 <constraint firstItem="y5H-K3-ntQ" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="0.1" id="cu8-9J-W7G"/>
                                 <constraint firstItem="cDx-iB-Uaa" firstAttribute="leading" secondItem="qG9-fK-ssX" secondAttribute="leading" id="fNE-BO-JjK"/>
                                 <constraint firstItem="6Pq-fB-8Sx" firstAttribute="centerX" secondItem="cDx-iB-Uaa" secondAttribute="trailing" id="fRW-f0-pUt"/>
-                                <constraint firstItem="6Pq-fB-8Sx" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" id="jap-ep-vOT"/>
+                                <constraint firstItem="KIY-Iw-3k6" firstAttribute="centerX" secondItem="tyG-5N-Skz" secondAttribute="trailing" id="gDr-C1-b1t"/>
+                                <constraint firstItem="KIY-Iw-3k6" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="iAD-1e-e2u"/>
+                                <constraint firstItem="6Pq-fB-8Sx" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="jap-ep-vOT"/>
                                 <constraint firstItem="RYw-Ml-cWQ" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="0.1" id="l96-mp-ReE"/>
+                                <constraint firstItem="KIY-Iw-3k6" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" multiplier="2:3" id="lGG-7K-Ifh"/>
                                 <constraint firstItem="gnI-bq-oSH" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="lsz-7O-h2x"/>
                                 <constraint firstItem="BNe-fh-gc0" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="0.1" id="mKn-Jg-b5z"/>
                                 <constraint firstItem="g4v-xW-VC7" firstAttribute="leading" secondItem="cDx-iB-Uaa" secondAttribute="trailing" id="sjD-qq-HFh"/>
                                 <constraint firstItem="BNe-fh-gc0" firstAttribute="leading" secondItem="gnI-bq-oSH" secondAttribute="trailing" id="tXm-v1-wct"/>
+                                <constraint firstItem="lZd-fW-TBE" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="uBr-XP-kZx"/>
                                 <constraint firstItem="R13-LF-ETv" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="uGv-rJ-okt"/>
                                 <constraint firstItem="cDx-iB-Uaa" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="uoH-7H-RI0"/>
                                 <constraint firstItem="6Pq-fB-8Sx" firstAttribute="width" secondItem="qG9-fK-ssX" secondAttribute="width" multiplier="2:30" id="vYr-WO-OUw"/>
@@ -413,6 +485,7 @@
                                 <constraint firstItem="BNe-fh-gc0" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="zCx-EB-lzV"/>
                                 <constraint firstItem="tyG-5N-Skz" firstAttribute="height" secondItem="qG9-fK-ssX" secondAttribute="height" id="zT9-PU-OYp"/>
                                 <constraint firstItem="vvQ-E7-6ZH" firstAttribute="centerY" secondItem="qG9-fK-ssX" secondAttribute="centerY" id="zjx-ER-fEL"/>
+                                <constraint firstItem="KIY-Iw-3k6" firstAttribute="top" secondItem="qG9-fK-ssX" secondAttribute="top" constant="1" id="zxQ-zr-HWc"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

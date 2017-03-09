@@ -13,20 +13,39 @@ class InputViewKeyboardButton: UIButton {
     @IBInspectable var borderColor: UIColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     @IBInspectable var borderWidth: CGFloat = 1
     @IBInspectable var isWhite: Bool = true
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    @IBInspectable var isLeft: Bool = false
+    @IBInspectable var isRight: Bool = false
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
-        layer.cornerRadius = cornerRadius
-        layer.borderColor = borderColor.cgColor
-        layer.borderWidth = borderWidth
+        roundCorners()
         
         if isWhite {
             self.backgroundColor = UIColor.white
+            layer.borderColor = borderColor.cgColor
+            layer.borderWidth = borderWidth
         }
         else {
-            self.backgroundColor = UIColor.black
+            self.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
         }
     }
-
+    
+    func roundCorners() {
+        var corners: UIRectCorner = [.bottomLeft, .bottomRight]
+        
+        if isLeft {
+            corners.insert(.topLeft)
+        }
+        if isRight {
+            corners.insert(.topRight)
+        }
+        
+        let radius = isWhite ? 2 * cornerRadius : 1.5 * cornerRadius
+        
+        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = maskPath.cgPath
+        self.layer.mask = maskLayer
+    }
 }
