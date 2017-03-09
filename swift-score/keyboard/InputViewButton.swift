@@ -10,7 +10,18 @@ import UIKit
 
 class InputViewButton: UIButton {
     @IBInspectable var cornerRadius: CGFloat = 5
-    @IBInspectable var margin: CGFloat = 4
+    @IBInspectable var margin: CGFloat = 6
+    
+    var isToggled: Bool = false {
+        didSet {
+            if isToggled {
+                backgroundColor = UIColor(white: 0.8, alpha: 1.0)
+            }
+            else {
+                backgroundColor = UIColor.white
+            }
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -20,4 +31,7 @@ class InputViewButton: UIButton {
         imageView?.contentMode = .scaleAspectFit
     }
 
+    func toggle() {
+        isToggled = !isToggled
+    }
 }

@@ -24,7 +24,7 @@ class LineView: UIView {
     }
     
     let spacing: CGFloat = 10.0
-    private var measures: [Measure] = []
+    fileprivate var measures: [Measure] = []
     var lengthClosure: ((CGFloat) -> Void)?
     
     override func draw(_ rect: CGRect) {
@@ -130,7 +130,7 @@ class LineView: UIView {
                     imageViewGenerator.makeNoteView(note: note, x: xCounter, y: position.y)
                 let noteSpacing = noteView.frame.width + spacing + (CGFloat(note.dots) * 0.5 * spacing)
                 self.addSubview(noteView)
-                
+            
                 // Ledger lines
                 let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
                 pathStroke.append(ledgerPath)
@@ -247,12 +247,23 @@ class LineView: UIView {
 }
 
 extension LineView: NoteInputDelegate {
-    func selectedInput(inputType: NoteInputType) {
-        print("LineView received input: \(inputType)")
+    func selectedInput(note: Note) {
+        print("LineView received input: \(note)")
+        self.measures[measures.count-1].notes.append(note)
+        setNeedsDisplay()
     }
     
     func closeTapped() {
         self.resignFirstResponder()
+    }
+    
+    func backspaceTapped() { //TODO rewrite to remove lines/images as well
+        print("Backspace tapped")
+        self.measures[measures.count-1].notes.removeLast()
+        if (self.measures.last?.notes.isEmpty)! {
+            self.measures.removeLast()
+        }
+        setNeedsDisplay()
     }
 }
 
