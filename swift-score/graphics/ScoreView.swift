@@ -14,11 +14,18 @@ class ScoreView: UIView {
     var widthClosure: ((CGFloat) -> Void)?
     var heightClosure: ((CGFloat) -> Void)?
     
+    private var previousHeight: CGFloat?
+    
     var lines: [LineView] = []
     var lengths: [CGFloat] = [] {
         didSet {
             if let giveWidth = widthClosure {
-                giveWidth(lengths.max() ?? 0)
+                let maxWidth = lengths.max() ?? 0
+                giveWidth(maxWidth)
+                
+                if maxWidth > self.frame.width {
+                    self.frame.size = CGSize(width: maxWidth, height: self.frame.height)
+                }
             }
         }
     }
@@ -31,10 +38,10 @@ class ScoreView: UIView {
         for i in 0..<score.parts.count {
             let part = score.parts[i]
             let line = LineView(frame: CGRect.zero)
+            line.backgroundColor = UIColor.clear
             line.lengthClosure = {
                 self.lengths.append($0)
             }
-            line.backgroundColor = UIColor.clear
             
             for measure in part.measures {
                 if !line.addMeasure(measure) {
@@ -46,6 +53,19 @@ class ScoreView: UIView {
             lines.append(line)
         }
         
+    }
+    
+    
+    /// Select a line based on y position, ignoring x (fixes an issue with autolayout causing some incorrect frames)
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        for line in lines {
+            let newPoint = CGPoint(x: line.frame.midX, y: point.y)
+            if line.frame.contains(newPoint) {
+                return line
+            }
+        }
+        
+        return super.hitTest(point, with: event)
     }
     
     
@@ -67,8 +87,11 @@ class ScoreView: UIView {
             lines[i].frame = CGRect(x: frame.minX, y: y, width: frame.width, height: height)
         }
         
-        if let giveHeight = heightClosure {
+        self.frame.size = CGSize(width: self.frame.width, height: totalHeight)
+        
+        if let giveHeight = heightClosure, totalHeight != previousHeight {
             giveHeight(totalHeight)
+            previousHeight = totalHeight
         }
     }
 
