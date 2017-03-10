@@ -15,7 +15,7 @@ class InputViewButton: UIButton {
     var isToggled: Bool = false {
         didSet {
             if isToggled {
-                backgroundColor = UIColor(white: 0.8, alpha: 1.0)
+                backgroundColor = UIColor(white: 0.88, alpha: 1.0)
             }
             else {
                 backgroundColor = UIColor.white

@@ -134,7 +134,7 @@ class NoteInputViewController: UIViewController {
         else if sender == buttonRest && delegate != nil {
             var note = Note()
             note.type = currentType
-            note.chord = isChord
+            note.chord = false
             note.dots = currentDots
             
             delegate!.selectedInput(note: note)

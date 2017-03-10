@@ -32,6 +32,10 @@ class LineView: UIView {
             return
         }
         
+        self.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
         self.backgroundColor = UIColor.clear
         UIColor.black.setStroke()
         
@@ -238,6 +242,15 @@ class LineView: UIView {
         return true
     }
     
+    func addNote(note: Note) {
+        if measures.isEmpty {
+            measures.append(Measure(number: "1", attributes: nil, notes: []))
+        }
+        
+        let lastIndex = measures.count - 1
+        measures[lastIndex].notes.append(note)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !self.isFirstResponder {
             self.becomeFirstResponder()
@@ -249,7 +262,7 @@ class LineView: UIView {
 extension LineView: NoteInputDelegate {
     func selectedInput(note: Note) {
         print("LineView received input: \(note)")
-        self.measures[measures.count-1].notes.append(note)
+        addNote(note: note)
         setNeedsDisplay()
     }
     
@@ -257,13 +270,16 @@ extension LineView: NoteInputDelegate {
         self.resignFirstResponder()
     }
     
-    func backspaceTapped() { //TODO rewrite to remove lines/images as well
-        print("Backspace tapped")
-        self.measures[measures.count-1].notes.removeLast()
-        if (self.measures.last?.notes.isEmpty)! {
-            self.measures.removeLast()
+    func backspaceTapped() {
+        if !measures.isEmpty {
+            if  !measures[measures.count-1].notes.isEmpty {
+                measures[measures.count-1].notes.removeLast()
+            }
+            if (measures.last?.notes.isEmpty)! && measures.count > 1 {
+                measures.removeLast()
+            }
+            setNeedsDisplay()
         }
-        setNeedsDisplay()
     }
 }
 
