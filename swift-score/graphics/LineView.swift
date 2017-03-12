@@ -26,6 +26,7 @@ class LineView: UIView {
     let spacing: CGFloat = 10.0
     fileprivate var measures: [Measure] = []
     var lengthClosure: ((CGFloat) -> Void)?
+    var finalAttributes: Attributes!
     
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
@@ -59,6 +60,8 @@ class LineView: UIView {
             previousAttributes = currentAttributes
             currentAttributes = update(currentAttributes: currentAttributes, newAttributes: measure.attributes)
             previousAttributes = previousAttributes == Attributes() ? currentAttributes : previousAttributes
+            print("Measure is balanced: \(MeasureBalancer().isBalanced(notes: measure.notes, time: currentAttributes.time ?? Time(beats: 4, beatType: 4)))")
+
             
             // Clefs
             let clef = currentAttributes.clef
@@ -164,6 +167,7 @@ class LineView: UIView {
             
             xCounter += spacing
             previousMeasure = measure
+            finalAttributes = currentAttributes
         }
 
         frame.size = CGSize(width: xCounter, height: rect.height)
@@ -243,7 +247,11 @@ class LineView: UIView {
     }
     
     func addNote(note: Note) {
-        if measures.isEmpty {
+        let balancer = MeasureBalancer()
+        let balancedResult = balancer.isBalanced(notes: measures.last!.notes, time: finalAttributes.time ?? Time(beats: 4, beatType: 4))
+        let isBalanced = balancedResult != .under
+        
+        if measures.isEmpty || isBalanced {
             measures.append(Measure(number: "1", attributes: nil, notes: []))
         }
         
