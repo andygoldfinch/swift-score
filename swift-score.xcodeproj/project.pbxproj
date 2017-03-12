@@ -20,7 +20,7 @@
 		462FBAB81E51FE2400323987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAB61E51FE2400323987 /* LaunchScreen.storyboard */; };
 		462FBAC01E520A6000323987 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBABF1E520A6000323987 /* MainViewController.swift */; };
 		462FBAC21E52163E00323987 /* simple.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAC11E52163E00323987 /* simple.xml */; };
-		462FBAC41E5216B200323987 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC31E5216B200323987 /* Parser.swift */; };
+		462FBAC41E5216B200323987 /* DocumentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC31E5216B200323987 /* DocumentHandler.swift */; };
 		462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC61E533A9100323987 /* ScorePartwise.swift */; };
 		462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC91E533E9D00323987 /* ScoreBuilder.swift */; };
 		462FBACC1E546D4100323987 /* complex-1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* complex-1.xml */; };
@@ -56,7 +56,7 @@
 		462FBAB91E51FE2400323987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		462FBABF1E520A6000323987 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "swift-score/controllers/MainViewController.swift"; sourceTree = SOURCE_ROOT; };
 		462FBAC11E52163E00323987 /* simple.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = simple.xml; path = "swift-score/examples/simple.xml"; sourceTree = SOURCE_ROOT; };
-		462FBAC31E5216B200323987 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		462FBAC31E5216B200323987 /* DocumentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentHandler.swift; sourceTree = "<group>"; };
 		462FBAC61E533A9100323987 /* ScorePartwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePartwise.swift; sourceTree = "<group>"; };
 		462FBAC91E533E9D00323987 /* ScoreBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBuilder.swift; sourceTree = "<group>"; };
 		462FBACB1E546D4100323987 /* complex-1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-1.xml"; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		46022FEA1E7049E1009B491B /* keyboard */ = {
+		46022FEA1E7049E1009B491B /* input */ = {
 			isa = PBXGroup;
 			children = (
 				46022FE41E6DC58E009B491B /* NoteInputViewController.xib */,
@@ -104,7 +104,7 @@
 				46022FE81E703B8E009B491B /* InputViewButton.swift */,
 				46022FEB1E704ABB009B491B /* InputViewKeyboardButton.swift */,
 			);
-			path = keyboard;
+			path = input;
 			sourceTree = "<group>";
 		};
 		462FBAA11E51FE2400323987 = {
@@ -128,19 +128,18 @@
 		462FBAAC1E51FE2400323987 /* swift-score */ = {
 			isa = PBXGroup;
 			children = (
-				46022FEA1E7049E1009B491B /* keyboard */,
+				46022FEA1E7049E1009B491B /* input */,
 				469927381E6884D60013B200 /* controllers */,
 				469927351E65CABC0013B200 /* extensions */,
 				462FBAFA1E5DE07200323987 /* examples */,
 				462FBAEF1E5601A900323987 /* graphics */,
-				462FBAC81E533E3B00323987 /* builders */,
+				462FBAC81E533E3B00323987 /* xml */,
 				462FBAC51E533A2800323987 /* models */,
 				462FBAAD1E51FE2400323987 /* AppDelegate.swift */,
 				462FBAB11E51FE2400323987 /* Main.storyboard */,
 				462FBAB41E51FE2400323987 /* Assets.xcassets */,
 				462FBAB61E51FE2400323987 /* LaunchScreen.storyboard */,
 				462FBAB91E51FE2400323987 /* Info.plist */,
-				462FBAC31E5216B200323987 /* Parser.swift */,
 			);
 			path = "swift-score";
 			sourceTree = "<group>";
@@ -153,12 +152,13 @@
 			path = models;
 			sourceTree = "<group>";
 		};
-		462FBAC81E533E3B00323987 /* builders */ = {
+		462FBAC81E533E3B00323987 /* xml */ = {
 			isa = PBXGroup;
 			children = (
 				462FBAC91E533E9D00323987 /* ScoreBuilder.swift */,
+				462FBAC31E5216B200323987 /* DocumentHandler.swift */,
 			);
-			path = builders;
+			path = xml;
 			sourceTree = "<group>";
 		};
 		462FBAEF1E5601A900323987 /* graphics */ = {
@@ -359,7 +359,7 @@
 				469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */,
 				46022FDE1E6AD832009B491B /* PathView.swift in Sources */,
 				46022FEC1E704ABB009B491B /* InputViewKeyboardButton.swift in Sources */,
-				462FBAC41E5216B200323987 /* Parser.swift in Sources */,
+				462FBAC41E5216B200323987 /* DocumentHandler.swift in Sources */,
 				46022FE91E703B8E009B491B /* InputViewButton.swift in Sources */,
 				469927371E65CADF0013B200 /* ScoreExtension.swift in Sources */,
 				469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */,

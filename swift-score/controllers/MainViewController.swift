@@ -36,13 +36,13 @@ class MainViewController: UIViewController {
             print(self.scoreView.frame)
         }
 
-        let parser = Parser()
+        let documentHandler = DocumentHandler()
         let builder = ScoreBuilder()
         scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
 
         
         print("Building partwise score")
-        let score = builder.partwise(xml: parser.getDocument(withName: scoreName)!)
+        let score = builder.partwise(xml: documentHandler.getDocument(withName: scoreName)!)
         
         scoreView.drawScore(score: score)
         

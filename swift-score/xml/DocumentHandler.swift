@@ -9,7 +9,7 @@
 import Foundation
 import AEXML
 
-public class Parser {
+public class DocumentHandler {
     func getDocument(withName name: String) -> AEXMLDocument? {
                 
         if let xmlPath = Bundle.main.path(forResource: name, ofType: "xml"),
