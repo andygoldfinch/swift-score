@@ -60,8 +60,6 @@ class LineView: UIView {
             previousAttributes = currentAttributes
             currentAttributes = update(currentAttributes: currentAttributes, newAttributes: measure.attributes)
             previousAttributes = previousAttributes == Attributes() ? currentAttributes : previousAttributes
-            print("Measure is balanced: \(MeasureBalancer().isBalanced(notes: measure.notes, time: currentAttributes.time ?? Time(beats: 4, beatType: 4)))")
-
             
             // Clefs
             let clef = currentAttributes.clef
@@ -248,15 +246,27 @@ class LineView: UIView {
     
     func addNote(note: Note) {
         let balancer = MeasureBalancer()
-        let balancedResult = balancer.isBalanced(notes: measures.last!.notes, time: finalAttributes.time ?? Time(beats: 4, beatType: 4))
+        let time = finalAttributes.time ?? Time(beats: 4, beatType: 4)
+        var notes: [Note] = measures.last?.notes ?? []
+        let balancedResult = balancer.isBalanced(notes: notes, time: time)
         let isBalanced = balancedResult != .under
         
         if measures.isEmpty || isBalanced {
             measures.append(Measure(number: "1", attributes: nil, notes: []))
+            notes = []
         }
         
-        let lastIndex = measures.count - 1
-        measures[lastIndex].notes.append(note)
+        if balancer.canAdd(note: note, to: notes, time: time) {
+            let lastIndex = measures.count - 1
+            measures[lastIndex].notes.append(note)
+        }
+        else {
+            let split = balancer.split(note: note, in: notes, time: time)
+            print("Notes split: \(split)")
+            let lastIndex = measures.count - 1
+            measures[lastIndex].notes = split.first
+            measures.append(Measure(number: "1", attributes: nil, notes: split.second))
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -269,7 +279,6 @@ class LineView: UIView {
 
 extension LineView: NoteInputDelegate {
     func selectedInput(note: Note) {
-        print("LineView received input: \(note)")
         addNote(note: note)
         setNeedsDisplay()
     }

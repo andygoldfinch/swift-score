@@ -24,16 +24,11 @@ class MainViewController: UIViewController {
         
         scoreView.heightClosure = {
             self.scoreBottomConstraint.constant = $0 - self.scrollView.frame.height + 64
-            print("Height updated: \(self.scoreBottomConstraint.constant)")
         }
         
         scoreView.widthClosure = {
             self.scoreView.frame.size = CGSize(width: $0, height: self.scrollView.frame.height)
-
             self.scoreTrailingConstraint.constant = $0 - self.scrollView.frame.width + 64
-            print("Width updated: \(self.scoreTrailingConstraint.constant)")
-            
-            print(self.scoreView.frame)
         }
 
         let documentHandler = DocumentHandler()
