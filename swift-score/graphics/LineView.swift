@@ -245,6 +245,12 @@ class LineView: UIView {
     }
     
     func addNote(note: Note) {
+        guard !note.chord else {
+            let lastIndex = measures.count - 1
+            measures[lastIndex].notes.append(note)
+            return
+        }
+        
         let balancer = MeasureBalancer()
         let time = finalAttributes.time ?? Time(beats: 4, beatType: 4)
         var notes: [Note] = measures.last?.notes ?? []
