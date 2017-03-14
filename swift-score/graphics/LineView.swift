@@ -23,7 +23,7 @@ class LineView: UIView {
         return noteInputViewController?.view
     }
     
-    let spacing: CGFloat = 10.0
+    var spacing: CGFloat = 10.0
     fileprivate var measures: [Measure] = []
     var lengthClosure: ((CGFloat) -> Void)?
     var finalAttributes: Attributes!
@@ -80,7 +80,10 @@ class LineView: UIView {
                 let isWide: Bool = time.beats > 9 || time.beatType > 9
                 let width: CGFloat = (isWide ? 3.0 : 2.0) * spacing
                 let timeRect = CGRect(x: xCounter - 0.5 * spacing, y: midY - 2 * spacing, width: width, height: 4 * spacing)
-                drawTimeSignature(top: time.beats, bottom: time.beatType, rect: timeRect)
+                
+                let imageViews = imageViewGenerator.makeTimeViews(top: time.beats, bottom: time.beatType, rect: timeRect)
+                self.addSubview(imageViews.top)
+                self.addSubview(imageViews.bottom)
                 xCounter += width
             }
             
@@ -181,30 +184,6 @@ class LineView: UIView {
         if lengthClosure != nil {
             lengthClosure!(xCounter)
         }
-    }
-
-    
-    /// Draw the given time signature in the given rect
-    func drawTimeSignature(top: Int, bottom: Int, rect: CGRect) {
-        let topText = NSString(string: String(top))
-        let bottomText = NSString(string: String(bottom))
-        
-        let font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 2.6 * spacing)
-        let style = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-        style.alignment = NSTextAlignment.center
-        let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: style]
-        
-        let splitRect = rect.divided(atDistance: rect.height/2.0, from: .minYEdge)
-        var topRect = splitRect.slice
-        let offset = (font?.ascender ?? 0) - (font?.capHeight ?? 0)
-        topRect.origin = CGPoint(x: topRect.origin.x, y: topRect.origin.y - offset)
-        topRect.size = CGSize(width: topRect.size.width, height: topRect.height + offset)
-        var bottomRect = splitRect.remainder
-        bottomRect.origin = CGPoint(x: bottomRect.origin.x, y: bottomRect.origin.y - offset)
-        bottomRect.size = CGSize(width: bottomRect.size.width, height: bottomRect.height + offset)
-        
-        topText.draw(in: topRect, withAttributes: attributes)
-        bottomText.draw(in: bottomRect, withAttributes: attributes)
     }
     
     

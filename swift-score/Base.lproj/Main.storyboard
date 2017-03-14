@@ -96,6 +96,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Score" id="TJx-28-fPb">
                         <barButtonItem key="backBarButtonItem" title="Back" id="a7M-6a-Vy7"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="srN-44-75E">
+                            <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="5" maximumValue="20" stepValue="2.5" id="nDh-rD-nKN">
+                                <rect key="frame" x="265" y="7" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stepperChanged:" destination="pzX-af-V9T" eventType="valueChanged" id="8WE-E3-qRh"/>
+                                </connections>
+                            </stepper>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="scoreBottomConstraint" destination="3Mh-Uf-tB7" id="ZKd-Wg-Ijd"/>

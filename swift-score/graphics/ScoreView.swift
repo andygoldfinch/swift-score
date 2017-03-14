@@ -55,6 +55,15 @@ class ScoreView: UIView {
         
     }
     
+    func changeSpacing(to spacing: Double) {
+        let ratio = CGFloat(spacing) / lines[0].spacing
+        for line in lines {
+            line.frame.size = CGSize(width: ratio * line.frame.width, height: ratio * line.frame.height)
+            line.spacing = CGFloat(spacing)
+            line.setNeedsDisplay()
+        }
+    }
+    
     
     /// Select a line based on y position, ignoring x (fixes an issue with autolayout causing some incorrect frames)
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

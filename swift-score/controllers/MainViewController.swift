@@ -44,5 +44,9 @@ class MainViewController: UIViewController {
         print("score drawn")
     }
 
+    
+    @IBAction func stepperChanged(_ sender: UIStepper) {
+        scoreView.changeSpacing(to: sender.value)
+    }
 }
 
