@@ -11,17 +11,16 @@ import UIKit
 class ScoreView: UIView {
     @IBInspectable var margin: CGFloat = 32.0
     
-    var widthClosure: ((CGFloat) -> Void)?
-    var heightClosure: ((CGFloat) -> Void)?
+    var delegate: ScoreViewDelegate?
     
     private var previousHeight: CGFloat?
     
     var lines: [LineView] = []
     var lengths: [CGFloat] = [] {
         didSet {
-            if let giveWidth = widthClosure {
+            if let delegate = delegate {
                 let maxWidth = lengths.max() ?? 0
-                giveWidth(maxWidth)
+                delegate.widthWasSet(width: maxWidth)
                 
                 if maxWidth > self.frame.width {
                     self.frame.size = CGSize(width: maxWidth, height: self.frame.height)
@@ -39,6 +38,7 @@ class ScoreView: UIView {
             let part = score.parts[i]
             let line = LineView(frame: CGRect.zero)
             line.backgroundColor = UIColor.clear
+            line.delegate = self
             line.lengthClosure = {
                 self.lengths.append($0)
             }
@@ -98,10 +98,32 @@ class ScoreView: UIView {
         
         self.frame.size = CGSize(width: self.frame.width, height: totalHeight)
         
-        if let giveHeight = heightClosure, totalHeight != previousHeight {
-            giveHeight(totalHeight)
+        if let delegate = delegate, totalHeight != previousHeight {
+            delegate.heightWasSet(height: totalHeight)
             previousHeight = totalHeight
         }
     }
 
+}
+
+extension ScoreView: LineViewDelegate {
+    func keyboardDidHide() {
+        if let delegate = delegate {
+            delegate.keyboardDidHide()
+        }
+    }
+    
+    func keyboardDidShow(height: CGFloat) {
+        if let delegate = delegate {
+            delegate.keyboardDidShow(height: height)
+        }
+    }
+}
+
+protocol ScoreViewDelegate {
+    func heightWasSet(height: CGFloat)
+    func widthWasSet(width: CGFloat)
+    func keyboardDidShow(height: CGFloat)
+    func keyboardDidHide()
+    
 }

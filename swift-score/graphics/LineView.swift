@@ -23,6 +23,8 @@ class LineView: UIView {
         return noteInputViewController?.view
     }
     
+    var delegate: LineViewDelegate?
+    
     var spacing: CGFloat = 10.0
     fileprivate var measures: [Measure] = []
     var lengthClosure: ((CGFloat) -> Void)?
@@ -257,6 +259,9 @@ class LineView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !self.isFirstResponder {
             self.becomeFirstResponder()
+            if let delegate = delegate, let inputView = inputView {
+                delegate.keyboardDidShow(height: inputView.frame.height)
+            }
         }
     }
     
@@ -270,6 +275,9 @@ extension LineView: NoteInputDelegate {
     
     func closeTapped() {
         self.resignFirstResponder()
+        if let delegate = delegate {
+            delegate.keyboardDidHide()
+        }
     }
     
     func backspaceTapped() {
@@ -283,5 +291,10 @@ extension LineView: NoteInputDelegate {
             setNeedsDisplay()
         }
     }
+}
+
+protocol LineViewDelegate {
+    func keyboardDidShow(height: CGFloat)
+    func keyboardDidHide()
 }
 

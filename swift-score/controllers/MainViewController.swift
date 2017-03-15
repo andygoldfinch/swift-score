@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scoreLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var scrollTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarTopConstraint: NSLayoutConstraint!
     
     var scoreName: String!
@@ -28,19 +29,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scoreView.heightClosure = {
-            self.scoreBottomConstraint.constant = $0 - self.scrollView.frame.height + 64
-        }
-        
-        scoreView.widthClosure = {
-            self.scoreView.frame.size = CGSize(width: $0, height: self.scrollView.frame.height)
-            self.scoreTrailingConstraint.constant = $0 - self.scrollView.frame.width + 64
-        }
+        scoreView.delegate = self
 
         let documentHandler = DocumentHandler()
         let builder = ScoreBuilder()
         scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
-
         
         print("Building partwise score")
         let score = builder.partwise(xml: documentHandler.getDocument(withName: scoreName)!)
@@ -69,5 +62,24 @@ class MainViewController: UIViewController {
         }
     }
     
+}
+
+extension MainViewController: ScoreViewDelegate {
+    func heightWasSet(height: CGFloat) {
+        self.scoreBottomConstraint.constant = height - self.scrollView.frame.height + 64
+    }
+    
+    func widthWasSet(width: CGFloat) {
+        self.scoreView.frame.size = CGSize(width: width, height: self.scrollView.frame.height)
+        self.scoreTrailingConstraint.constant = width - self.scrollView.frame.width + 64
+    }
+    
+    func keyboardDidHide() {
+        scrollBottomConstraint.constant = 0
+    }
+    
+    func keyboardDidShow(height: CGFloat) {
+        scrollBottomConstraint.constant = height
+    }
 }
 

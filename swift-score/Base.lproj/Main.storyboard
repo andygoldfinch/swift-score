@@ -127,6 +127,7 @@
                         <outlet property="scoreTopConstraint" destination="ZgQ-Sb-Jcd" id="wKg-BM-WLx"/>
                         <outlet property="scoreTrailingConstraint" destination="Bc0-BC-FJa" id="VvQ-QC-XCG"/>
                         <outlet property="scoreView" destination="Lxt-1L-Ks4" id="7mG-n1-X2d"/>
+                        <outlet property="scrollBottomConstraint" destination="3Mh-Uf-tB7" id="Njs-kY-xEA"/>
                         <outlet property="scrollTopConstraint" destination="IAZ-hi-JQT" id="cJS-hj-1dS"/>
                         <outlet property="scrollView" destination="C6K-IQ-Sqi" id="GAQ-Pj-lLo"/>
                         <outlet property="toolbar" destination="QDI-5y-uJu" id="pel-ga-Piv"/>
