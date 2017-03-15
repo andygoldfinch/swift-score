@@ -153,7 +153,7 @@ class MeasureBalancer {
     func split(note: Note, in notes: [Note], time: Time) -> (first: [Note], second: [Note]) {
         var firstTotal = self.balance(notes: notes, time: time).remainingSpace
         
-        var firstNotes = notes
+        var firstNotes: [Note] = []
         while firstTotal > 0 {
             let generatedNote = self.note(within: firstTotal)
             var insertedNote = note
@@ -163,6 +163,8 @@ class MeasureBalancer {
             
             firstTotal -= length(of: insertedNote)
         }
+        firstNotes.reverse()
+        firstNotes = notes + firstNotes
         
         var newNotes = notes
         newNotes.append(note)
