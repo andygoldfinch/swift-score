@@ -142,7 +142,8 @@ class LineView: UIView {
                 self.addSubview(noteView)
             
                 // Ledger lines
-                let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: xCounter, midY: midY)
+                let ledgerX = isChord ? previousNoteX : xCounter
+                let ledgerPath = pathGenerator.makeLedgerLines(lines: position.lines, type: note.type, x: ledgerX, midY: midY)
                 pathStroke.append(ledgerPath)
                 
                 // Dots
