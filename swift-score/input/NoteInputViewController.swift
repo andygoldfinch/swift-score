@@ -11,6 +11,10 @@ import UIKit
 class NoteInputViewController: UIViewController {
     var delegate: NoteInputDelegate? = nil
     
+    // Note labels
+    let noteNames: [String] = ["C", "D", "E", "F", "G", "A", "B", "C", "D", "E"]
+    let noteOctaves: [Int]  = [4, 4, 4, 4, 4, 4, 4, 5, 5, 5]
+    
     // Length
     @IBOutlet weak var buttonSemibreve: InputViewButton!
     @IBOutlet weak var buttonMinim: InputViewButton!
@@ -113,6 +117,27 @@ class NoteInputViewController: UIViewController {
     }
     
     
+    /// Combine the appropriate note name and octave into a note button label.
+    func makeNoteName(index: Int) -> String {
+        guard index < noteNames.count && index < noteOctaves.count && index >= 0 else {
+            return ""
+        }
+        
+        return noteNames[index] + String(noteOctaves[index] + currentOctave)
+    }
+    
+    
+    /// Update the labels on each button
+    func updateLabels() {
+        let buttons = [buttonC4, buttonD4, buttonE4, buttonF4, buttonG4, buttonA4, buttonB4, buttonC5, buttonD5, buttonE5]
+        
+        for i in 0..<buttons.count {
+            let noteName = makeNoteName(index: i)
+            buttons[i]!.setTitle(noteName, for: UIControlState.normal)
+        }
+    }
+    
+    
     @IBAction func buttonTapped(sender: InputViewButton) {
         if sender == buttonSemibreve
             || sender == buttonMinim
@@ -127,6 +152,7 @@ class NoteInputViewController: UIViewController {
             || sender == buttonMinus1
             || sender == buttonMinus2 {
             currentOctaveButton = sender
+            updateLabels()
         }
         else if sender == buttonChord {
             sender.toggle()
@@ -140,6 +166,7 @@ class NoteInputViewController: UIViewController {
             delegate!.selectedInput(note: note)
         }
     }
+    
     
     /// Handle a note being pressed.
     @IBAction func noteTapped(_ sender: InputViewKeyboardButton) {
@@ -205,16 +232,6 @@ class NoteInputViewController: UIViewController {
             delegate.backspaceTapped()
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -224,7 +241,7 @@ protocol NoteInputDelegate {
     func backspaceTapped()
 }
 
-enum NoteInputType {
+/*enum NoteInputType {
     case length(NoteType)
     case rest(NoteType)
     case accent
@@ -232,4 +249,4 @@ enum NoteInputType {
     case pitch(Pitch)
     case octave(Int)
     case other
-}
+}*/
