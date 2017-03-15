@@ -152,7 +152,6 @@ class MeasureBalancer {
     /// Split a note that won't fit into the end of a bar across two new lists of notes.
     func split(note: Note, in notes: [Note], time: Time) -> (first: [Note], second: [Note]) {
         var firstTotal = self.balance(notes: notes, time: time).remainingSpace
-        print("Split: first total = \(firstTotal)")
         
         var firstNotes = notes
         while firstTotal > 0 {

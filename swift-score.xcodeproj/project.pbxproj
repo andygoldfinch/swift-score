@@ -24,7 +24,6 @@
 		462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC61E533A9100323987 /* ScorePartwise.swift */; };
 		462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAC91E533E9D00323987 /* ScoreBuilder.swift */; };
 		462FBACC1E546D4100323987 /* complex-1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBACB1E546D4100323987 /* complex-1.xml */; };
-		462FBAF11E56023800323987 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF01E56023800323987 /* NoteView.swift */; };
 		462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF21E562FFD00323987 /* ScoreView.swift */; };
 		462FBAF71E5B32FF00323987 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462FBAF61E5B32FF00323987 /* LineView.swift */; };
 		462FBAF91E5DB97500323987 /* custom.xml in Resources */ = {isa = PBXBuildFile; fileRef = 462FBAF81E5DB97500323987 /* custom.xml */; };
@@ -61,7 +60,6 @@
 		462FBAC61E533A9100323987 /* ScorePartwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScorePartwise.swift; sourceTree = "<group>"; };
 		462FBAC91E533E9D00323987 /* ScoreBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreBuilder.swift; sourceTree = "<group>"; };
 		462FBACB1E546D4100323987 /* complex-1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "complex-1.xml"; sourceTree = "<group>"; };
-		462FBAF01E56023800323987 /* NoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
 		462FBAF21E562FFD00323987 /* ScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		462FBAF61E5B32FF00323987 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		462FBAF81E5DB97500323987 /* custom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = custom.xml; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 		462FBAEF1E5601A900323987 /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				462FBAF01E56023800323987 /* NoteView.swift */,
 				462FBAF21E562FFD00323987 /* ScoreView.swift */,
 				462FBAF61E5B32FF00323987 /* LineView.swift */,
 				46022FDD1E6AD832009B491B /* PathView.swift */,
@@ -353,7 +350,6 @@
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
 				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
-				462FBAF11E56023800323987 /* NoteView.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */,
 				462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */,

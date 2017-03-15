@@ -29,18 +29,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scoreView.delegate = self
-
         let documentHandler = DocumentHandler()
         let builder = ScoreBuilder()
-        scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
-        
-        print("Building partwise score")
         let score = builder.partwise(xml: documentHandler.getDocument(withName: scoreName)!)
         
-        scoreView.drawScore(score: score)
+        scoreView.setScore(score: score)
+        scoreView.delegate = self
         
-        print("score drawn")
+        scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
+        
+        toolbarShowPressed(self)
     }
 
     

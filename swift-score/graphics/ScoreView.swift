@@ -29,7 +29,9 @@ class ScoreView: UIView {
         }
     }
 
-    func drawScore(score: ScorePartwise?) {
+    
+    /// Set the score model to be drawn by.
+    func setScore(score: ScorePartwise?) {
         guard let score = score else {
             return
         }
@@ -43,11 +45,7 @@ class ScoreView: UIView {
                 self.lengths.append($0)
             }
             
-            for measure in part.measures {
-                if !line.addMeasure(measure) {
-                    print("Measure not added to line: \(measure)")
-                }
-            }
+            line.measures = part.measures
             
             self.addSubview(line)
             lines.append(line)
@@ -55,6 +53,8 @@ class ScoreView: UIView {
         
     }
     
+    
+    /// Change the spacing of the lines in the view.
     func changeSpacing(to spacing: Double) {
         let ratio = CGFloat(spacing) / lines[0].spacing
         for line in lines {
@@ -82,15 +82,13 @@ class ScoreView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // Frame created here with manual offsets to compensate for a bug where some layout constraints of self are applied twice.
-        //let frame = CGRect(x: self.frame.minX - 36, y: self.frame.minY - 28, width: self.frame.width, height: self.frame.height)
         let frame = CGRect(x: self.frame.minX + margin, y: self.frame.minY + margin, width: self.frame.width - 2 * margin, height: self.frame.height - 2 * margin)
         let numLines = lines.count
         var totalHeight: CGFloat = 0.0
         
         for i in 0..<numLines {
-            //let height: CGFloat = frame.height/CGFloat(numLines)
-            let height = 20 * lines[i].spacing
+            
+            let height = 15 * lines[i].spacing
             let y = frame.minY + totalHeight
             totalHeight += height
             lines[i].frame = CGRect(x: frame.minX, y: y, width: frame.width, height: height)
@@ -106,6 +104,7 @@ class ScoreView: UIView {
 
 }
 
+
 extension ScoreView: LineViewDelegate {
     func keyboardDidHide() {
         if let delegate = delegate {
@@ -119,6 +118,7 @@ extension ScoreView: LineViewDelegate {
         }
     }
 }
+
 
 protocol ScoreViewDelegate {
     func heightWasSet(height: CGFloat)

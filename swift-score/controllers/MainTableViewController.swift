@@ -13,8 +13,6 @@ class MainTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("Table view controller loaded")
 
         // Uncomment for edit button
         //self.navigationItem.rightBarButtonItem = self.editButtonItem

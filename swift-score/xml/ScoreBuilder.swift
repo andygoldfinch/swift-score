@@ -36,8 +36,6 @@ class ScoreBuilder {
         var partList: [ScorePart] = []
         let elements = element["score-part"].all
         
-        print("elements: \(elements)")
-        
         for item in elements ?? [] {
             var scorePart = ScorePart()
             
@@ -46,8 +44,6 @@ class ScoreBuilder {
             
             partList.append(scorePart)
         }
-        
-        print("partList: \(partList)")
         
         return partList
     }

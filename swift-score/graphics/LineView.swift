@@ -26,7 +26,12 @@ class LineView: UIView {
     var delegate: LineViewDelegate?
     
     var spacing: CGFloat = 10.0
-    fileprivate var measures: [Measure] = []
+    var measures: [Measure] = [] {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
     var lengthClosure: ((CGFloat) -> Void)?
     var finalAttributes: Attributes!
     
@@ -218,14 +223,6 @@ class LineView: UIView {
     }
     
     
-    /// Add a single measure to the LineView, returning false if there is not space to add the given measure.
-    func addMeasure(_ measure: Measure) -> Bool {
-        measures.append(measure)
-        
-        // TODO return false if not enough space
-        return true
-    }
-    
     func addNote(note: Note) {
         guard !note.chord else {
             let lastIndex = measures.count - 1
@@ -250,7 +247,6 @@ class LineView: UIView {
         }
         else {
             let split = balancer.split(note: note, in: notes, time: time)
-            print("Notes split: \(split)")
             let lastIndex = measures.count - 1
             measures[lastIndex].notes = split.first
             measures.append(Measure(number: "1", attributes: nil, notes: split.second))
