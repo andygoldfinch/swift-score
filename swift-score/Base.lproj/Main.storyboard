@@ -69,11 +69,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDI-5y-uJu">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Li4-Vk-GeA"/>
+                                    <barButtonItem style="plain" id="Gqe-Qu-QK8">
+                                        <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="5" maximumValue="20" stepValue="2.5" id="CbF-k4-jyj">
+                                            <rect key="frame" x="265" y="8" width="94" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="stepperChanged:" destination="pzX-af-V9T" eventType="valueChanged" id="Q57-jB-fz7"/>
+                                            </connections>
+                                        </stepper>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="C6K-IQ-Sqi">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lxt-1L-Ks4" customClass="ScoreView" customModule="swift_score" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -88,22 +104,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QDI-5y-uJu" firstAttribute="width" secondItem="yfN-4R-ORP" secondAttribute="width" id="6Q3-qB-CBA"/>
+                            <constraint firstItem="QDI-5y-uJu" firstAttribute="top" secondItem="o0v-yO-dU0" secondAttribute="bottom" id="6ub-f5-EOx"/>
                             <constraint firstAttribute="trailing" secondItem="C6K-IQ-Sqi" secondAttribute="trailing" id="BmJ-40-EnL"/>
+                            <constraint firstItem="C6K-IQ-Sqi" firstAttribute="top" secondItem="QDI-5y-uJu" secondAttribute="bottom" id="IAZ-hi-JQT"/>
                             <constraint firstItem="2dK-KZ-qW3" firstAttribute="top" secondItem="C6K-IQ-Sqi" secondAttribute="bottom" id="Z5p-A4-o16"/>
-                            <constraint firstItem="C6K-IQ-Sqi" firstAttribute="top" secondItem="o0v-yO-dU0" secondAttribute="bottom" id="iU8-3k-lWG"/>
+                            <constraint firstItem="QDI-5y-uJu" firstAttribute="centerX" secondItem="yfN-4R-ORP" secondAttribute="centerX" id="gna-2m-UHq"/>
                             <constraint firstItem="C6K-IQ-Sqi" firstAttribute="leading" secondItem="yfN-4R-ORP" secondAttribute="leading" id="w7W-GK-Fnw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Score" id="TJx-28-fPb">
                         <barButtonItem key="backBarButtonItem" title="Back" id="a7M-6a-Vy7"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="srN-44-75E">
-                            <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minimumValue="5" maximumValue="20" stepValue="2.5" id="nDh-rD-nKN">
-                                <rect key="frame" x="265" y="7" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="stepperChanged:" destination="pzX-af-V9T" eventType="valueChanged" id="8WE-E3-qRh"/>
-                                </connections>
-                            </stepper>
+                        <barButtonItem key="rightBarButtonItem" image="ic_keyboard_arrow_up" id="ruT-YP-DAp">
+                            <connections>
+                                <action selector="toolbarShowPressed:" destination="pzX-af-V9T" id="C1B-55-eA6"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -112,7 +127,11 @@
                         <outlet property="scoreTopConstraint" destination="ZgQ-Sb-Jcd" id="wKg-BM-WLx"/>
                         <outlet property="scoreTrailingConstraint" destination="Bc0-BC-FJa" id="VvQ-QC-XCG"/>
                         <outlet property="scoreView" destination="Lxt-1L-Ks4" id="7mG-n1-X2d"/>
+                        <outlet property="scrollTopConstraint" destination="IAZ-hi-JQT" id="cJS-hj-1dS"/>
                         <outlet property="scrollView" destination="C6K-IQ-Sqi" id="GAQ-Pj-lLo"/>
+                        <outlet property="toolbar" destination="QDI-5y-uJu" id="pel-ga-Piv"/>
+                        <outlet property="toolbarShowButton" destination="ruT-YP-DAp" id="Oli-Pe-ak1"/>
+                        <outlet property="toolbarTopConstraint" destination="6ub-f5-EOx" id="oLS-NT-BRW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDG-Ks-wdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -142,5 +161,8 @@
             <point key="canvasLocation" x="-208.80000000000001" y="130.88455772113943"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_keyboard_arrow_up" width="24" height="24"/>
+    </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

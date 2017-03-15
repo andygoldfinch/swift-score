@@ -12,10 +12,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scoreView: ScoreView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var toolbarShowButton: UIBarButtonItem!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
     @IBOutlet weak var scoreBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scoreTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var scoreTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var scoreLeadingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var scrollTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolbarTopConstraint: NSLayoutConstraint!
     
     var scoreName: String!
 
@@ -48,5 +54,20 @@ class MainViewController: UIViewController {
     @IBAction func stepperChanged(_ sender: UIStepper) {
         scoreView.changeSpacing(to: sender.value)
     }
+    
+    @IBAction func toolbarShowPressed(_ sender: Any) {
+        toolbar.isHidden = !toolbar.isHidden
+        let height = self.toolbar.frame.height
+        
+        if toolbar.isHidden {
+            self.toolbarTopConstraint.constant -= height
+            toolbarShowButton.image = #imageLiteral(resourceName: "ic_keyboard_arrow_down")
+        }
+        else {
+            self.toolbarTopConstraint.constant += height
+            toolbarShowButton.image = #imageLiteral(resourceName: "ic_keyboard_arrow_up")
+        }
+    }
+    
 }
 
