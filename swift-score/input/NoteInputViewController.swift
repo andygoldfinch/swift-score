@@ -22,6 +22,10 @@ class NoteInputViewController: UIViewController {
     @IBOutlet weak var buttonQuaver: InputViewButton!
     @IBOutlet weak var buttonSemiquaver: InputViewButton!
     
+    @IBOutlet weak var buttonDot1: InputViewButton!
+    @IBOutlet weak var buttonDot2: InputViewButton!
+    
+    
     // Other
     @IBOutlet weak var buttonRest: InputViewButton!
     @IBOutlet weak var buttonChord: InputViewButton!
@@ -65,6 +69,13 @@ class NoteInputViewController: UIViewController {
         }
     }
     
+    var currentDotButton: InputViewButton? {
+        didSet {
+            oldValue?.isToggled = false
+            currentDotButton?.isToggled = true
+        }
+    }
+    
     var currentType: NoteType {
         switch currentTypeButton {
         case buttonSemibreve:
@@ -102,7 +113,16 @@ class NoteInputViewController: UIViewController {
         }
     }
     
-    var currentDots: Int = 0
+    var currentDots: Int {
+        switch currentDotButton {
+        case buttonDot1?:
+            return 1
+        case buttonDot2?:
+            return 2
+        default:
+            return 0
+        }
+    }
     
     var isChord: Bool {
         return buttonChord.isToggled
@@ -164,6 +184,15 @@ class NoteInputViewController: UIViewController {
             note.dots = currentDots
             
             delegate!.selectedInput(note: note)
+        }
+        else if sender == buttonDot1
+            || sender == buttonDot2 {
+            if sender == currentDotButton {
+                currentDotButton = nil
+            }
+            else {
+                currentDotButton = sender
+            }
         }
     }
     
