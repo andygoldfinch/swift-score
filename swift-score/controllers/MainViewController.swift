@@ -39,6 +39,9 @@ class MainViewController: UIViewController {
         scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
         
         toolbarShowPressed(self)
+        
+        let writer = ScoreWriter()
+        writer.save(score: score, name: "test.xml")
     }
 
     
