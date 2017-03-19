@@ -9,10 +9,26 @@
 import UIKit
 
 class MainTableViewController: UITableViewController {
-    let files: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
+    var files: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let documentHandler = DocumentHandler()
+        let userFiles = documentHandler.getDocumentNames()
+        files.append(contentsOf: userFiles)
+        
+        /*let documentHandler = DocumentHandler()
+        let builder = ScoreBuilder()
+        let score = builder.partwise(xml: documentHandler.getExampleDocument(name: files[0])!)
+        
+        print("Saving score")
+        let document = ScoreWriter().makeDocument(score: score)
+        documentHandler.saveDocument(document, name: "test-1.xml")
+        print("Document saved")
+        
+        print("Document fetched: ")
+        print(documentHandler.getDocument(name: "test-1.xml")?.xmlCompact)*/
 
         // Uncomment for edit button
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -84,8 +100,20 @@ class MainTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      if let viewController = segue.destination as? MainViewController, let cell = sender as? MainTableViewCell {
+        if let viewController = segue.destination as? MainViewController, let cell = sender as? MainTableViewCell {
+            let documentHandler = DocumentHandler()
+            let document = documentHandler.getDocument(name: cell.labelName.text! + ".xml")
+            let scoreBuilder = ScoreBuilder()
             viewController.scoreName = cell.labelName.text!
+            if let document = document {
+                viewController.score = scoreBuilder.partwise(xml: document)
+            }
+            else {
+                let exampleDocument = documentHandler.getExampleDocument(name: cell.labelName.text!)
+                if let exampleDocument = exampleDocument {
+                    viewController.score = scoreBuilder.partwise(xml: exampleDocument)
+                }
+            }
         }
     }
  

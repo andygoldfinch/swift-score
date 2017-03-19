@@ -24,24 +24,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scrollBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var toolbarTopConstraint: NSLayoutConstraint!
     
+    var score: ScorePartwise!
     var scoreName: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard score != nil else {
+            print("Error: no score")
+            return
+        }
         
-        let documentHandler = DocumentHandler()
-        let builder = ScoreBuilder()
-        let score = builder.partwise(xml: documentHandler.getDocument(withName: scoreName)!)
-        
+        self.title = scoreName
         scoreView.setScore(score: score)
         scoreView.delegate = self
         
         scrollView.contentSize = CGSize(width: scoreView.frame.width, height: scoreView.frame.height)
         
         toolbarShowPressed(self)
-        
-        let writer = ScoreWriter()
-        writer.save(score: score, name: "test.xml")
     }
 
     

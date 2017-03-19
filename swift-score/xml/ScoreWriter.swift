@@ -10,13 +10,8 @@ import Foundation
 import AEXML
 
 class ScoreWriter {
-    func save(score: ScorePartwise, name: String) {
-        let document = makeDocument(score: score)
-        print(document.xml)
-        // TODO save document
-    }
-    
-    
+   
+    /// Convert a ScorPartwise into an AEXMLDocument
     func makeDocument(score: ScorePartwise) -> AEXMLDocument {
         let doc = AEXMLDocument()
         
