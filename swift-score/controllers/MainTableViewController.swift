@@ -17,18 +17,6 @@ class MainTableViewController: UITableViewController {
         let documentHandler = DocumentHandler()
         let userFiles = documentHandler.getDocumentNames()
         files.append(contentsOf: userFiles)
-        
-        /*let documentHandler = DocumentHandler()
-        let builder = ScoreBuilder()
-        let score = builder.partwise(xml: documentHandler.getExampleDocument(name: files[0])!)
-        
-        print("Saving score")
-        let document = ScoreWriter().makeDocument(score: score)
-        documentHandler.saveDocument(document, name: "test-1.xml")
-        print("Document saved")
-        
-        print("Document fetched: ")
-        print(documentHandler.getDocument(name: "test-1.xml")?.xmlCompact)*/
 
         // Uncomment for edit button
         //self.navigationItem.rightBarButtonItem = self.editButtonItem

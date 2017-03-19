@@ -48,6 +48,7 @@ class MainViewController: UIViewController {
         scoreView.changeSpacing(to: sender.value)
     }
     
+    
     @IBAction func toolbarShowPressed(_ sender: Any) {
         toolbar.isHidden = !toolbar.isHidden
         let height = self.toolbar.frame.height
@@ -59,6 +60,19 @@ class MainViewController: UIViewController {
         else {
             self.toolbarTopConstraint.constant += height
             toolbarShowButton.image = #imageLiteral(resourceName: "ic_keyboard_arrow_up")
+        }
+    }
+    
+    
+    @IBAction func savePressed(_ sender: Any) {
+        let score = scoreView.getScoreForSaving()
+        
+        if let score = score {
+            let documentHandler = DocumentHandler()
+            let scoreWriter = ScoreWriter()
+            let document = scoreWriter.makeDocument(score: score)
+            let name = scoreName + ".xml"
+            documentHandler.saveDocument(document, name: name)
         }
     }
     

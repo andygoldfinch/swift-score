@@ -40,7 +40,7 @@ class ScoreWriter {
     
     
     /// Take a ScorePart and return a <socre-part> element
-    func makeScorePart(_ part: ScorePart) -> AEXMLElement {
+    private func makeScorePart(_ part: ScorePart) -> AEXMLElement {
         let element = AEXMLElement(name: "score-part")
         
         element.attributes = ["id": part.id]
@@ -140,7 +140,9 @@ class ScoreWriter {
             element.addChild(name: "dot")
         }
         
-        element.addChild(name: "duration", value: String(note.duration))
+        if let duration = note.duration {
+            element.addChild(name: "duration", value: String(duration))
+        }
         
         return element
     }

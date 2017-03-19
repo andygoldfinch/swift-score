@@ -12,6 +12,7 @@ class ScoreView: UIView {
     @IBInspectable var margin: CGFloat = 32.0
     
     var delegate: ScoreViewDelegate?
+    private var score: ScorePartwise?
     
     private var previousHeight: CGFloat?
     
@@ -35,6 +36,8 @@ class ScoreView: UIView {
         guard let score = score else {
             return
         }
+        
+        self.score = score
         
         for i in 0..<score.parts.count {
             let part = score.parts[i]
@@ -62,6 +65,22 @@ class ScoreView: UIView {
             line.spacing = CGFloat(spacing)
             line.setNeedsDisplay()
         }
+    }
+    
+    
+    /// Return an up to date score
+    func getScoreForSaving() -> ScorePartwise? {
+        guard var score = self.score else {
+            return nil
+        }
+        
+        for i in 0..<score.parts.count {
+            let line = lines[i]
+            
+            score.parts[i].measures = line.measures
+        }
+        
+        return score
     }
     
     
