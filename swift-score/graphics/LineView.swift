@@ -33,7 +33,7 @@ class LineView: UIView {
     }
     
     var lengthClosure: ((CGFloat) -> Void)?
-    var finalAttributes: Attributes!
+    var finalAttributes: Attributes?
     
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
@@ -194,6 +194,10 @@ class LineView: UIView {
         if lengthClosure != nil {
             lengthClosure!(xCounter)
         }
+        
+        if finalAttributes == nil {
+            finalAttributes = Attributes.defaultAttributes
+        }
     }
     
     
@@ -233,7 +237,7 @@ class LineView: UIView {
         }
         
         let balancer = MeasureBalancer()
-        let time = finalAttributes.time ?? Time(beats: 4, beatType: 4)
+        let time = finalAttributes?.time ?? Time(beats: 4, beatType: 4)
         var notes: [Note] = measures.last?.notes ?? []
         let balancedResult = balancer.isBalanced(notes: notes, time: time)
         let isBalanced = balancedResult != .under

@@ -37,6 +37,10 @@ class ScoreView: UIView {
             return
         }
         
+        self.subviews.forEach {
+            $0.removeFromSuperview()
+        }
+        lines.removeAll()
         self.score = score
         
         for i in 0..<score.parts.count {
@@ -54,6 +58,7 @@ class ScoreView: UIView {
             lines.append(line)
         }
         
+        self.setNeedsDisplay()
     }
     
     

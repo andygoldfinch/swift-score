@@ -39,3 +39,26 @@ extension Attributes: Equatable {
             && lhs.time == rhs.time
     }
 }
+
+extension Attributes {
+    static var defaultAttributes: Attributes {
+        var attributes = Attributes()
+        attributes.divisions = 8
+        attributes.clef = Clef(sign: "G", line: 2)
+        attributes.key = Key(fifths: 0)
+        attributes.time = Time(beats: 4, beatType: 4)
+        
+        return attributes
+    }
+}
+
+extension Measure {
+    static var defaultMeasure: Measure {
+        var measure = Measure()
+        measure.number = "1"
+        measure.notes = []
+        measure.attributes = Attributes.defaultAttributes
+        
+        return measure
+    }
+}

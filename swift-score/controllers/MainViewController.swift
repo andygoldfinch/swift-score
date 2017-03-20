@@ -76,6 +76,16 @@ class MainViewController: UIViewController {
         }
     }
     
+    @IBAction func addPartPressed(_ sender: Any) {
+        var score: ScorePartwise = scoreView.getScoreForSaving() ?? ScorePartwise(partList: [], parts: [])
+        let id = String(score.partList.count + 1)
+        let partName = "part-\(id)"
+        score.partList.append(ScorePart(id: id, partName: partName))
+        score.parts.append(Part(id: id, measures: [Measure.defaultMeasure]))
+        scoreView.setScore(score: score)
+        savePressed(self)
+    }
+    
 }
 
 extension MainViewController: ScoreViewDelegate {
