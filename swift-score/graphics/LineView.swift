@@ -71,6 +71,7 @@ class LineView: UIView {
             // Clefs
             let clef = currentAttributes.clef
             let previousClef = previousAttributes.clef
+            let currentClef = currentAttributes.clef ?? Clef(sign: "g", line: 2)
             
             if let clef = clef, previousMeasure == nil || previousClef != clef {
                 let y = positionCalculator.getClefPosition(clef: clef)
@@ -100,13 +101,13 @@ class LineView: UIView {
             
             if let fifths = fifths, previousMeasure == nil || previousFifths != fifths {
                 let keyGenerator = KeyGenerator()
-                var keyNotes = keyGenerator.makeKey(fifths: fifths)
+                var keyNotes = keyGenerator.makeKey(fifths: fifths, clef: currentClef)
                 if previousMeasure != nil && ((previousFifths! < 0 && previousFifths! < fifths) || (previousFifths! > 0 && previousFifths! > fifths)) {
-                    keyNotes = keyGenerator.makeNaturals(oldFifths: previousFifths!, newFifths: fifths) + keyNotes
+                    keyNotes = keyGenerator.makeNaturals(oldFifths: previousFifths!, newFifths: fifths, clef: currentClef) + keyNotes
                 }
                 
                 for note in keyNotes {
-                    let y = positionCalculator.getAccidentalPosition(note: note)
+                    let y = positionCalculator.getAccidentalPosition(note: note, clef: currentClef)
                     let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
                     xCounter += accidentalView.frame.width + 0.2 * spacing
                     self.addSubview(accidentalView)
@@ -124,7 +125,7 @@ class LineView: UIView {
 
                 // Accidentals
                 if accidentalManager.needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
-                    let y = positionCalculator.getAccidentalPosition(note: note)
+                    let y = positionCalculator.getAccidentalPosition(note: note, clef: currentClef)
                     let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
                     let width = accidentalView.frame.width + (1/5) * spacing
                     if isChord {
@@ -137,9 +138,10 @@ class LineView: UIView {
                 }
                 
                 // Notes
+                
                 let position = isChord ?
-                    positionCalculator.getHeadPosition(note: note) :
-                    positionCalculator.getNotePosition(note: note)
+                    positionCalculator.getHeadPosition(note: note, clef: currentClef) :
+                    positionCalculator.getNotePosition(note: note, clef: currentClef)
                 let noteView = isChord ?
                     imageViewGenerator.makeHeadView(note: note, x: previousNoteX, y: position.y) :
                     imageViewGenerator.makeNoteView(note: note, x: xCounter, y: position.y)

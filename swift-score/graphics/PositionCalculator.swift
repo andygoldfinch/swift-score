@@ -19,10 +19,11 @@ class PositionCalculator {
 
 
     /// Return the y position for the given note.
-    func getNotePosition(note: Note) -> (y: CGFloat, lines: LedgerLines?) {
+    func getNotePosition(note: Note, clef: Clef) -> (y: CGFloat, lines: LedgerLines?) {
         let octave = note.pitch?.octave ?? 0
         let stemUp: Bool = octave < 5 && note.type != .n1
         let noteOffset: CGFloat =  stemUp ? 3.5 * spacing : 0.5 * spacing
+        let clefOffset: CGFloat = getClefOffset(clef: clef)
         var stepY: CGFloat!
         var lines: LedgerLines? = nil
         
@@ -51,6 +52,7 @@ class PositionCalculator {
             let octave = pitch.octave - 4
             
             stepY = stepY - (CGFloat(octave) * octaveSpace)
+            stepY = stepY + clefOffset
             
             if stepY < (midY - (2.5 * spacing) - noteOffset) {
                 let numLines = Int((midY - stepY - noteOffset) / spacing) - 2
@@ -68,10 +70,12 @@ class PositionCalculator {
         }
     }
     
+    
     /// Return the y position for the given note.
-    func getHeadPosition(note: Note) -> (y: CGFloat, lines: LedgerLines?) {
+    func getHeadPosition(note: Note, clef: Clef) -> (y: CGFloat, lines: LedgerLines?) {
         //let octave = previousNotes[0].pitch?.octave ?? 0
         let noteOffset: CGFloat = 0.5 * spacing
+        let clefOffset: CGFloat = getClefOffset(clef: clef)
         var stepY: CGFloat!
         var lines: LedgerLines? = nil
         
@@ -100,6 +104,7 @@ class PositionCalculator {
             let octave = pitch.octave - 4
             
             stepY = stepY - (CGFloat(octave) * octaveSpace)
+            stepY = stepY + clefOffset
             
             if stepY < (midY - (2.5 * spacing) - noteOffset) {
                 let numLines = Int((midY - stepY - noteOffset) / spacing) - 2
@@ -119,7 +124,7 @@ class PositionCalculator {
     
     
     /// Return the y position for the accidental for the given note.
-    func getAccidentalPosition(note: Note) -> CGFloat {
+    func getAccidentalPosition(note: Note, clef: Clef) -> CGFloat {
         guard let pitch = note.pitch else {
             return midY
         }
@@ -128,6 +133,7 @@ class PositionCalculator {
         }
         
         let offset: CGFloat!
+        let clefOffset = getClefOffset(clef: clef)
         var stepY: CGFloat!
         
         if alter >= 2 {
@@ -163,6 +169,7 @@ class PositionCalculator {
         let octave = pitch.octave - 4
         
         stepY = stepY - (CGFloat(octave) * octaveSpace)
+        stepY = stepY + clefOffset
         
         return stepY
     }
@@ -184,6 +191,19 @@ class PositionCalculator {
         let lineOffset: CGFloat = CGFloat(-(clef.line - 3)) * spacing
         
         return midY + lineOffset - typeOffset
+    }
+    
+    
+    /// Calculate the note offset in relation to the given clef
+    func getClefOffset(clef: Clef) -> CGFloat {
+        switch clef.sign.lowercased() {
+        case "f":
+            return (CGFloat(-clef.line) - 2.0) * spacing
+        case "c":
+            return CGFloat(-clef.line) * spacing
+        default:
+            return CGFloat(-(clef.line - 2)) * spacing
+        }
     }
 }
 
