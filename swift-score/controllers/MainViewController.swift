@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var scoreView: ScoreView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var inputTypeButton: UIBarButtonItem!
     @IBOutlet weak var toolbarShowButton: UIBarButtonItem!
     @IBOutlet weak var toolbar: UIToolbar!
     
@@ -26,6 +27,18 @@ class MainViewController: UIViewController {
     
     var score: ScorePartwise!
     var scoreName: String!
+    
+    var isInEditMode = false {
+        didSet {
+            scoreView.isInEditMode = isInEditMode
+            if isInEditMode {
+                inputTypeButton.image = #imageLiteral(resourceName: "ic_input")
+            }
+            else {
+                inputTypeButton.image = #imageLiteral(resourceName: "ic_edit")
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +100,10 @@ class MainViewController: UIViewController {
         savePressed(self)
     }
     
+
+    @IBAction func inputTypePressed(_ sender: Any) {
+        isInEditMode = !isInEditMode
+    }
     
     /// Reload the file list on return to table view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

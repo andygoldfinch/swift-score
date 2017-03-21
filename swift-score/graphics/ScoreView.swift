@@ -13,6 +13,13 @@ class ScoreView: UIView {
     
     var delegate: ScoreViewDelegate?
     private var score: ScorePartwise?
+    var isInEditMode: Bool = false {
+        didSet {
+            for line in lines {
+                line.isInEditMode = isInEditMode
+            }
+        }
+    }
     
     private var previousHeight: CGFloat?
     

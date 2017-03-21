@@ -13,14 +13,35 @@ import AVFoundation
 /// Measures should be added one at a time, and the add method will return false when there is no space left on this line.
 class LineView: UIView {
     var noteInputViewController: NoteInputViewController?
+    var editViewControler: EditViewController?
+    
     override var canBecomeFirstResponder: Bool { return true }
-    override var inputView: UIView? {
-        if noteInputViewController == nil {
-            noteInputViewController = NoteInputViewController(nibName: "NoteInputViewController", bundle: nil)
-            noteInputViewController?.delegate = self
+    var isInEditMode: Bool = false {
+        didSet {
+            if isFirstResponder {
+                self.resignFirstResponder()
+                self.becomeFirstResponder()
+            }
         }
-        
-        return noteInputViewController?.view
+    }
+    
+    override var inputView: UIView? {
+        if isInEditMode {
+            if editViewControler == nil {
+                editViewControler = EditViewController(nibName: "EditViewController", bundle: nil)
+                //TODO set delegate
+            }
+            
+            return editViewControler?.view
+        }
+        else {
+            if noteInputViewController == nil {
+                noteInputViewController = NoteInputViewController(nibName: "NoteInputViewController", bundle: nil)
+                noteInputViewController?.delegate = self
+            }
+            
+            return noteInputViewController?.view
+        }
     }
     
     var delegate: LineViewDelegate?
