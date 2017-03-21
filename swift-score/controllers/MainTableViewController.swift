@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import AEXML
+
+fileprivate typealias MetaScore = (name: String, score: ScorePartwise)
 
 class MainTableViewController: UITableViewController {
-    var files: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    let sections = ["Example Scores", "Custom Scores"]
+    let exampleFiles: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
+    var files: [String] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        let documentHandler = DocumentHandler()
-        let userFiles = documentHandler.getDocumentNames()
-        files.append(contentsOf: userFiles)
-
-        // Uncomment for edit button
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem
+        loadFileList()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,43 +31,91 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
-    /// Return the number of rows
+    /// Return the number of rows in each section
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return files.count
+        if section == 0 {
+            return exampleFiles.count
+        }
+        else {
+            return files.count
+        }
+    }
+    
+    
+    /// Return the section name
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section]
     }
 
     
+    /// Set the text for a specific cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell", for: indexPath) as! MainTableViewCell
 
-        cell.labelName.text = files[indexPath.row]
+        if indexPath.section == 0 {
+            cell.labelName.text = exampleFiles[indexPath.row]
+        }
+        else {
+            cell.labelName.text = files[indexPath.row]
+        }
 
         return cell
     }
- 
-
-    /*
-    // Override to support conditional editing of the table view.
+    
+    
+    /// Return whether a row can be edited
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return indexPath.section != 0
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
+    
+    /// Handle table view editing
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            DocumentHandler().deleteDocument(name: files[indexPath.row])
+            files.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+ 
+    @IBAction func addScorePressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Create New Score", message: "Enter score name:", preferredStyle: .alert)
+        alert.addTextField()
+        alert.addAction(UIAlertAction(title: "OK", style: .default) {
+            [weak alert] (_) in
+            let textField = alert!.textFields![0]
+            self.createScore(name: textField.text ?? "")
+        } )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func createScore(name: String) {
+        var processedName = name
+        processedName = processedName.replacingOccurrences(of: " ", with: "")
+        processedName = processedName.addXml()
+        
+        let score = ScorePartwise.defaultScore
+        let documentHandler = DocumentHandler()
+        let scoreWriter = ScoreWriter()
+        let document = scoreWriter.makeDocument(score: score)
+        documentHandler.saveDocument(document, name: processedName)
+        
+        self.performSegue(withIdentifier: "scoreSegue", sender: (name, score))
+    }
+    
+    func loadFileList() {
+        let documentHandler = DocumentHandler()
+        files = documentHandler.getDocumentNames()
+    }
+
+    
+    
+ 
 
     /*
     // Override to support rearranging the table view.
@@ -88,19 +137,40 @@ class MainTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? MainViewController, let cell = sender as? MainTableViewCell {
+        if let viewController = segue.destination as? MainViewController {
             let documentHandler = DocumentHandler()
-            let document = documentHandler.getDocument(name: cell.labelName.text! + ".xml")
-            let scoreBuilder = ScoreBuilder()
-            viewController.scoreName = cell.labelName.text!
-            if let document = document {
-                viewController.score = scoreBuilder.partwise(xml: document)
+            var name: String!
+            var document: AEXMLDocument!
+            var isExample: Bool = false
+            
+            if let cell = sender as? MainTableViewCell {
+                name = cell.labelName.text! + ".xml"
+                let indexPath = self.tableView.indexPath(for: cell)
+                if indexPath!.section == 0 {
+                    isExample = true
+                }
+            }
+            else if let metaScore = sender as? MetaScore {
+                viewController.scoreName = metaScore.name
+                viewController.score = metaScore.score
+                return
             }
             else {
-                let exampleDocument = documentHandler.getExampleDocument(name: cell.labelName.text!)
-                if let exampleDocument = exampleDocument {
-                    viewController.score = scoreBuilder.partwise(xml: exampleDocument)
-                }
+                name = "simple.xml"
+            }
+            
+            if isExample {
+                document = documentHandler.getExampleDocument(name: name)
+            }
+            else {
+                document = documentHandler.getDocument(name: name)
+            }
+
+            let scoreBuilder = ScoreBuilder()
+            viewController.scoreName = name.removeXml()
+            
+            if let document = document {
+                viewController.score = scoreBuilder.partwise(xml: document)
             }
         }
     }

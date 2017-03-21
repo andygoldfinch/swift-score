@@ -62,3 +62,15 @@ extension Measure {
         return measure
     }
 }
+
+extension ScorePartwise {
+    static var defaultScore: ScorePartwise {
+        var score = ScorePartwise()
+        score.partList = [ScorePart(id: "1", partName: "part-1")]
+        score.parts = [Part(id: "1", measures: [Measure.defaultMeasure])]
+        
+        return score
+    }
+}
+
+

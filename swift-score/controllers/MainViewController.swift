@@ -76,6 +76,7 @@ class MainViewController: UIViewController {
         }
     }
     
+    
     @IBAction func addPartPressed(_ sender: Any) {
         var score: ScorePartwise = scoreView.getScoreForSaving() ?? ScorePartwise(partList: [], parts: [])
         let id = String(score.partList.count + 1)
@@ -86,6 +87,13 @@ class MainViewController: UIViewController {
         savePressed(self)
     }
     
+    
+    /// Reload the file list on return to table view.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? MainTableViewController {
+            viewController.loadFileList()
+        }
+    }
 }
 
 extension MainViewController: ScoreViewDelegate {

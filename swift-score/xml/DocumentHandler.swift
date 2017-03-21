@@ -14,7 +14,7 @@ public class DocumentHandler {
     /// Retrieve an xml document from the examples folder.
     func getExampleDocument(name: String) -> AEXMLDocument? {
                 
-        if let xmlPath = Bundle.main.path(forResource: name, ofType: "xml"),
+        if let xmlPath = Bundle.main.path(forResource: name.removeXml(), ofType: "xml"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: xmlPath)) {
             
             let xmlDoc: AEXMLDocument? = try? AEXMLDocument(xml: data)        
@@ -29,7 +29,7 @@ public class DocumentHandler {
     /// Retrieve an xml document from the document directory.
     func getDocument(name: String) -> AEXMLDocument? {
         if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
-            let data = try? Data(contentsOf: directory.appendingPathComponent(name)) {
+            let data = try? Data(contentsOf: directory.appendingPathComponent(name.addXml())) {
             
             let xmlDoc: AEXMLDocument? = try? AEXMLDocument(xml: data)
             if xmlDoc?.xml == nil {
@@ -53,6 +53,21 @@ public class DocumentHandler {
             }
             catch {
                 print("Error writing file")
+            }
+        }
+    }
+    
+    
+    /// Delete the named document from the document directory.
+    func deleteDocument(name: String) {
+        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let path = directory.appendingPathComponent(name.addXml())
+            
+            do {
+                try FileManager().removeItem(at: path)
+            }
+            catch {
+                print("Error deleting file")
             }
         }
     }
