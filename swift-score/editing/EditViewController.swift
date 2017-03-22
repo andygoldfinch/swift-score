@@ -37,6 +37,7 @@ class EditViewController: UIViewController {
         return (measures?.count ?? currentMeasure + 1) - 1
     }
     
+    /// Range selection
     @IBOutlet weak var buttonStartToCurrent: UIBarButtonItem!
     @IBOutlet weak var buttonWholeLine: UIBarButtonItem!
     @IBOutlet weak var buttonCurrentBar: UIBarButtonItem!
@@ -45,6 +46,17 @@ class EditViewController: UIViewController {
     @IBOutlet weak var stepperEnd: UIStepper!
     @IBOutlet weak var labelRange: UILabel!
     
+    /// Left button panel
+    @IBOutlet weak var buttonUp: InputViewButton!
+    @IBOutlet weak var buttonUpOctave: InputViewButton!
+    @IBOutlet weak var buttonDown: InputViewButton!
+    @IBOutlet weak var buttonDownOctave: InputViewButton!
+    @IBOutlet weak var buttonLeft: InputViewButton!
+    @IBOutlet weak var buttonStart: InputViewButton!
+    @IBOutlet weak var buttonRight: InputViewButton!
+    @IBOutlet weak var buttonEnd: InputViewButton!
+    @IBOutlet weak var buttonDelete: InputViewButton!
+    @IBOutlet weak var buttonDuplicate: InputViewButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +76,7 @@ class EditViewController: UIViewController {
     
 
     // MARK: - Ranges
+    
     @IBAction func rangeChanged(_ sender: Any) {
         if let stepper = sender as? UIStepper {
             currentRange = BarRange(start: Int(stepperStart.value), end: Int(stepperEnd.value))
@@ -87,7 +100,7 @@ class EditViewController: UIViewController {
             case buttonCurrentToEnd:
                 currentRange = BarRange(start: currentMeasure, end: finalMeasure)
             default:
-                fatalError("Unhandled button")
+                fatalError("Unhandled range button")
             }
         }
         
@@ -102,8 +115,43 @@ class EditViewController: UIViewController {
         stepperStart?.minimumValue = 0.0
     }
     
+    // MARK: - Left Buttons
+    
+    @IBAction func leftButtonPressed(_ sender: InputViewButton) {
+        guard let delegate = delegate else {
+            return
+        }
+        
+        switch sender {
+        case buttonUp:
+            delegate.rangeTransformed(transformation: .pitchChange(1))
+        case buttonUpOctave:
+            delegate.rangeTransformed(transformation: .pitchChange(7))
+        case buttonDown:
+            delegate.rangeTransformed(transformation: .pitchChange(-1))
+        case buttonDownOctave:
+            delegate.rangeTransformed(transformation: .pitchChange(-7))
+        case buttonLeft:
+            delegate.rangeTransformed(transformation: .move(-1))
+        case buttonStart:
+            delegate.rangeTransformed(transformation: .move(-currentRange.start))
+        case buttonRight:
+            delegate.rangeTransformed(transformation: .move(1))
+        case buttonEnd:
+            if let count = measures?.count {
+                let distanceToEnd = count - 1 - currentRange.end
+                delegate.rangeTransformed(transformation: .move(distanceToEnd))
+            }
+        case buttonDelete:
+            delegate.rangeTransformed(transformation: .delete)
+        case buttonDuplicate:
+            delegate.rangeTransformed(transformation: .duplicate)
+        default:
+            fatalError("Unhandled left button pressed")
+        }
+    }
 
-
+    
     @IBAction func closeTapped(_ sender: Any) {
         if let delegate = delegate {
             delegate.closeTapped()
@@ -114,4 +162,14 @@ class EditViewController: UIViewController {
 protocol EditDelegate {
     func closeTapped()
     func rangeSelected(range: BarRange)
+    func rangeTransformed(transformation: RangeTransformation)
 }
+
+enum RangeTransformation {
+    case pitchChange(Int)
+    case move(Int)
+    case delete
+    case duplicate
+}
+
+

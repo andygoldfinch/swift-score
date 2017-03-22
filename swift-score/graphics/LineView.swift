@@ -279,7 +279,8 @@ class LineView: UIView {
         
         let highlightFrame = CGRect(x: startX, y: y, width: width, height: height)
         let view = UIView(frame: highlightFrame)
-        view.backgroundColor = UIColor(red: 0.8, green: 0.0, blue: 0.0, alpha: 0.13)
+        //view.backgroundColor = UIColor(red: 0.8, green: 0.0, blue: 0.0, alpha: 0.13)
+        view.backgroundColor = UIColor(white: 0.5, alpha: 0.18)
         self.addSubview(view)
         self.sendSubview(toBack: view)
     }
@@ -365,6 +366,10 @@ extension LineView: NoteInputDelegate {
 extension LineView: EditDelegate {
     func rangeSelected(range: BarRange) {
         self.selectedRange = range
+    }
+    
+    func rangeTransformed(transformation: RangeTransformation) {
+        print("LineView transformation received: \(transformation)")
     }
 }
 
