@@ -127,6 +127,9 @@ class ScoreView: UIView {
         
         self.frame.size = CGSize(width: self.frame.width, height: totalHeight)
         
+        lines[0].selectedRange = BarRange(start: 0, end: 2)
+        lines[1].selectedRange = BarRange(start: 1, end: 7)
+        
         if let delegate = delegate, totalHeight != previousHeight {
             delegate.heightWasSet(height: totalHeight)
             previousHeight = totalHeight

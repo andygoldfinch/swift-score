@@ -55,6 +55,8 @@ class LineView: UIView {
     
     var lengthClosure: ((CGFloat) -> Void)?
     var finalAttributes: Attributes?
+    var selectedRange: BarRange?
+    var previousBarEnds: [CGFloat]?
     
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
@@ -79,6 +81,7 @@ class LineView: UIView {
         var previousMeasure: Measure?
         var currentAttributes: Attributes = Attributes()
         var previousAttributes: Attributes = Attributes()
+        var barEnds: [CGFloat] = [0]
         
         let pathStroke = UIBezierPath()
         let pathFill = UIBezierPath()
@@ -196,6 +199,7 @@ class LineView: UIView {
             // Barline
             let barlinePath = pathGenerator.makeBarline(x: xCounter, midY: midY)
             pathStroke.append(barlinePath)
+            barEnds.append(xCounter)
             
             xCounter += spacing
             previousMeasure = measure
@@ -211,6 +215,11 @@ class LineView: UIView {
         staff.backgroundColor = UIColor.clear
         self.addSubview(staff)
         staff.setNeedsDisplay()
+        previousBarEnds = barEnds
+        
+        if let range = selectedRange {
+            highlight(range: range, barEnds: barEnds, midY: midY)
+        }
         
         if lengthClosure != nil {
             lengthClosure!(xCounter)
@@ -247,6 +256,26 @@ class LineView: UIView {
         }
         
         return current
+    }
+    
+    
+    /// Draw a highlight over the given region
+    func highlight(range: BarRange, barEnds: [CGFloat], midY: CGFloat) {
+        guard range.start < barEnds.count - 1 else {
+            return
+        }        
+        
+        let startX = barEnds[range.start]
+        let endX = range.end + 1 >= barEnds.count ? barEnds[barEnds.count-1] : barEnds[range.end + 1]
+        let width = endX - startX
+        let y = midY - 2 * spacing
+        let height = 4 * spacing
+        
+        let highlightFrame = CGRect(x: startX, y: y, width: width, height: height)
+        let view = UIView(frame: highlightFrame)
+        view.backgroundColor = UIColor(red: 0.8, green: 0.0, blue: 0.0, alpha: 0.13)
+        self.addSubview(view)
+        self.sendSubview(toBack: view)
     }
     
     

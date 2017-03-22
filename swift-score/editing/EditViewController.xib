@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="930" height="380"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Wf-H6V">
+                <toolbar opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Wf-H6V" customClass="EditViewToolbar" customModule="swift_score" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="930" height="44"/>
                     <color key="backgroundColor" red="0.92124956846237183" green="0.92194885015487671" blue="0.92135781049728394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <items>
