@@ -11,6 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditViewController" customModule="swift_score" customModuleProvider="target">
             <connections>
+                <outlet property="buttonCurrentBar" destination="1Gt-Uc-mjR" id="vxC-iQ-iOY"/>
+                <outlet property="buttonCurrentToEnd" destination="Ja6-yT-xv2" id="LI9-rW-Phq"/>
+                <outlet property="buttonStartToCurrent" destination="BW8-pE-LHl" id="m1U-XL-uU2"/>
+                <outlet property="buttonWholeLine" destination="dTt-az-N1y" id="XBn-sf-vPF"/>
+                <outlet property="labelRange" destination="Mc9-SB-xMk" id="Tow-6b-5oc"/>
+                <outlet property="stepperEnd" destination="wxd-so-NQg" id="C1V-nW-bcW"/>
+                <outlet property="stepperStart" destination="91O-Zb-6Mz" id="q6E-C6-Ldj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,14 +30,25 @@
                     <rect key="frame" x="0.0" y="0.0" width="930" height="44"/>
                     <color key="backgroundColor" red="0.92124956846237183" green="0.92194885015487671" blue="0.92135781049728394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <items>
-                        <barButtonItem title="Start to Current" id="BW8-pE-LHl"/>
+                        <barButtonItem title="Start to Current" id="BW8-pE-LHl">
+                            <connections>
+                                <action selector="rangeChanged:" destination="-1" id="Fan-lV-A2b"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="YgX-Oq-sDR"/>
-                        <barButtonItem title="Whole Line" id="dTt-az-N1y"/>
+                        <barButtonItem title="Whole Line" id="dTt-az-N1y">
+                            <connections>
+                                <action selector="rangeChanged:" destination="-1" id="wn2-G8-ihv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="f7s-Yo-QOw"/>
                         <barButtonItem style="plain" id="73a-ka-gHe">
                             <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="91O-Zb-6Mz">
                                 <rect key="frame" x="265" y="8" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="rangeChanged:" destination="-1" eventType="valueChanged" id="3hX-KR-UJY"/>
+                                </connections>
                             </stepper>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Yz2-1F-0Rj"/>
@@ -38,12 +56,23 @@
                             <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="wxd-so-NQg">
                                 <rect key="frame" x="575" y="8" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="rangeChanged:" destination="-1" eventType="valueChanged" id="Jyd-1o-1nM"/>
+                                </connections>
                             </stepper>
                         </barButtonItem>
                         <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="dnl-wu-59k"/>
-                        <barButtonItem title="Current Bar" id="1Gt-Uc-mjR"/>
+                        <barButtonItem title="Current Bar" id="1Gt-Uc-mjR">
+                            <connections>
+                                <action selector="rangeChanged:" destination="-1" id="R4U-qG-0Br"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="jOS-k6-d8P"/>
-                        <barButtonItem title="Current to End" id="Ja6-yT-xv2"/>
+                        <barButtonItem title="Current to End" id="Ja6-yT-xv2">
+                            <connections>
+                                <action selector="rangeChanged:" destination="-1" id="VjG-Dx-kgB"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bar 1  -to-  Bar 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mc9-SB-xMk">
@@ -61,6 +90,9 @@
                     </constraints>
                     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="ic_keyboard_hide"/>
+                    <connections>
+                        <action selector="closeTapped:" destination="-1" eventType="touchUpInside" id="vME-pb-yGi"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>

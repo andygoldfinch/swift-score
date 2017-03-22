@@ -29,9 +29,11 @@ class LineView: UIView {
         if isInEditMode {
             if editViewControler == nil {
                 editViewControler = EditViewController(nibName: "EditViewController", bundle: nil)
-                //TODO set delegate
+                editViewControler?.delegate = self
             }
             
+            editViewControler?.measures = measures
+            editViewControler?.currentMeasure = measures.count / 2
             return editViewControler?.view
         }
         else {
@@ -55,7 +57,11 @@ class LineView: UIView {
     
     var lengthClosure: ((CGFloat) -> Void)?
     var finalAttributes: Attributes?
-    var selectedRange: BarRange?
+    var selectedRange: BarRange? {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     var previousBarEnds: [CGFloat]?
     
     override func draw(_ rect: CGRect) {
@@ -318,8 +324,15 @@ class LineView: UIView {
         }
     }
     
+    @discardableResult override func resignFirstResponder() -> Bool {
+        self.selectedRange = nil
+        return super.resignFirstResponder()
+        
+    }
 }
 
+
+/// Conform to the NoteInputDelegate protocol
 extension LineView: NoteInputDelegate {
     func selectedInput(note: Note) {
         addNote(note: note)
@@ -328,6 +341,7 @@ extension LineView: NoteInputDelegate {
     
     func closeTapped() {
         self.resignFirstResponder()
+        selectedRange = nil
         if let delegate = delegate {
             delegate.keyboardDidHide()
         }
@@ -343,6 +357,14 @@ extension LineView: NoteInputDelegate {
             }
             setNeedsDisplay()
         }
+    }
+}
+
+
+/// Conform to the EditDelegate protocol
+extension LineView: EditDelegate {
+    func rangeSelected(range: BarRange) {
+        self.selectedRange = range
     }
 }
 

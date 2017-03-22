@@ -34,4 +34,18 @@ struct BarRange {
         self.start = start
         self.end = end
     }
+    
+    func toString() -> String {
+        if start == end {
+            return "Bar \(start + 1)"
+        }
+        
+        return "Bar \(start + 1) to Bar \(end + 1)"
+    }
+}
+
+extension BarRange: Equatable {
+    static func ==(lhs: BarRange, rhs: BarRange) -> Bool {
+        return lhs.start == rhs.start && lhs.end == rhs.end
+    }
 }
