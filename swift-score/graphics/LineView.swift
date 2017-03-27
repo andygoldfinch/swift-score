@@ -52,6 +52,10 @@ class LineView: UIView {
     var measures: [Measure] = [] {
         didSet {
             self.setNeedsDisplay()
+            
+            if let editViewControler = editViewControler {
+                editViewControler.measures = measures
+            }
         }
     }
     
@@ -328,7 +332,53 @@ class LineView: UIView {
     @discardableResult override func resignFirstResponder() -> Bool {
         self.selectedRange = nil
         return super.resignFirstResponder()
+    }
+    
+    func deleteRange(_ range: BarRange) {
+        if measures.count == 1 && measures[0].notes.isEmpty {
+            return
+        }
+        if range.start == 0 && range.count == measures.count {
+            measures.removeLast(measures.count-1)
+            measures[0].notes.removeAll()
+        }
+        else {
+            measures.removeSubrange(range.start...range.end)
+        }
+    }
+    
+    func duplicateRange(_ range: BarRange) {
+        let bars = getBarsInRange(range)
+        print(type(of: bars))
         
+        measures.insert(contentsOf: bars, at: range.end+1)
+    }
+    
+    func moveRange(_ range: BarRange, numPlaces: Int) {
+        let bars = getBarsInRange(range)
+        let newIndex = range.start + numPlaces
+
+        deleteRange(range)
+        
+        measures.insert(contentsOf: bars, at: newIndex)
+    }
+    
+    func getBarsInRange(_ range: BarRange) -> [Measure] {
+        guard range.start >= 0 &&
+            range.count > 0 &&
+            range.end >= range.start &&
+            range.start < measures.count else {
+            return []
+        }
+        
+        let start = range.start
+        var end = range.end
+        
+        if end >= measures.count {
+            end = measures.count - 1
+        }
+        
+        return Array(measures[start...end])
     }
 }
 
@@ -370,6 +420,21 @@ extension LineView: EditDelegate {
     
     func rangeTransformed(transformation: RangeTransformation) {
         print("LineView transformation received: \(transformation)")
+        guard let range = selectedRange else {
+            print("Error: no range selected")
+            return
+        }
+        
+        switch transformation {
+        case let .move(num):
+            moveRange(range, numPlaces: num)
+        case let .pitchChange(num):
+            print("Pitch changing \(num)")
+        case .delete:
+            deleteRange(range)
+        case .duplicate:
+            duplicateRange(range)
+        }
     }
 }
 

@@ -12,9 +12,7 @@ class EditViewController: UIViewController {
     var delegate: EditDelegate? = nil
     var measures: [Measure]? = nil {
         didSet {
-            if let count = measures?.count {
-                setMaxRanges(bars: count)
-            }
+            configureControls()
         }
     }
     var currentMeasure: Int = 0 {
@@ -61,11 +59,23 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureControls()
+    }
+    
+    func configureControls() {
+        guard stepperStart != nil && stepperEnd != nil && labelRange != nil else {
+            return
+        }
+        
+        stepperStart?.minimumValue = 0.0
         stepperStart.value = Double(currentRange.start)
         stepperEnd.value = Double(currentRange.end)
+        stepperStart?.maximumValue = stepperEnd.value
+        stepperEnd.minimumValue = stepperStart.value
         if let count = measures?.count {
             stepperEnd.maximumValue = Double(count) - 1.0
         }
+        
         labelRange.text = currentRange.toString()
     }
 
@@ -103,7 +113,6 @@ class EditViewController: UIViewController {
                 fatalError("Unhandled range button")
             }
         }
-        
         
     }
     
