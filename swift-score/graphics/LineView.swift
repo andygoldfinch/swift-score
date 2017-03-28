@@ -325,7 +325,6 @@ class LineView: UIView {
     
     
     func xToRange(tappedX: CGFloat, previousBarlines: [CGFloat]) -> BarRange {
-        print("TappedX: \(tappedX), previousBarlines: \(previousBarlines)")
         for i in 0..<previousBarlines.count {
             if tappedX > previousBarlines[i] {
                 continue
@@ -369,6 +368,17 @@ class LineView: UIView {
         deleteRange(range)
         
         measures.insert(contentsOf: bars, at: newIndex)
+    }
+    
+    
+    func changeRangePitch(_ range: BarRange, steps: Int) {
+        var bars = getBarsInRange(range)
+        let pitchChanger = PitchChanger()
+        bars = pitchChanger.change(measures: bars, steps: steps)
+        
+        deleteRange(range)
+        
+        measures.insert(contentsOf: bars, at: range.start)
     }
     
     
@@ -438,7 +448,7 @@ extension LineView: EditDelegate {
         case let .move(num):
             moveRange(range, numPlaces: num)
         case let .pitchChange(num):
-            print("Pitch changing \(num)")
+            changeRangePitch(range, steps: num)
         case .delete:
             deleteRange(range)
         case .duplicate:
