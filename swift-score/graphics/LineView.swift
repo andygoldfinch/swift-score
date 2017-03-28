@@ -33,7 +33,12 @@ class LineView: UIView {
             }
             
             editViewControler?.measures = measures
-            editViewControler?.currentMeasure = measures.count / 2
+            if let x = tappedX, let barlines = previousBarEnds {
+                editViewControler?.currentRange = xToRange(tappedX: x, previousBarlines: barlines)
+            }
+            else {
+                editViewControler?.currentRange = BarRange(start: 0, end: measures.count - 1)
+            }
             return editViewControler?.view
         }
         else {
@@ -67,6 +72,13 @@ class LineView: UIView {
         }
     }
     var previousBarEnds: [CGFloat]?
+    var tappedX: CGFloat? {
+        didSet {
+            if tappedX != oldValue, let barlines = previousBarEnds, self.isFirstResponder {
+                editViewControler?.currentRange = xToRange(tappedX: tappedX!, previousBarlines: barlines)
+            }
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
@@ -295,6 +307,7 @@ class LineView: UIView {
         }
     }
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !self.isFirstResponder {
             self.becomeFirstResponder()
@@ -304,10 +317,28 @@ class LineView: UIView {
         }
     }
     
+    
     @discardableResult override func resignFirstResponder() -> Bool {
         self.selectedRange = nil
         return super.resignFirstResponder()
     }
+    
+    
+    func xToRange(tappedX: CGFloat, previousBarlines: [CGFloat]) -> BarRange {
+        print("TappedX: \(tappedX), previousBarlines: \(previousBarlines)")
+        for i in 0..<previousBarlines.count {
+            if tappedX > previousBarlines[i] {
+                continue
+            }
+            else {
+                return BarRange(start: i-1, end: i-1)
+            }
+        }
+        
+        let index = measures.count - 1
+        return BarRange(start: index, end: index)
+    }
+    
     
     func deleteRange(_ range: BarRange) {
         if measures.count == 1 && measures[0].notes.isEmpty {
@@ -322,12 +353,14 @@ class LineView: UIView {
         }
     }
     
+    
     func duplicateRange(_ range: BarRange) {
         let bars = getBarsInRange(range)
         print(type(of: bars))
         
         measures.insert(contentsOf: bars, at: range.end+1)
     }
+    
     
     func moveRange(_ range: BarRange, numPlaces: Int) {
         let bars = getBarsInRange(range)
@@ -337,6 +370,7 @@ class LineView: UIView {
         
         measures.insert(contentsOf: bars, at: newIndex)
     }
+    
     
     func getBarsInRange(_ range: BarRange) -> [Measure] {
         guard range.start >= 0 &&

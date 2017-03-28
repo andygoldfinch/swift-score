@@ -103,6 +103,7 @@ class ScoreView: UIView {
         for line in lines {
             let newPoint = CGPoint(x: line.frame.midX, y: point.y)
             if line.frame.contains(newPoint) {
+                line.tappedX = point.x
                 return line
             }
         }

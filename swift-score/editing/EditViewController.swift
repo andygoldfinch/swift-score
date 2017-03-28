@@ -15,11 +15,7 @@ class EditViewController: UIViewController {
             configureControls()
         }
     }
-    var currentMeasure: Int = 0 {
-        didSet {
-            currentRange = BarRange(start: currentMeasure, end: currentMeasure)
-        }
-    }
+    
     var currentRange: BarRange = BarRange(start: 0, end: 0) {
         didSet {
             labelRange?.text = currentRange.toString()
@@ -32,7 +28,7 @@ class EditViewController: UIViewController {
         }
     }
     var finalMeasure: Int {
-        return (measures?.count ?? currentMeasure + 1) - 1
+        return (measures?.count ?? 1) - 1
     }
     
     /// Range selection
@@ -102,13 +98,13 @@ class EditViewController: UIViewController {
         else if let button = sender as? UIBarButtonItem {
             switch button {
             case buttonStartToCurrent:
-                currentRange = BarRange(start: 0, end: currentMeasure)
+                currentRange = BarRange(start: 0, end: currentRange.end)
             case buttonWholeLine:
                 currentRange = BarRange(start: 0, end: finalMeasure)
             case buttonCurrentBar:
-                currentRange = BarRange(start: currentMeasure, end: currentMeasure)
+                currentRange = BarRange(start: currentRange.start, end: currentRange.start)
             case buttonCurrentToEnd:
-                currentRange = BarRange(start: currentMeasure, end: finalMeasure)
+                currentRange = BarRange(start: currentRange.start, end: finalMeasure)
             default:
                 fatalError("Unhandled range button")
             }
@@ -116,12 +112,18 @@ class EditViewController: UIViewController {
         
     }
     
+    
     func setMaxRanges(bars count: Int) {
         guard count >= 0 else {
             return
         }
         
         stepperStart?.minimumValue = 0.0
+    }
+    
+    
+    func moveCurrentRange(places: Int) {
+        currentRange = BarRange(start: currentRange.start + places, end: currentRange.end + places)
     }
     
     // MARK: - Left Buttons
@@ -142,14 +144,18 @@ class EditViewController: UIViewController {
             delegate.rangeTransformed(transformation: .pitchChange(-7))
         case buttonLeft:
             delegate.rangeTransformed(transformation: .move(-1))
+            moveCurrentRange(places: -1)
         case buttonStart:
             delegate.rangeTransformed(transformation: .move(-currentRange.start))
+            moveCurrentRange(places: -currentRange.start)
         case buttonRight:
             delegate.rangeTransformed(transformation: .move(1))
+            moveCurrentRange(places: 1)
         case buttonEnd:
             if let count = measures?.count {
                 let distanceToEnd = count - 1 - currentRange.end
                 delegate.rangeTransformed(transformation: .move(distanceToEnd))
+                moveCurrentRange(places: distanceToEnd)
             }
         case buttonDelete:
             delegate.rangeTransformed(transformation: .delete)
