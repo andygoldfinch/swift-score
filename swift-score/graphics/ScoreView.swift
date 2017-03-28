@@ -59,7 +59,9 @@ class ScoreView: UIView {
                 self.lengths.append($0)
             }
             
-            line.measures = part.measures
+            let processor = MeasureProcessor()
+            
+            line.measures = processor.process(measures: part.measures)
             
             self.addSubview(line)
             lines.append(line)

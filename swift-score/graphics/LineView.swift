@@ -89,8 +89,7 @@ class LineView: UIView {
         
         var xCounter: CGFloat = spacing
         var previousMeasure: Measure?
-        var currentAttributes: Attributes = Attributes()
-        var previousAttributes: Attributes = Attributes()
+        var previousAttributes: Attributes = measures.first?.attributes ?? Attributes.defaultAttributes
         var barEnds: [CGFloat] = [0]
         
         let pathStroke = UIBezierPath()
@@ -98,14 +97,14 @@ class LineView: UIView {
         
         // Main rendering loop
         for measure in measures {
-            previousAttributes = currentAttributes
-            currentAttributes = update(currentAttributes: currentAttributes, newAttributes: measure.attributes)
-            previousAttributes = previousAttributes == Attributes() ? currentAttributes : previousAttributes
+            guard let attributes = measure.attributes else {
+                fatalError("Attributes is nil: Measure processing should prevent this from ever happening")
+            }
             
             // Clefs
-            let clef = currentAttributes.clef
+            let clef = attributes.clef
             let previousClef = previousAttributes.clef
-            let currentClef = currentAttributes.clef ?? Clef(sign: "g", line: 2)
+            let currentClef = attributes.clef ?? Clef(sign: "g", line: 2)
             
             if let clef = clef, previousMeasure == nil || previousClef != clef {
                 let y = positionCalculator.getClefPosition(clef: clef)
@@ -115,7 +114,7 @@ class LineView: UIView {
             }
             
             // Time signatures
-            let time = currentAttributes.time
+            let time = attributes.time
             let previousTime = previousAttributes.time
             
             if let time = time, previousMeasure == nil || previousTime != time {
@@ -130,7 +129,7 @@ class LineView: UIView {
             }
             
             // Key signatures
-            let fifths = currentAttributes.key?.fifths
+            let fifths = attributes.key?.fifths
             let previousFifths = previousAttributes.key?.fifths
             
             if let fifths = fifths, previousMeasure == nil || previousFifths != fifths {
@@ -158,7 +157,7 @@ class LineView: UIView {
                 let isChord = note.chord ?? false
 
                 // Accidentals
-                if accidentalManager.needsAccidental(note: note, measure: measure, attributes: currentAttributes) {
+                if accidentalManager.needsAccidental(note: note, measure: measure, attributes: attributes) {
                     let y = positionCalculator.getAccidentalPosition(note: note, clef: currentClef)
                     let accidentalView = imageViewGenerator.makeAccidentalView(note: note, x: xCounter, y: y)
                     let width = accidentalView.frame.width + (1/5) * spacing
@@ -204,6 +203,7 @@ class LineView: UIView {
                 else {
                     previousNotes.append(note)
                 }
+                
             }
  
             // Barline
@@ -213,7 +213,8 @@ class LineView: UIView {
             
             xCounter += spacing
             previousMeasure = measure
-            finalAttributes = currentAttributes
+            previousAttributes = attributes
+            finalAttributes = attributes
         }
 
         frame.size = CGSize(width: xCounter, height: rect.height)
@@ -238,34 +239,6 @@ class LineView: UIView {
         if finalAttributes == nil {
             finalAttributes = Attributes.defaultAttributes
         }
-    }
-    
-    
-    /// Return an updated attributes object.
-    func update(currentAttributes: Attributes, newAttributes: Attributes?) -> Attributes {
-        guard let new = newAttributes else {
-            return currentAttributes
-        }
-        
-        var current = currentAttributes
-        
-        if new.clef != nil && new.clef != current.clef {
-            current.clef = new.clef
-        }
-        
-        if new.divisions != nil && new.divisions != current.divisions {
-            current.divisions = new.divisions
-        }
-        
-        if new.key != nil && new.key != current.key {
-            current.key = new.key
-        }
-        
-        if new.time != nil && new.time != current.time {
-            current.time = new.time
-        }
-        
-        return current
     }
     
     
@@ -304,7 +277,8 @@ class LineView: UIView {
         let isBalanced = balancedResult != .under
         
         if measures.isEmpty || isBalanced {
-            measures.append(Measure(number: "1", attributes: nil, notes: []))
+            let attributes = measures.last?.attributes ?? Attributes.defaultAttributes
+            measures.append(Measure(number: "1", attributes: attributes, notes: []))
             notes = []
         }
         
@@ -315,8 +289,9 @@ class LineView: UIView {
         else {
             let split = balancer.split(note: note, in: notes, time: time)
             let lastIndex = measures.count - 1
+            let attributes = measures.last?.attributes ?? Attributes.defaultAttributes
             measures[lastIndex].notes = split.first
-            measures.append(Measure(number: "1", attributes: nil, notes: split.second))
+            measures.append(Measure(number: "1", attributes: attributes, notes: split.second))
         }
     }
     
