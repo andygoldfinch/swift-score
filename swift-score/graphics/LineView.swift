@@ -339,6 +339,7 @@ class LineView: UIView {
     }
     
     
+    /// Delete the given range
     func deleteRange(_ range: BarRange) {
         if measures.count == 1 && measures[0].notes.isEmpty {
             return
@@ -353,6 +354,7 @@ class LineView: UIView {
     }
     
     
+    /// Duplicate the given range
     func duplicateRange(_ range: BarRange) {
         let bars = getBarsInRange(range)
         print(type(of: bars))
@@ -361,27 +363,81 @@ class LineView: UIView {
     }
     
     
+    /// Move the bars in the given range by the number of positions specified.
     func moveRange(_ range: BarRange, numPlaces: Int) {
         let bars = getBarsInRange(range)
-        let newIndex = range.start + numPlaces
+        let newRange = BarRange(start: range.start + numPlaces, end: range.end + numPlaces)
 
-        deleteRange(range)
-        
-        measures.insert(contentsOf: bars, at: newIndex)
+        updateRange(newRange, with: bars)
     }
     
     
+    /// Change the pitch of the bars in the given range.
     func changeRangePitch(_ range: BarRange, steps: Int) {
         var bars = getBarsInRange(range)
         let pitchChanger = PitchChanger()
         bars = pitchChanger.change(measures: bars, steps: steps)
         
-        deleteRange(range)
+        updateRange(range, with: bars)
+    }
+    
+    
+    /// Change the key of the bars in the given range.
+    func changeRangeKey(_ range: BarRange, key: Key) {
+        var bars = getBarsInRange(range)
         
+        for i in 0..<bars.count {
+            if bars[i].attributes == nil {
+                bars[i].attributes = Attributes()
+            }
+            
+            bars[i].attributes!.key = key
+        }
+        
+        updateRange(range, with: bars)
+    }
+    
+    
+    /// Change the time signature of the bars in the given range.
+    func changeRangeTime(_ range: BarRange, time: Time) {
+        var bars = getBarsInRange(range)
+        
+        for i in 0..<bars.count {
+            if bars[i].attributes == nil {
+                bars[i].attributes = Attributes()
+            }
+            
+            bars[i].attributes!.time = time
+        }
+        
+        updateRange(range, with: bars)
+    }
+    
+    
+    /// Change the clef of the bars in the given range.
+    func changeRangeClef(_ range: BarRange, clef: Clef) {
+        var bars = getBarsInRange(range)
+        
+        for i in 0..<bars.count {
+            if bars[i].attributes == nil {
+                bars[i].attributes = Attributes()
+            }
+            
+            bars[i].attributes!.clef = clef
+        }
+        
+        updateRange(range, with: bars)
+    }
+    
+    
+    /// Replace the bars in the given range with the given bars.
+    func updateRange(_ range: BarRange, with bars: [Measure]) {
+        deleteRange(range)
         measures.insert(contentsOf: bars, at: range.start)
     }
     
     
+    /// Return the bars in the given range.
     func getBarsInRange(_ range: BarRange) -> [Measure] {
         guard range.start >= 0 &&
             range.count > 0 &&
@@ -433,12 +489,27 @@ extension LineView: NoteInputDelegate {
 
 /// Conform to the EditDelegate protocol
 extension LineView: EditDelegate {
+    internal func attributesChanged(change: AttributeChange) {
+        guard let range = selectedRange else {
+            print("Error: no range selected")
+            return
+        }
+        
+        switch change {
+        case let .key(key):
+            changeRangeKey(range, key: key)
+        case let .time(time):
+            changeRangeTime(range, time: time)
+        case let .clef(clef):
+            changeRangeClef(range, clef: clef)
+        }
+    }
+
     func rangeSelected(range: BarRange) {
         self.selectedRange = range
     }
     
     func rangeTransformed(transformation: RangeTransformation) {
-        print("LineView transformation received: \(transformation)")
         guard let range = selectedRange else {
             print("Error: no range selected")
             return

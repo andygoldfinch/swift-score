@@ -66,18 +66,18 @@ class KeyGenerator {
             flats.append(Pitch(step: .e, octave: 4, alter: alter))
             flats.append(Pitch(step: .a, octave: 3, alter: alter))
             flats.append(Pitch(step: .d, octave: 4, alter: alter))
-            flats.append(Pitch(step: .g, octave: 4, alter: alter))
+            flats.append(Pitch(step: .g, octave: 3, alter: alter))
             flats.append(Pitch(step: .c, octave: 4, alter: alter))
-            flats.append(Pitch(step: .f, octave: 4, alter: alter))
+            flats.append(Pitch(step: .f, octave: 3, alter: alter))
         }
         else {
             flats.append(Pitch(step: .b, octave: 2, alter: alter))
             flats.append(Pitch(step: .e, octave: 3, alter: alter))
-            flats.append(Pitch(step: .a, octave: 3, alter: alter))
+            flats.append(Pitch(step: .a, octave: 2, alter: alter))
             flats.append(Pitch(step: .d, octave: 3, alter: alter))
-            flats.append(Pitch(step: .g, octave: 3, alter: alter))
+            flats.append(Pitch(step: .g, octave: 2, alter: alter))
             flats.append(Pitch(step: .c, octave: 3, alter: alter))
-            flats.append(Pitch(step: .f, octave: 3, alter: alter))
+            flats.append(Pitch(step: .f, octave: 2, alter: alter))
         }
         
         return flats
@@ -112,7 +112,7 @@ class KeyGenerator {
             sharps.append(Pitch(step: .c, octave: 3, alter: alter))
             sharps.append(Pitch(step: .g, octave: 3, alter: alter))
             sharps.append(Pitch(step: .d, octave: 3, alter: alter))
-            sharps.append(Pitch(step: .a, octave: 3, alter: alter))
+            sharps.append(Pitch(step: .a, octave: 2, alter: alter))
             sharps.append(Pitch(step: .e, octave: 3, alter: alter))
             sharps.append(Pitch(step: .b, octave: 2, alter: alter))
         }

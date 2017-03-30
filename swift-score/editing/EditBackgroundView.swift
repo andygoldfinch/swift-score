@@ -1,44 +1,27 @@
 //
-//  InputViewButton.swift
+//  EditBackgroundView.swift
 //  swift-score
 //
-//  Created by Andy Goldfinch on 08/03/2017.
+//  Created by Andy Goldfinch on 29/03/2017.
 //  Copyright © 2017 Andy Goldfinch. All rights reserved.
 //
 
 import UIKit
 
-class InputViewButton: UIButton {
+@IBDesignable class EditBackgroundView: UIView {
     @IBInspectable var roundTopLeft: Bool = true
     @IBInspectable var roundTopRight: Bool = true
     @IBInspectable var roundBottomLeft: Bool = true
     @IBInspectable var roundBottomRight: Bool = true
-    @IBInspectable var cornerRadius: CGFloat = 5
-    @IBInspectable var margin: CGFloat = 6
-    
-    var isToggled: Bool = false {
-        didSet {
-            if isToggled {
-                backgroundColor = UIColor(white: 0.88, alpha: 1.0)
-            }
-            else {
-                backgroundColor = UIColor.white
-            }
-        }
-    }
+    @IBInspectable var cornerRadius: CGFloat = 5.0
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
         roundCorners()
-        imageEdgeInsets = UIEdgeInsets(top: margin, left: margin, bottom:margin, right: margin)
-        imageView?.contentMode = .scaleAspectFit
+        self.backgroundColor = UIColor.white
     }
 
-    func toggle() {
-        isToggled = !isToggled
-    }
-    
     func roundCorners() {
         var corners: UIRectCorner = []
         

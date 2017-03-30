@@ -44,6 +44,7 @@
 		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
 		46FB3D661E8A7747000316F2 /* MeasureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */; };
 		46FB3D681E8AA635000316F2 /* PitchChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D671E8AA635000316F2 /* PitchChanger.swift */; };
+		46FB3D6A1E8BC8E5000316F2 /* EditBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */; };
 		64EA86779FFC57440D87E0E4 /* Pods_swift_score.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A864E826769E06360C2E5A5 /* Pods_swift_score.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
 		46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureProcessor.swift; sourceTree = "<group>"; };
 		46FB3D671E8AA635000316F2 /* PitchChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchChanger.swift; sourceTree = "<group>"; };
+		46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBackgroundView.swift; sourceTree = "<group>"; };
 		759995089424FAA29F482F85 /* Pods-swift-score.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.release.xcconfig"; sourceTree = "<group>"; };
 		DBD557EC705D108AE7F1C937 /* Pods-swift-score.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-score.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-score/Pods-swift-score.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +218,7 @@
 				468493661E8160330084A882 /* EditViewController.swift */,
 				468493671E8160330084A882 /* EditViewController.xib */,
 				4684936A1E818A6F0084A882 /* EditViewToolbar.swift */,
+				46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */,
 			);
 			path = editing;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46FB3D6A1E8BC8E5000316F2 /* EditBackgroundView.swift in Sources */,
 				4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */,
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
