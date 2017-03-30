@@ -16,15 +16,34 @@
                 <outlet property="buttonClefAlto" destination="ThS-x1-ORJ" id="hAF-um-78L"/>
                 <outlet property="buttonClefBass" destination="FwV-6W-LEP" id="Vwq-jO-KQF"/>
                 <outlet property="buttonClefTreble" destination="cUT-ZA-4bG" id="fkP-Du-VGJ"/>
+                <outlet property="buttonCrotchet" destination="ryx-0f-gYQ" id="PVy-ct-xTR"/>
                 <outlet property="buttonCurrentBar" destination="1Gt-Uc-mjR" id="vxC-iQ-iOY"/>
                 <outlet property="buttonCurrentToEnd" destination="Ja6-yT-xv2" id="LI9-rW-Phq"/>
                 <outlet property="buttonDelete" destination="7VE-UA-dEq" id="Qxy-mI-X2n"/>
+                <outlet property="buttonDot0" destination="gah-tI-NMT" id="Hbd-Vc-X0f"/>
+                <outlet property="buttonDot1" destination="Vcy-DG-paS" id="OlC-bN-N6D"/>
+                <outlet property="buttonDot2" destination="dL7-w5-cvx" id="Zoq-eH-hLb"/>
                 <outlet property="buttonDown" destination="KTa-Mz-COD" id="Ybq-t7-mMl"/>
                 <outlet property="buttonDownOctave" destination="N7y-O6-i3i" id="U5m-UJ-5a5"/>
                 <outlet property="buttonDuplicate" destination="o4O-z6-29W" id="1z5-jb-UFk"/>
                 <outlet property="buttonEnd" destination="HAn-z4-OTI" id="ojP-TC-EpS"/>
+                <outlet property="buttonFlat" destination="eW6-Zc-vfx" id="tou-3S-Lgz"/>
+                <outlet property="buttonFlatDouble" destination="vcl-JF-pOr" id="ijP-40-Czc"/>
+                <outlet property="buttonIsChord" destination="pc5-3D-aaC" id="Zfb-yU-ehv"/>
+                <outlet property="buttonIsRest" destination="uvm-jj-Qpu" id="5Sc-on-sn0"/>
                 <outlet property="buttonLeft" destination="irx-NV-Y7h" id="cGo-oH-Kfj"/>
+                <outlet property="buttonMinim" destination="fWc-N3-KQ0" id="rDI-jf-HkM"/>
+                <outlet property="buttonNatural" destination="heH-9Z-wEB" id="Hvz-ML-US2"/>
+                <outlet property="buttonNoteDown" destination="LfR-d9-PN4" id="vbB-FJ-KAr"/>
+                <outlet property="buttonNoteDownOctave" destination="hyi-mz-bi2" id="KtJ-Hj-caU"/>
+                <outlet property="buttonNoteUp" destination="eqv-Cv-1Ua" id="xjk-7F-ZhW"/>
+                <outlet property="buttonNoteUpOctave" destination="Tho-YC-qke" id="gXU-wU-KrQ"/>
+                <outlet property="buttonQuaver" destination="8TW-ia-kCr" id="B3D-BY-1kC"/>
                 <outlet property="buttonRight" destination="kGk-df-UT7" id="x06-tg-4nx"/>
+                <outlet property="buttonSemibreve" destination="K8d-Fm-xHt" id="Ohm-dg-uag"/>
+                <outlet property="buttonSemiquaver" destination="aaS-co-IKL" id="jlX-Fg-QPS"/>
+                <outlet property="buttonSharp" destination="4nb-t1-WJi" id="KBy-h7-gfz"/>
+                <outlet property="buttonSharpDouble" destination="Rh2-cM-OFb" id="43D-w7-6rP"/>
                 <outlet property="buttonStart" destination="dh1-I1-Uy0" id="nv9-g6-NkC"/>
                 <outlet property="buttonStartToCurrent" destination="BW8-pE-LHl" id="m1U-XL-uU2"/>
                 <outlet property="buttonUp" destination="s39-aQ-O3G" id="xVe-HU-rdC"/>
@@ -68,7 +87,7 @@
                         <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="f7s-Yo-QOw"/>
                         <barButtonItem style="plain" id="73a-ka-gHe">
                             <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="91O-Zb-6Mz">
-                                <rect key="frame" x="265" y="8" width="94" height="29"/>
+                                <rect key="frame" x="265" y="7.5" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="rangeChanged:" destination="-1" eventType="valueChanged" id="3hX-KR-UJY"/>
@@ -78,7 +97,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Yz2-1F-0Rj"/>
                         <barButtonItem style="plain" id="b4v-jG-t7M">
                             <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="wxd-so-NQg">
-                                <rect key="frame" x="632" y="8" width="94" height="29"/>
+                                <rect key="frame" x="633" y="7.5" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="rangeChanged:" destination="-1" eventType="valueChanged" id="Jyd-1o-1nM"/>
@@ -106,7 +125,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bar 1  -to-  Bar 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mc9-SB-xMk">
                     <rect key="frame" x="431" y="12" width="125.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1R-2N-TIh" userLabel="Left View">
@@ -209,7 +228,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key of 3 Flats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TI4-ho-oEX">
                                     <rect key="frame" x="8" y="20" width="187" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-7" maximumValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="IPa-yt-pqb">
@@ -254,7 +273,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Signature of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybq-4e-V1g">
                                             <rect key="frame" x="0.0" y="14.5" width="135.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-4" translatesAutoresizingMaskIntoConstraints="NO" id="pWs-8j-4Up">
@@ -292,7 +311,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clef:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-rT-ffM">
                                             <rect key="frame" x="19" y="69" width="35.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -409,12 +428,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="354" height="62.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcl-Sb-RUY" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Chord:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-QP-RSq">
-                                                    <rect key="frame" x="34.5" y="21" width="69" height="20.5"/>
+                                                    <rect key="frame" x="34" y="21" width="69" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -429,7 +448,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-3D-aaC" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
+                                            <rect key="frame" x="142" y="0.0" width="68.5" height="62.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_yes"/>
                                             <userDefinedRuntimeAttributes>
@@ -467,12 +486,12 @@
                                     <rect key="frame" x="0.0" y="64.5" width="354" height="62.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-wu-tmM" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Rest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgo-jS-2Yt">
-                                                    <rect key="frame" x="42" y="21" width="56" height="20.5"/>
+                                                    <rect key="frame" x="40.5" y="21" width="56" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -487,7 +506,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvm-jj-Qpu" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
+                                            <rect key="frame" x="142" y="0.0" width="68.5" height="62.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_no"/>
                                             <userDefinedRuntimeAttributes>
@@ -685,7 +704,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dots:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbG-0h-dt3">
                                                     <rect key="frame" x="13.5" y="21" width="40.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

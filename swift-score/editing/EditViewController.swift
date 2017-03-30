@@ -14,6 +14,7 @@ class EditViewController: UIViewController {
         didSet {
             configureRangeControls()
             configureAttributeControls()
+            configureNoteControls()
         }
     }
     
@@ -28,10 +29,22 @@ class EditViewController: UIViewController {
             stepperEnd?.value = Double(currentRange.end)
             
             configureAttributeControls()
+            
+            //TODO Remove this line (for testing purposes only)
+            if measures?.count ?? 0 >= 1 && measures?.first?.notes.count ?? 0 >= 1 {
+                selectedNote = SelectedNote(bar: 0, note: 0)
+            }
         }
     }
+    
     var finalMeasure: Int {
         return (measures?.count ?? 1) - 1
+    }
+    
+    var selectedNote: SelectedNote? {
+        didSet {
+            configureNoteControls()
+        }
     }
     
     let beatTypes = [1, 2, 4, 8, 16, 32]
@@ -68,10 +81,54 @@ class EditViewController: UIViewController {
     @IBOutlet weak var buttonClefAlto: InputViewButton!
     @IBOutlet weak var buttonClefBass: InputViewButton!
     
+    
+    /// Note Editor
+    @IBOutlet weak var buttonIsChord: InputViewButton!
+    @IBOutlet weak var buttonIsRest: InputViewButton!
+    @IBOutlet weak var buttonNoteUp: InputViewButton!
+    @IBOutlet weak var buttonNoteDown: InputViewButton!
+    @IBOutlet weak var buttonNoteUpOctave: InputViewButton!
+    @IBOutlet weak var buttonNoteDownOctave: InputViewButton!
+    @IBOutlet weak var buttonFlatDouble: InputViewButton!
+    @IBOutlet weak var buttonFlat: InputViewButton!
+    @IBOutlet weak var buttonNatural: InputViewButton!
+    @IBOutlet weak var buttonSharp: InputViewButton!
+    @IBOutlet weak var buttonSharpDouble: InputViewButton!
+    @IBOutlet weak var buttonSemibreve: InputViewButton!
+    @IBOutlet weak var buttonMinim: InputViewButton!
+    @IBOutlet weak var buttonCrotchet: InputViewButton!
+    @IBOutlet weak var buttonQuaver: InputViewButton!
+    @IBOutlet weak var buttonSemiquaver: InputViewButton!
+    @IBOutlet weak var buttonDot0: InputViewButton!
+    @IBOutlet weak var buttonDot1: InputViewButton!
+    @IBOutlet weak var buttonDot2: InputViewButton!
+    
+    
     var currentClefButton: InputViewButton! {
         didSet {
             oldValue?.isToggled = false
             currentClefButton.isToggled = true
+        }
+    }
+    
+    var currentAccidentalButton: InputViewButton? {
+        didSet {
+            oldValue?.isToggled = false
+            currentAccidentalButton?.isToggled = true
+        }
+    }
+    
+    var currentTypeButton: InputViewButton? {
+        didSet {
+            oldValue?.isToggled = false
+            currentTypeButton?.isToggled = true
+        }
+    }
+    
+    var currentDotButton: InputViewButton? {
+        didSet {
+            oldValue?.isToggled = false
+            currentDotButton?.isToggled = true
         }
     }
 
@@ -80,6 +137,7 @@ class EditViewController: UIViewController {
 
         configureRangeControls()
         configureAttributeControls()
+        configureNoteControls()
     }
     
     func configureRangeControls() {
@@ -129,8 +187,125 @@ class EditViewController: UIViewController {
         else {
             currentClefButton = buttonClefTreble
         }
+    }
+    
+    
+    func configureNoteControls() {
+        guard buttonIsRest != nil && buttonIsChord != nil && buttonFlatDouble != nil
+            && buttonFlat != nil && buttonNatural != nil && buttonSharp != nil
+            && buttonSharpDouble != nil && buttonSemibreve != nil && buttonMinim != nil
+            && buttonCrotchet != nil && buttonQuaver != nil && buttonSemiquaver != nil
+            && buttonDot0 != nil && buttonDot1 != nil && buttonDot2 != nil else {
+                return
+        }
+        guard let selectedNote = selectedNote, let note = getSelectedNote(selectedNote) else {
+            return
+        }
+        
+        if note.chord! {
+            buttonIsChord.isToggled = true
+            buttonIsChord.imageView?.image = #imageLiteral(resourceName: "ic_yes")
+        }
+        else {
+            buttonIsChord.isToggled = false
+            buttonIsChord.imageView?.image = #imageLiteral(resourceName: "ic_no")
+        }
+        
+        if note.isRest {
+            buttonIsRest.isToggled = true
+            buttonIsRest.imageView?.image = #imageLiteral(resourceName: "ic_yes")
+            
+            setPitchButtons(enabled: false)
+        }
+        else {
+            buttonIsRest.isToggled = false
+            buttonIsRest.imageView?.image = #imageLiteral(resourceName: "ic_no")
+            
+            setPitchButtons(enabled: true)
+            
+            switch note.pitch!.alter ?? 0 {
+            case -2:
+                currentAccidentalButton = buttonFlatDouble
+            case -1:
+                currentAccidentalButton = buttonFlat
+            case 1:
+                currentAccidentalButton = buttonSharp
+            case 2:
+                currentAccidentalButton = buttonSharpDouble
+            default:
+                currentAccidentalButton = buttonNatural
+            }
+            
+            switch note.type! {
+            case .n1:
+                currentTypeButton = buttonSemibreve
+            case .n2:
+                currentTypeButton = buttonMinim
+            case .n4:
+                currentTypeButton = buttonCrotchet
+            case .n8:
+                currentTypeButton = buttonQuaver
+            case .n16:
+                currentTypeButton = buttonSemiquaver
+            default:
+                currentTypeButton = nil
+            }
+            
+            switch note.dots! {
+            case 0:
+                currentDotButton = buttonDot0
+            case 1:
+                currentDotButton = buttonDot1
+            case 2:
+                currentDotButton = buttonDot2
+            default:
+                currentDotButton = nil
+            }
+        }
         
     }
+    
+    func setPitchButtons(enabled: Bool) {
+        buttonNoteUp.isEnabled = enabled
+        buttonNoteDown.isEnabled = enabled
+        buttonNoteUpOctave.isEnabled = enabled
+        buttonNoteDownOctave.isEnabled = enabled
+        
+        buttonFlatDouble.isEnabled = enabled
+        buttonFlat.isEnabled = enabled
+        buttonNatural.isEnabled = enabled
+        buttonSharp.isEnabled = enabled
+        buttonSharpDouble.isEnabled = enabled
+        
+        buttonIsChord.isEnabled = enabled
+        
+        if !enabled {
+            currentAccidentalButton = nil
+            buttonIsChord.isToggled = false
+        }
+    }
+    
+    
+    func getSelectedNote(_ selectedNote: SelectedNote) -> Note? {
+        guard let measures = measures else {
+            return nil
+        }
+        
+        var barNumber = currentRange.start + selectedNote.bar
+        if barNumber >= measures.count {
+            barNumber = measures.count - 1
+        }
+        
+        let bar = measures[barNumber]
+        let noteNumber = selectedNote.note
+        if noteNumber >= bar.notes.count {
+            return bar.notes.last
+        }
+        else {
+            return bar.notes[noteNumber]
+        }
+    }
+    
     
     func string(forFifths fifths: Int) -> String {
         if fifths == -1 {

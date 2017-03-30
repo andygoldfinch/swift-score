@@ -49,3 +49,8 @@ extension BarRange: Equatable {
         return lhs.start == rhs.start && lhs.end == rhs.end
     }
 }
+
+struct SelectedNote {
+    let bar: Int
+    let note: Int
+}
