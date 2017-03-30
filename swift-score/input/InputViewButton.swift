@@ -13,7 +13,7 @@ class InputViewButton: UIButton {
     @IBInspectable var roundTopRight: Bool = true
     @IBInspectable var roundBottomLeft: Bool = true
     @IBInspectable var roundBottomRight: Bool = true
-    @IBInspectable var cornerRadius: CGFloat = 5
+    @IBInspectable var cornerRadius: CGFloat = 6
     @IBInspectable var margin: CGFloat = 6
     
     var isToggled: Bool = false {

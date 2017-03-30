@@ -100,29 +100,16 @@
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" horizontalHuggingPriority="50" verticalHuggingPriority="50" translatesAutoresizingMaskIntoConstraints="NO" id="8bF-1Z-ARX" userLabel="Range Background View" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                    <rect key="frame" x="415.5" y="6.5" width="157.5" height="32.5"/>
+                    <rect key="frame" x="415" y="6" width="157.5" height="32.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bar 1  -to-  Bar 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mc9-SB-xMk">
-                    <rect key="frame" x="431.5" y="12.5" width="125.5" height="20.5"/>
+                    <rect key="frame" x="431" y="12" width="125.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnE-Cb-020" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                    <rect key="frame" x="917" y="324" width="64" height="50"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="64" id="Ot6-Gi-lQi"/>
-                        <constraint firstAttribute="height" constant="50" id="ofV-qf-gWU"/>
-                    </constraints>
-                    <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="ic_keyboard_hide"/>
-                    <connections>
-                        <action selector="closeTapped:" destination="-1" eventType="touchUpInside" id="vME-pb-yGi"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1R-2N-TIh">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1R-2N-TIh" userLabel="Left View">
                     <rect key="frame" x="0.0" y="44" width="494" height="336"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="kwn-Cr-Y36">
@@ -217,16 +204,16 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="40N-dT-drf" userLabel="Key View" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                            <rect key="frame" x="185" y="8" width="301" height="61.5"/>
+                            <rect key="frame" x="185" y="8" width="305" height="61.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Key of 3 Flats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TI4-ho-oEX">
-                                    <rect key="frame" x="8" y="20" width="183" height="20.5"/>
+                                    <rect key="frame" x="8" y="20" width="187" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-7" maximumValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="IPa-yt-pqb">
-                                    <rect key="frame" x="199" y="16" width="94" height="29"/>
+                                    <rect key="frame" x="203" y="16" width="94" height="29"/>
                                     <connections>
                                         <action selector="attributeButtonPressed:" destination="-1" eventType="valueChanged" id="61G-fv-7Cu"/>
                                     </connections>
@@ -242,10 +229,10 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJK-6R-ReA" userLabel="Time View" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                            <rect key="frame" x="185" y="72.5" width="301" height="94.5"/>
+                            <rect key="frame" x="185" y="72.5" width="305" height="94"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dZQ-iD-1EG">
-                                    <rect key="frame" x="199" y="14.5" width="94" height="66"/>
+                                    <rect key="frame" x="203" y="14" width="94" height="66"/>
                                     <subviews>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="32" translatesAutoresizingMaskIntoConstraints="NO" id="EBZ-fD-0Qa">
                                             <rect key="frame" x="0.0" y="0.0" width="94" height="29"/>
@@ -262,7 +249,7 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ObA-FW-zPZ">
-                                    <rect key="frame" x="16" y="23" width="168.5" height="49"/>
+                                    <rect key="frame" x="18" y="23" width="168.5" height="49"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Signature of" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybq-4e-V1g">
                                             <rect key="frame" x="0.0" y="14.5" width="135.5" height="20.5"/>
@@ -297,13 +284,13 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3eN-wj-32u" userLabel="Clef Stack View">
-                            <rect key="frame" x="185" y="170" width="301" height="158"/>
+                            <rect key="frame" x="185" y="170" width="305" height="158"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFK-ta-zrP" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="73" height="158"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="74" height="158"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clef:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ge8-rT-ffM">
-                                            <rect key="frame" x="18.5" y="69.5" width="35.5" height="20.5"/>
+                                            <rect key="frame" x="19" y="69" width="35.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -320,7 +307,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUT-ZA-4bG" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="76" y="0.0" width="73" height="158"/>
+                                    <rect key="frame" x="77" y="0.0" width="74" height="158"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <state key="normal" title="Button" image="clef-g">
@@ -340,7 +327,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThS-x1-ORJ" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="152" y="0.0" width="73" height="158"/>
+                                    <rect key="frame" x="154" y="0.0" width="74" height="158"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <state key="normal" title="Button" image="clef-c">
@@ -360,7 +347,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwV-6W-LEP" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                    <rect key="frame" x="228" y="0.0" width="73" height="158"/>
+                                    <rect key="frame" x="231" y="0.0" width="74" height="158"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <state key="normal" title="Button" image="clef-f">
@@ -394,7 +381,7 @@
                         <constraint firstItem="oJK-6R-ReA" firstAttribute="bottom" secondItem="kGk-df-UT7" secondAttribute="centerY" constant="-1.5" id="Mqu-nu-qX9"/>
                         <constraint firstAttribute="bottom" secondItem="kwn-Cr-Y36" secondAttribute="bottom" constant="8" id="Mxz-Ak-nE7"/>
                         <constraint firstItem="oJK-6R-ReA" firstAttribute="leading" secondItem="40N-dT-drf" secondAttribute="leading" id="Oep-aa-MsD"/>
-                        <constraint firstAttribute="trailing" secondItem="40N-dT-drf" secondAttribute="trailing" constant="8" id="QdQ-BB-Jx1"/>
+                        <constraint firstAttribute="trailing" secondItem="40N-dT-drf" secondAttribute="trailing" constant="4" id="QdQ-BB-Jx1"/>
                         <constraint firstItem="oJK-6R-ReA" firstAttribute="width" secondItem="40N-dT-drf" secondAttribute="width" id="SJL-VG-7kL"/>
                         <constraint firstItem="oJK-6R-ReA" firstAttribute="top" secondItem="N7y-O6-i3i" secondAttribute="top" id="Vq2-lb-PnV"/>
                         <constraint firstItem="ObA-FW-zPZ" firstAttribute="centerX" secondItem="TI4-ho-oEX" secondAttribute="centerX" id="aGm-xP-vQS"/>
@@ -402,10 +389,374 @@
                         <constraint firstItem="dZQ-iD-1EG" firstAttribute="centerX" secondItem="IPa-yt-pqb" secondAttribute="centerX" id="dwW-wY-4ke"/>
                         <constraint firstItem="BOY-Qq-kJk" firstAttribute="width" secondItem="kwn-Cr-Y36" secondAttribute="width" id="f4t-ak-G1k"/>
                         <constraint firstItem="kwn-Cr-Y36" firstAttribute="width" secondItem="E1R-2N-TIh" secondAttribute="width" multiplier="1:6" id="fRl-2g-4nS"/>
-                        <constraint firstAttribute="trailing" secondItem="3eN-wj-32u" secondAttribute="trailing" constant="8" id="iou-SL-Ljd"/>
                         <constraint firstItem="kwn-Cr-Y36" firstAttribute="leading" secondItem="E1R-2N-TIh" secondAttribute="leading" constant="8" id="kiZ-A3-kxT"/>
+                        <constraint firstItem="3eN-wj-32u" firstAttribute="trailing" secondItem="40N-dT-drf" secondAttribute="trailing" id="nd8-NJ-PBl"/>
                         <constraint firstItem="3eN-wj-32u" firstAttribute="top" secondItem="oJK-6R-ReA" secondAttribute="bottom" constant="3" id="pQW-Pn-3h8"/>
                         <constraint firstAttribute="bottom" secondItem="3eN-wj-32u" secondAttribute="bottom" constant="8" id="zPd-XW-trU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yla-fg-sh7" userLabel="Right View">
+                    <rect key="frame" x="494" y="44" width="493" height="336"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h48-mT-Zan" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
+                            <rect key="frame" x="4" y="8" width="123.5" height="320"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="beF-jJ-NmH" userLabel="Row Stack View">
+                            <rect key="frame" x="131" y="8" width="354" height="320"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="mGC-mt-wRQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="354" height="62.5"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcl-Sb-RUY" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Chord:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-QP-RSq">
+                                                    <rect key="frame" x="34.5" y="21" width="69" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="Cib-QP-RSq" firstAttribute="centerX" secondItem="mcl-Sb-RUY" secondAttribute="centerX" id="No8-US-e0N"/>
+                                                <constraint firstItem="Cib-QP-RSq" firstAttribute="centerY" secondItem="mcl-Sb-RUY" secondAttribute="centerY" id="r0z-hs-5gL"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-3D-aaC" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="ic_yes"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="ZiU-Nb-XUz"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqv-Cv-1Ua" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="213.5" y="0.0" width="69" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="ic_arrow_upward"/>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="EFc-cN-yLK"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-YC-qke" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="15"/>
+                                            <state key="normal" title="8va"/>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="aaC-Hp-2JW"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pc5-3D-aaC" firstAttribute="width" secondItem="eqv-Cv-1Ua" secondAttribute="width" id="cjN-ox-dlt"/>
+                                        <constraint firstItem="eqv-Cv-1Ua" firstAttribute="width" secondItem="Tho-YC-qke" secondAttribute="width" id="qSk-Pf-kxj"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="7F9-jA-5TF">
+                                    <rect key="frame" x="0.0" y="64.5" width="354" height="62.5"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-wu-tmM" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Rest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgo-jS-2Yt">
+                                                    <rect key="frame" x="42" y="21" width="56" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="fgo-jS-2Yt" firstAttribute="centerY" secondItem="jqL-wu-tmM" secondAttribute="centerY" id="g1e-4r-rDy"/>
+                                                <constraint firstItem="fgo-jS-2Yt" firstAttribute="centerX" secondItem="jqL-wu-tmM" secondAttribute="centerX" id="idl-3n-DZS"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvm-jj-Qpu" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="ic_no"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="yny-DJ-klb"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-d9-PN4" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="213.5" y="0.0" width="69" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="ic_arrow_downward"/>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="dt8-K4-0fu"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-mz-bi2" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="8vb"/>
+                                            <connections>
+                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="aZj-HG-Cfa"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="LfR-d9-PN4" firstAttribute="width" secondItem="hyi-mz-bi2" secondAttribute="width" id="lVa-2r-cIM"/>
+                                        <constraint firstItem="uvm-jj-Qpu" firstAttribute="width" secondItem="LfR-d9-PN4" secondAttribute="width" id="s8K-pT-y8C"/>
+                                    </constraints>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="NP3-cv-bXl" userLabel="Accidental Stack View">
+                                    <rect key="frame" x="0.0" y="129" width="354" height="62"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcl-JF-pOr" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="68.5" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="flat-double"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW6-Zc-vfx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="71.5" y="0.0" width="68.5" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="flat"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heH-9Z-wEB" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="143" y="0.0" width="68" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="natural"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nb-t1-WJi" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="214" y="0.0" width="68.5" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="sharp"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="16"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rh2-cM-OFb" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="285.5" y="0.0" width="68.5" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="sharp-double"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="24"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-TB-75w" userLabel="Note Type Stack View">
+                                    <rect key="frame" x="0.0" y="193" width="354" height="62.5"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8d-Fm-xHt" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="semibreve"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="22"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWc-N3-KQ0" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="71.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="minim-up"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="9"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryx-0f-gYQ" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="143" y="0.0" width="68" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="crotchet-up"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="9"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TW-ia-kCr" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="214" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="quaver-up"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="9"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-co-IKL" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="semiquaver-up"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                    <real key="value" value="9"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-hy-wKt" userLabel="Dot Stack View">
+                                    <rect key="frame" x="0.0" y="257.5" width="354" height="62.5"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sw-6e-X49" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="68.5" height="62.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dots:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbG-0h-dt3">
+                                                    <rect key="frame" x="13.5" y="21" width="40.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="KbG-0h-dt3" firstAttribute="centerY" secondItem="6sw-6e-X49" secondAttribute="centerY" id="Sc2-ez-OSH"/>
+                                                <constraint firstItem="KbG-0h-dt3" firstAttribute="centerX" secondItem="6sw-6e-X49" secondAttribute="centerX" id="Z81-QH-sA2"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gah-tI-NMT" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="71.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="0"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcy-DG-paS" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="143" y="0.0" width="68" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="1"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopRight" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL7-w5-cvx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="214" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="2"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnE-Cb-020" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" image="ic_keyboard_hide"/>
+                                            <connections>
+                                                <action selector="closeTapped:" destination="-1" eventType="touchUpInside" id="vME-pb-yGi"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="hyi-mz-bi2" firstAttribute="width" secondItem="Rh2-cM-OFb" secondAttribute="width" id="dea-bP-7ol"/>
+                                <constraint firstItem="Tho-YC-qke" firstAttribute="width" secondItem="Rh2-cM-OFb" secondAttribute="width" id="lgr-6a-dGa"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="h48-mT-Zan" firstAttribute="width" secondItem="yla-fg-sh7" secondAttribute="width" multiplier="1:4" id="COi-k4-WLo"/>
+                        <constraint firstAttribute="trailing" secondItem="beF-jJ-NmH" secondAttribute="trailing" constant="8" id="Goa-Pc-hkZ"/>
+                        <constraint firstItem="h48-mT-Zan" firstAttribute="top" secondItem="yla-fg-sh7" secondAttribute="top" constant="8" id="HMw-pg-UtU"/>
+                        <constraint firstAttribute="bottom" secondItem="beF-jJ-NmH" secondAttribute="bottom" constant="8" id="KWT-Q7-Fl5"/>
+                        <constraint firstItem="h48-mT-Zan" firstAttribute="leading" secondItem="yla-fg-sh7" secondAttribute="leading" constant="4" id="T6k-cV-Ggh"/>
+                        <constraint firstItem="beF-jJ-NmH" firstAttribute="leading" secondItem="h48-mT-Zan" secondAttribute="trailing" constant="3" id="bI8-tY-x7X"/>
+                        <constraint firstAttribute="bottom" secondItem="h48-mT-Zan" secondAttribute="bottom" constant="8" id="emb-N7-gFx"/>
+                        <constraint firstItem="beF-jJ-NmH" firstAttribute="top" secondItem="yla-fg-sh7" secondAttribute="top" constant="8" id="oDb-5B-KEL"/>
                     </constraints>
                 </view>
             </subviews>
@@ -414,19 +765,21 @@
             <constraints>
                 <constraint firstItem="Km0-Wf-H6V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2tE-bq-ZLH"/>
                 <constraint firstItem="8bF-1Z-ARX" firstAttribute="centerY" secondItem="Mc9-SB-xMk" secondAttribute="centerY" id="4YJ-sk-a7i"/>
+                <constraint firstItem="yla-fg-sh7" firstAttribute="top" secondItem="Km0-Wf-H6V" secondAttribute="bottom" id="6zV-oX-57v"/>
                 <constraint firstItem="8bF-1Z-ARX" firstAttribute="height" secondItem="Mc9-SB-xMk" secondAttribute="height" constant="12" id="7N9-TN-uuo"/>
                 <constraint firstItem="E1R-2N-TIh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="E5i-D3-0U4"/>
                 <constraint firstItem="Km0-Wf-H6V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EP8-WQ-bL0"/>
                 <constraint firstAttribute="trailing" secondItem="Km0-Wf-H6V" secondAttribute="trailing" id="ElN-jR-Yih"/>
                 <constraint firstItem="8bF-1Z-ARX" firstAttribute="centerX" secondItem="Mc9-SB-xMk" secondAttribute="centerX" id="I8I-CY-QG3"/>
                 <constraint firstItem="Km0-Wf-H6V" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="KhH-LM-ZII"/>
+                <constraint firstAttribute="bottom" secondItem="yla-fg-sh7" secondAttribute="bottom" id="LP1-UM-mVM"/>
+                <constraint firstAttribute="trailing" secondItem="yla-fg-sh7" secondAttribute="trailing" id="Qyh-Nt-LzE"/>
                 <constraint firstItem="E1R-2N-TIh" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="1:2" id="X3s-tK-awj"/>
                 <constraint firstItem="Mc9-SB-xMk" firstAttribute="centerX" secondItem="Km0-Wf-H6V" secondAttribute="centerX" id="Yz4-B7-kC8"/>
-                <constraint firstAttribute="bottom" secondItem="tnE-Cb-020" secondAttribute="bottom" constant="6" id="eRV-kP-CJ7"/>
                 <constraint firstItem="E1R-2N-TIh" firstAttribute="top" secondItem="Km0-Wf-H6V" secondAttribute="bottom" id="hEc-ao-gey"/>
                 <constraint firstItem="8bF-1Z-ARX" firstAttribute="width" secondItem="Mc9-SB-xMk" secondAttribute="width" constant="32" id="n5z-7R-9ha"/>
-                <constraint firstAttribute="trailing" secondItem="tnE-Cb-020" secondAttribute="trailing" constant="6" id="r5F-S3-vTW"/>
                 <constraint firstItem="Mc9-SB-xMk" firstAttribute="centerY" secondItem="Km0-Wf-H6V" secondAttribute="centerY" id="rnQ-9P-p2K"/>
+                <constraint firstItem="yla-fg-sh7" firstAttribute="leading" secondItem="E1R-2N-TIh" secondAttribute="trailing" id="skt-pe-xdV"/>
                 <constraint firstAttribute="bottom" secondItem="E1R-2N-TIh" secondAttribute="bottom" id="zG2-OL-imj"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -438,6 +791,9 @@
         <image name="clef-c" width="891" height="1310"/>
         <image name="clef-f" width="1000" height="1111"/>
         <image name="clef-g" width="869" height="2400"/>
+        <image name="crotchet-up" width="17" height="60"/>
+        <image name="flat" width="14" height="38"/>
+        <image name="flat-double" width="25" height="38"/>
         <image name="ic_arrow_back" width="24" height="24"/>
         <image name="ic_arrow_downward" width="24" height="24"/>
         <image name="ic_arrow_forward" width="24" height="24"/>
@@ -447,5 +803,14 @@
         <image name="ic_content_copy" width="24" height="24"/>
         <image name="ic_delete" width="24" height="24"/>
         <image name="ic_keyboard_hide" width="24" height="24"/>
+        <image name="ic_no" width="24" height="24"/>
+        <image name="ic_yes" width="24" height="24"/>
+        <image name="minim-up" width="17" height="60"/>
+        <image name="natural" width="12" height="39"/>
+        <image name="quaver-up" width="35" height="60"/>
+        <image name="semibreve" width="25" height="15"/>
+        <image name="semiquaver-up" width="35" height="60"/>
+        <image name="sharp" width="18" height="39"/>
+        <image name="sharp-double" width="16" height="16"/>
     </resources>
 </document>
