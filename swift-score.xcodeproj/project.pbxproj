@@ -42,6 +42,8 @@
 		4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */; };
 		469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273F1E69AC8C0013B200 /* PositionCalculator.swift */; };
 		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
+		46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */; };
+		46F1E87E1E9251060049F958 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87D1E9251060049F958 /* NoteCell.xib */; };
 		46FB3D661E8A7747000316F2 /* MeasureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */; };
 		46FB3D681E8AA635000316F2 /* PitchChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D671E8AA635000316F2 /* PitchChanger.swift */; };
 		46FB3D6A1E8BC8E5000316F2 /* EditBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */; };
@@ -87,6 +89,8 @@
 		4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewGenerator.swift; sourceTree = "<group>"; };
 		4699273F1E69AC8C0013B200 /* PositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCalculator.swift; sourceTree = "<group>"; };
 		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
+		46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
+		46F1E87D1E9251060049F958 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureProcessor.swift; sourceTree = "<group>"; };
 		46FB3D671E8AA635000316F2 /* PitchChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchChanger.swift; sourceTree = "<group>"; };
 		46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBackgroundView.swift; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 				468493671E8160330084A882 /* EditViewController.xib */,
 				4684936A1E818A6F0084A882 /* EditViewToolbar.swift */,
 				46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */,
+				46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */,
+				46F1E87D1E9251060049F958 /* NoteCell.xib */,
 			);
 			path = editing;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				462FBAC21E52163E00323987 /* simple.xml in Resources */,
 				462FBAB81E51FE2400323987 /* LaunchScreen.storyboard in Resources */,
 				462FBAB31E51FE2400323987 /* Main.storyboard in Resources */,
+				46F1E87E1E9251060049F958 /* NoteCell.xib in Resources */,
 				469927341E65BED90013B200 /* complex-2.xml in Resources */,
 				464DFCCD1E7AA34D006BCD78 /* Assets.xcassets in Resources */,
 				462FBAF91E5DB97500323987 /* custom.xml in Resources */,
@@ -386,6 +393,7 @@
 				4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */,
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
+				46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */,
 				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */,

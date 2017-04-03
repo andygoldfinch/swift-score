@@ -58,6 +58,7 @@
                 <outlet property="stepperStart" destination="91O-Zb-6Mz" id="q6E-C6-Ldj"/>
                 <outlet property="stepperTimeBottom" destination="x8M-SA-Xch" id="lvH-W4-5gi"/>
                 <outlet property="stepperTimeTop" destination="EBZ-fD-0Qa" id="gDW-Jb-KcM"/>
+                <outlet property="tableView" destination="3y0-jm-sUK" id="dVy-B0-V8p"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -419,7 +420,20 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h48-mT-Zan" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
                             <rect key="frame" x="4" y="8" width="123.5" height="320"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3y0-jm-sUK">
+                                    <rect key="frame" x="0.0" y="0.0" width="123.5" height="320"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </tableView>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="3y0-jm-sUK" secondAttribute="trailing" id="E05-dF-HJI"/>
+                                <constraint firstAttribute="bottom" secondItem="3y0-jm-sUK" secondAttribute="bottom" id="HQw-VD-WBG"/>
+                                <constraint firstItem="3y0-jm-sUK" firstAttribute="leading" secondItem="h48-mT-Zan" secondAttribute="leading" id="Lgm-Su-jVu"/>
+                                <constraint firstItem="3y0-jm-sUK" firstAttribute="top" secondItem="h48-mT-Zan" secondAttribute="top" id="W6Y-dA-pWK"/>
+                            </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="beF-jJ-NmH" userLabel="Row Stack View">
                             <rect key="frame" x="131" y="8" width="354" height="320"/>
@@ -431,7 +445,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Chord:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-QP-RSq">
-                                                    <rect key="frame" x="34.5" y="21" width="69" height="20.5"/>
+                                                    <rect key="frame" x="35" y="21" width="69" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -489,7 +503,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Rest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgo-jS-2Yt">
-                                                    <rect key="frame" x="41" y="21" width="56" height="20.5"/>
+                                                    <rect key="frame" x="41.5" y="21" width="56" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>

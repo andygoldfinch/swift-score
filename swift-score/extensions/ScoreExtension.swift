@@ -73,4 +73,44 @@ extension ScorePartwise {
     }
 }
 
+extension Pitch: CustomStringConvertible {
+    var description: String {
+        return "\(step.rawValue)\(octave ?? 4)\(alterToString(alter ?? 0))"
+    }
+    
+    private func alterToString(_ alter: Int) -> String {
+        switch alter {
+        case -2:
+            return "♭♭"
+        case -1:
+            return "♭"
+        case 1:
+            return "♯"
+        case 2:
+            return "♯♯"
+        default:
+            return ""
+        }
+    }
+}
+
+extension NoteType: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .n1:
+            return "Semibreve"
+        case .n2:
+            return "Minim"
+        case .n4:
+            return "Crotchet"
+        case .n8:
+            return "Quaver"
+        case .n16:
+            return "Semiquaver"
+        default:
+            return self.rawValue
+        }
+    }
+}
+
 
