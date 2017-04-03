@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -428,10 +428,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="354" height="62.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcl-Sb-RUY" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="139" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Chord:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cib-QP-RSq">
-                                                    <rect key="frame" x="34" y="21" width="69" height="20.5"/>
+                                                    <rect key="frame" x="34.5" y="21" width="69" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -448,7 +448,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-3D-aaC" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="142" y="0.0" width="68.5" height="62.5"/>
+                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_yes"/>
                                             <userDefinedRuntimeAttributes>
@@ -456,7 +456,7 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="ZiU-Nb-XUz"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="s98-M0-Uz4"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqv-Cv-1Ua" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
@@ -464,7 +464,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_arrow_upward"/>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="EFc-cN-yLK"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="w1L-qi-tWH"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tho-YC-qke" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
@@ -473,7 +473,7 @@
                                             <fontDescription key="fontDescription" name=".SFNSText" family=".SF NS Text" pointSize="15"/>
                                             <state key="normal" title="8va"/>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="aaC-Hp-2JW"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="PU1-lm-YcN"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -486,10 +486,10 @@
                                     <rect key="frame" x="0.0" y="64.5" width="354" height="62.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-wu-tmM" customClass="EditBackgroundView" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="139" height="62.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="139.5" height="62.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Rest:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgo-jS-2Yt">
-                                                    <rect key="frame" x="40.5" y="21" width="56" height="20.5"/>
+                                                    <rect key="frame" x="41" y="21" width="56" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -506,7 +506,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvm-jj-Qpu" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="142" y="0.0" width="68.5" height="62.5"/>
+                                            <rect key="frame" x="142.5" y="0.0" width="68" height="62.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_no"/>
                                             <userDefinedRuntimeAttributes>
@@ -514,7 +514,7 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="yny-DJ-klb"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="w0E-WN-IS9"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfR-d9-PN4" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
@@ -522,7 +522,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" image="ic_arrow_downward"/>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="dt8-K4-0fu"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="2C9-8G-rAG"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyi-mz-bi2" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
@@ -530,7 +530,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <state key="normal" title="8vb"/>
                                             <connections>
-                                                <action selector="leftButtonPressed:" destination="-1" eventType="touchUpInside" id="aZj-HG-Cfa"/>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="Mvj-mP-6x2"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -554,6 +554,9 @@
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="dpq-JN-T0k"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eW6-Zc-vfx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="71.5" y="0.0" width="68.5" height="62"/>
@@ -569,6 +572,9 @@
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="u6x-AM-bHt"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heH-9Z-wEB" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="143" y="0.0" width="68" height="62"/>
@@ -584,6 +590,9 @@
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="RZw-vw-mOB"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nb-t1-WJi" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="214" y="0.0" width="68.5" height="62"/>
@@ -599,6 +608,9 @@
                                                     <real key="value" value="16"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="49o-pS-f8g"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rh2-cM-OFb" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="285.5" y="0.0" width="68.5" height="62"/>
@@ -614,6 +626,9 @@
                                                     <real key="value" value="24"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="pk0-wE-LI8"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -632,6 +647,9 @@
                                                     <real key="value" value="22"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="6Is-As-Hd2"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWc-N3-KQ0" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="71.5" y="0.0" width="68.5" height="62.5"/>
@@ -647,6 +665,9 @@
                                                     <real key="value" value="9"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="Xt6-aP-eoq"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryx-0f-gYQ" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="143" y="0.0" width="68" height="62.5"/>
@@ -662,6 +683,9 @@
                                                     <real key="value" value="9"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="XR9-EX-kqy"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TW-ia-kCr" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="214" y="0.0" width="68.5" height="62.5"/>
@@ -677,6 +701,9 @@
                                                     <real key="value" value="9"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="LDK-jB-lWs"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaS-co-IKL" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>
@@ -692,6 +719,9 @@
                                                     <real key="value" value="9"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="51v-pn-p3e"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -728,6 +758,9 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="QHc-uf-3Tp"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vcy-DG-paS" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="143" y="0.0" width="68" height="62.5"/>
@@ -739,6 +772,9 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomRight" value="NO"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="uXh-5r-VVZ"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dL7-w5-cvx" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="214" y="0.0" width="68.5" height="62.5"/>
@@ -748,6 +784,9 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundTopLeft" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundBottomLeft" value="NO"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="noteButtonPressed:" destination="-1" eventType="touchUpInside" id="0L9-1g-aMg"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnE-Cb-020" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
                                             <rect key="frame" x="285.5" y="0.0" width="68.5" height="62.5"/>

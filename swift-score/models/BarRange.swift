@@ -51,6 +51,16 @@ extension BarRange: Equatable {
 }
 
 struct SelectedNote {
-    let bar: Int
+    var relativeBar: Int
     let note: Int
+    let range: BarRange
+    
+    var absoluteBar: Int {
+        get {
+            return range.start + relativeBar
+        }
+        set {
+            relativeBar = absoluteBar - range.start
+        }
+    }
 }

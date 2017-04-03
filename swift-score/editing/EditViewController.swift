@@ -32,7 +32,7 @@ class EditViewController: UIViewController {
             
             //TODO Remove this line (for testing purposes only)
             if measures?.count ?? 0 >= 1 && measures?.first?.notes.count ?? 0 >= 1 {
-                selectedNote = SelectedNote(bar: 0, note: 0)
+                selectedNote = SelectedNote(relativeBar: 0, note: 0, range: currentRange)
             }
         }
     }
@@ -291,7 +291,7 @@ class EditViewController: UIViewController {
             return nil
         }
         
-        var barNumber = currentRange.start + selectedNote.bar
+        var barNumber = selectedNote.absoluteBar
         if barNumber >= measures.count {
             barNumber = measures.count - 1
         }
@@ -447,7 +447,78 @@ class EditViewController: UIViewController {
         }
     }
     
-
+    
+    @IBAction func noteButtonPressed(_ sender: InputViewButton) {
+        guard let selectedNote = selectedNote, var note = getSelectedNote(selectedNote) else {
+            return
+        }
+        
+        switch sender {
+        case buttonIsRest:
+            if note.isRest {
+                note.pitch = Pitch(step: .c, octave: 4, alter: 0)
+            }
+            else {
+                note.pitch = nil
+            }
+        case buttonSemibreve:
+            note.type = .n1
+        case buttonMinim:
+            note.type = .n2
+        case buttonCrotchet:
+            note.type = .n4
+        case buttonQuaver:
+            note.type = .n8
+        case buttonSemiquaver:
+            note.type = .n16
+        case buttonDot0:
+            note.dots = 0
+        case buttonDot1:
+            note.dots = 1
+        case buttonDot2:
+            note.dots = 2
+        default:
+            break
+        }
+        
+        if let pitch = note.pitch {
+            switch sender {
+            case buttonIsChord:
+                note.chord = !note.chord
+            case buttonNoteUp:
+                let pitchChanger = PitchChanger()
+                note.pitch = pitchChanger.change(pitch: pitch, steps: 1)
+            case buttonNoteDown:
+                let pitchChanger = PitchChanger()
+                note.pitch = pitchChanger.change(pitch: pitch, steps: -1)
+            case buttonNoteUpOctave:
+                let pitchChanger = PitchChanger()
+                note.pitch = pitchChanger.change(pitch: pitch, steps: 8)
+            case buttonNoteDownOctave:
+                let pitchChanger = PitchChanger()
+                note.pitch = pitchChanger.change(pitch: pitch, steps: -8)
+            case buttonFlatDouble:
+                note.pitch?.alter = -2
+            case buttonFlat:
+                note.pitch?.alter = -1
+            case buttonNatural:
+                note.pitch?.alter = 0
+            case buttonSharp:
+                note.pitch?.alter = 1
+            case buttonSharpDouble:
+                note.pitch?.alter = 2
+            default:
+                break
+            }
+        }
+        else {
+            print("Pitch button pressed on note without pitch")
+        }
+        
+        if let delegate = delegate {
+            delegate.noteChanged(selectedNote: selectedNote, note: note)
+        }
+    }
     
     @IBAction func closeTapped(_ sender: Any) {
         if let delegate = delegate {
@@ -461,6 +532,7 @@ protocol EditDelegate {
     func rangeSelected(range: BarRange)
     func rangeTransformed(transformation: RangeTransformation)
     func attributesChanged(change: AttributeChange)
+    func noteChanged(selectedNote: SelectedNote, note: Note)
 }
 
 enum RangeTransformation {

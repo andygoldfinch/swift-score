@@ -455,6 +455,18 @@ class LineView: UIView {
         
         return Array(measures[start...end])
     }
+    
+    
+    /// Change replace the seleted note with the given note.
+    func changeNote(selectedNote: SelectedNote, note: Note) {
+        guard selectedNote.absoluteBar < measures.count &&
+            selectedNote.note < measures[selectedNote.absoluteBar].notes.count else {
+            print("Invalid note change attempted: \(selectedNote)")
+            return
+        }
+        
+        measures[selectedNote.absoluteBar].notes[selectedNote.note] = note
+    }
 }
 
 
@@ -489,6 +501,10 @@ extension LineView: NoteInputDelegate {
 
 /// Conform to the EditDelegate protocol
 extension LineView: EditDelegate {
+    func noteChanged(selectedNote: SelectedNote, note: Note) {
+        changeNote(selectedNote: selectedNote, note: note)
+    }
+
     internal func attributesChanged(change: AttributeChange) {
         guard let range = selectedRange else {
             print("Error: no range selected")
