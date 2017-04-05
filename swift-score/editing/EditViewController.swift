@@ -160,6 +160,7 @@ class EditViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "NoteCell")
     }
     
@@ -620,7 +621,7 @@ extension EditViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return buttonUp.frame.height - 3
+        return buttonUp.frame.height * 0.9
     }
 }
 
