@@ -9,11 +9,7 @@
 import UIKit
 
 class NoteInputViewController: UIViewController {
-    var delegate: NoteInputDelegate? = nil
-    
-    // Note labels
-    let noteNames: [String] = ["C", "D", "E", "F", "G", "A", "B", "C", "D", "E"]
-    let noteOctaves: [Int]  = [4, 4, 4, 4, 4, 4, 4, 5, 5, 5]
+    // MARK: - Outlets
     
     // Length
     @IBOutlet weak var buttonSemibreve: InputViewButton!
@@ -25,12 +21,10 @@ class NoteInputViewController: UIViewController {
     @IBOutlet weak var buttonDot1: InputViewButton!
     @IBOutlet weak var buttonDot2: InputViewButton!
     
-    
     // Other
     @IBOutlet weak var buttonRest: InputViewButton!
     @IBOutlet weak var buttonChord: InputViewButton!
     @IBOutlet weak var buttonAccidental: InputViewButton!
-    
     
     // Pitches
     @IBOutlet weak var buttonC4: InputViewKeyboardButton!
@@ -63,7 +57,13 @@ class NoteInputViewController: UIViewController {
     @IBOutlet weak var buttonMinus1: InputViewButton!
     @IBOutlet weak var buttonMinus2: InputViewButton!
     
-    // Toggled values
+    // MARK: - Variables
+    
+    var delegate: NoteInputDelegate? = nil
+    
+    let noteNames: [String] = ["C", "D", "E", "F", "G", "A", "B", "C", "D", "E"]
+    let noteOctaves: [Int]  = [4, 4, 4, 4, 4, 4, 4, 5, 5, 5]
+    
     var currentTypeButton: InputViewButton! {
         didSet {
             oldValue?.isToggled = false
@@ -146,6 +146,7 @@ class NoteInputViewController: UIViewController {
         }
     }
     
+    // MARK: - Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,7 +176,9 @@ class NoteInputViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
     
+    /// Called whenever a control button is pressed
     @IBAction func buttonTapped(sender: InputViewButton) {
         if sender == buttonSemibreve
             || sender == buttonMinim
@@ -218,7 +221,7 @@ class NoteInputViewController: UIViewController {
     }
     
     
-    /// Handle a note being pressed.
+    /// Called whenever a note is pressed
     @IBAction func noteTapped(_ sender: InputViewKeyboardButton) {
         var note = Note()
         
@@ -285,12 +288,16 @@ class NoteInputViewController: UIViewController {
         }
     }
     
+    
+    /// Called whenever the close button is pressed
     @IBAction func closeTapped(sender: UIButton) {
         if let delegate = delegate {
             delegate.closeTapped()
         }
     }
     
+    
+    /// Called whenever the backspace button is pressed
     @IBAction func backspaceTapped(_ sender: Any) {
         if let delegate = delegate {
             delegate.backspaceTapped()
@@ -299,18 +306,9 @@ class NoteInputViewController: UIViewController {
 
 }
 
+
 protocol NoteInputDelegate {
     func selectedInput(note: Note)
     func closeTapped()
     func backspaceTapped()
 }
-
-/*enum NoteInputType {
-    case length(NoteType)
-    case rest(NoteType)
-    case accent
-    case text
-    case pitch(Pitch)
-    case octave(Int)
-    case other
-}*/

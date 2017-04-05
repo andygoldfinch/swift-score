@@ -182,22 +182,22 @@
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="xmS-9o-oq0"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-bu-wVB" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="221" width="64" height="70.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <state key="normal" title="Rest"/>
-                                            <connections>
-                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="vFJ-G3-9On"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2f-f3-OnJ" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="294.5" width="64" height="70.5"/>
+                                            <rect key="frame" x="0.0" y="221" width="64" height="70.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="Chord"/>
                                             <connections>
                                                 <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="XtL-Wx-5Ei"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-bu-wVB" customClass="InputViewButton" customModule="swift_score" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="294.5" width="64" height="70.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Rest"/>
+                                            <connections>
+                                                <action selector="buttonTappedWithSender:" destination="-1" eventType="touchUpInside" id="vFJ-G3-9On"/>
                                             </connections>
                                         </button>
                                     </subviews>

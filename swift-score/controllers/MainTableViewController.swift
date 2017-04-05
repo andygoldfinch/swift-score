@@ -13,7 +13,7 @@ fileprivate typealias MetaScore = (name: String, score: ScorePartwise)
 
 class MainTableViewController: UITableViewController {
     let sections = ["Example Scores", "Custom Scores"]
-    let exampleFiles: [String] = ["simple", "complex-1", "complex-2", "complex-3", "custom"]
+    let exampleFiles: [String] = ["Simple", "Saltarello", "Mozart-Trio", "Custom"]
     var files: [String] = []
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,14 +73,22 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    /// Handle table view editing
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            DocumentHandler().deleteDocument(name: files[indexPath.row])
-            files.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+    /// Specifiy a custom delete button
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let action: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Delete", handler: delete)
+        action.backgroundColor = UIColor(red: 168.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        
+        return [action]
     }
+    
+    
+    /// Delete an item at the given index path
+    func delete(action: UITableViewRowAction, itemAt indexPath: IndexPath) {
+        DocumentHandler().deleteDocument(name: files[indexPath.row])
+        files.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
  
     @IBAction func addScorePressed(_ sender: Any) {
         let alert = UIAlertController(title: "Create New Score", message: "Enter score name:", preferredStyle: .alert)
@@ -106,7 +114,7 @@ class MainTableViewController: UITableViewController {
         let document = scoreWriter.makeDocument(score: score)
         documentHandler.saveDocument(document, name: processedName)
         
-        self.performSegue(withIdentifier: "scoreSegue", sender: (name, score))
+        self.performSegue(withIdentifier: "scoreSegue", sender: (processedName.removeXml(), score))
     }
     
     func loadFileList() {
@@ -114,29 +122,7 @@ class MainTableViewController: UITableViewController {
         files = documentHandler.getDocumentNames()
     }
 
-    
-    
- 
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? MainViewController {
             let documentHandler = DocumentHandler()

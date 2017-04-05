@@ -366,9 +366,18 @@ class LineView: UIView {
     /// Move the bars in the given range by the number of positions specified.
     func moveRange(_ range: BarRange, numPlaces: Int) {
         let bars = getBarsInRange(range)
-        let newRange = BarRange(start: range.start + numPlaces, end: range.end + numPlaces)
-
-        updateRange(newRange, with: bars)
+        var newIndex = range.start + numPlaces
+        
+        if newIndex < 0 {
+            newIndex = 0
+        }
+        
+        if newIndex > measures.count {
+            newIndex = measures.count
+        }
+        
+        deleteRange(range)
+        measures.insert(contentsOf: bars, at: newIndex)
     }
     
     

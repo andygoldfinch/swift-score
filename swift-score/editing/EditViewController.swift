@@ -9,62 +9,7 @@
 import UIKit
 
 class EditViewController: UIViewController {
-    var delegate: EditDelegate? = nil
-    var measures: [Measure]? = nil {
-        didSet {
-            configureRangeControls()
-            configureAttributeControls()
-            configureNoteControls()
-            let row = tableView?.indexPathForSelectedRow
-            tableView?.reloadData()
-            if let row = row {
-                tableView?.selectRow(at: row, animated: true, scrollPosition: .none)
-            }
-        }
-    }
-    
-    var currentRange: BarRange = BarRange(start: 0, end: 0) {
-        didSet {
-            labelRange?.text = currentRange.toString()
-            if let delegate = delegate {
-                delegate.rangeSelected(range: currentRange)
-            }
-            
-            stepperStart?.value = Double(currentRange.start)
-            stepperEnd?.value = Double(currentRange.end)
-            
-            configureAttributeControls()
-            tableView?.reloadData()
-            
-            selectedNote = nil
-        }
-    }
-    
-    var finalMeasure: Int {
-        return (measures?.count ?? 1) - 1
-    }
-    
-    var selectedNote: SelectedNote? {
-        didSet {
-            configureNoteControls()
-        }
-    }
-    
-    var notes: [Note] {
-        guard let measures = measures else {
-            return []
-        }
-        
-        var notes: [Note] = []
-        
-        for i in currentRange.start...currentRange.end {
-            notes.append(contentsOf: measures[i].notes)
-        }
-        
-        return notes
-    }
-    
-    let beatTypes = [1, 2, 4, 8, 16, 32]
+    // MARK: - Outlets
     
     /// Range selection
     @IBOutlet weak var buttonStartToCurrent: UIBarButtonItem!
@@ -87,7 +32,7 @@ class EditViewController: UIViewController {
     @IBOutlet weak var buttonDelete: InputViewButton!
     @IBOutlet weak var buttonDuplicate: InputViewButton!
     
-    /// Attribute Editor 
+    /// Attribute Editor
     @IBOutlet weak var labelKey: UILabel!
     @IBOutlet weak var labelTimeTop: UILabel!
     @IBOutlet weak var labelTimeBottom: UILabel!
@@ -123,6 +68,75 @@ class EditViewController: UIViewController {
     /// Table View
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: - Variables
+    
+    var delegate: EditDelegate? = nil
+    var measures: [Measure]? = nil {
+        didSet {
+            configureRangeControls()
+            configureAttributeControls()
+            configureNoteControls()
+            let row = tableView?.indexPathForSelectedRow
+            tableView?.reloadData()
+            if let row = row {
+                tableView?.selectRow(at: row, animated: true, scrollPosition: .none)
+            }
+        }
+    }
+    
+    var currentRange: BarRange = BarRange(start: 0, end: 0) {
+        didSet {
+            if let delegate = delegate {
+                delegate.rangeSelected(range: currentRange)
+            }
+            
+            configureAttributeControls()
+            configureRangeControls()
+            tableView?.reloadData()
+            
+            selectedNote = nil
+        }
+    }
+    
+    var finalMeasure: Int {
+        return (measures?.count ?? 1) - 1
+    }
+    
+    var selectedNote: SelectedNote? {
+        didSet {
+            configureNoteControls()
+        }
+    }
+    
+    var notes: [Note] {
+        guard let measures = measures else {
+            return []
+        }
+        
+        var endIndex = currentRange.end
+        var startIndex = currentRange.start
+        
+        if endIndex >= measures.count {
+            endIndex = measures.count - 1
+        }
+        
+        if startIndex > endIndex {
+            startIndex = endIndex
+        }
+        
+        var notes: [Note] = []
+        
+        for i in startIndex...endIndex {
+            notes.append(contentsOf: measures[i].notes)
+        }
+        
+        return notes
+    }
+    
+    let beatTypes = [1, 2, 4, 8, 16, 32]
+    
+
+    
     var currentClefButton: InputViewButton! {
         didSet {
             oldValue?.isToggled = false
@@ -150,6 +164,8 @@ class EditViewController: UIViewController {
             currentDotButton?.isToggled = true
         }
     }
+    
+    // MARK: - Functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,13 +173,11 @@ class EditViewController: UIViewController {
         configureRangeControls()
         configureAttributeControls()
         configureNoteControls()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "NoteCell")
+        configureTableView()
     }
     
+    
+    /// Configure the current state of the range selection controls
     func configureRangeControls() {
         guard stepperStart != nil && stepperEnd != nil && labelRange != nil else {
             return
@@ -182,6 +196,7 @@ class EditViewController: UIViewController {
     }
 
     
+    /// Configure the current state of the attribute controls
     func configureAttributeControls() {
         guard labelKey != nil && labelTimeTop != nil && labelTimeBottom != nil
             && stepperKey != nil && stepperTimeTop != nil && stepperTimeBottom != nil
@@ -191,6 +206,11 @@ class EditViewController: UIViewController {
         guard currentRange.start < measures?.count ?? 0, let attributes = measures?[currentRange.start].attributes else {
             return
         }
+        
+        buttonLeft.isEnabled = currentRange.start != 0
+        buttonStart.isEnabled = currentRange.start != 0
+        buttonRight.isEnabled = currentRange.end < measures!.count - 1
+        buttonEnd.isEnabled = currentRange.end < measures!.count - 1
         
         let fifths = attributes.key?.fifths ?? 0
         labelKey.text = string(forFifths: fifths)
@@ -214,6 +234,7 @@ class EditViewController: UIViewController {
     }
     
     
+    /// Configure the current state of the note controls
     func configureNoteControls() {
         guard buttonIsRest != nil && buttonIsChord != nil && buttonFlatDouble != nil
             && buttonFlat != nil && buttonNatural != nil && buttonSharp != nil
@@ -231,22 +252,22 @@ class EditViewController: UIViewController {
         
         if note.chord! {
             buttonIsChord.isToggled = true
-            buttonIsChord.imageView?.image = #imageLiteral(resourceName: "ic_yes")
+            buttonIsChord.setImage(#imageLiteral(resourceName: "ic_yes"), for: .normal)
         }
         else {
             buttonIsChord.isToggled = false
-            buttonIsChord.imageView?.image = #imageLiteral(resourceName: "ic_no")
+            buttonIsChord.setImage(#imageLiteral(resourceName: "ic_no"), for: .normal)
         }
         
         if note.isRest {
             buttonIsRest.isToggled = true
-            buttonIsRest.imageView?.image = #imageLiteral(resourceName: "ic_yes")
+            buttonIsRest.setImage(#imageLiteral(resourceName: "ic_yes"), for: .normal)
             
             setPitchButtons(enabled: false)
         }
         else {
             buttonIsRest.isToggled = false
-            buttonIsRest.imageView?.image = #imageLiteral(resourceName: "ic_no")
+            buttonIsRest.setImage(#imageLiteral(resourceName: "ic_no"), for: .normal)
             
             setPitchButtons(enabled: true)
             
@@ -289,9 +310,19 @@ class EditViewController: UIViewController {
                 currentDotButton = nil
             }
         }
-        
     }
     
+    
+    /// Configure the current state of the note selection table view controls
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.register(UINib(nibName: "NoteCell", bundle: nil), forCellReuseIdentifier: "NoteCell")
+    }
+    
+    
+    /// Enable or disable all buttons related to pitch
     func setPitchButtons(enabled: Bool) {
         buttonNoteUp.isEnabled = enabled
         buttonNoteDown.isEnabled = enabled
@@ -306,6 +337,8 @@ class EditViewController: UIViewController {
         
         buttonIsChord.isEnabled = enabled
         
+        
+        
         if !enabled {
             currentAccidentalButton = nil
             buttonIsChord.isToggled = false
@@ -313,6 +346,7 @@ class EditViewController: UIViewController {
     }
     
     
+    /// Enable or disable all note buttons
     func setAllNoteButtons(enabled: Bool) {
         buttonNoteUp.isEnabled = enabled
         buttonNoteDown.isEnabled = enabled
@@ -350,6 +384,7 @@ class EditViewController: UIViewController {
     }
     
     
+    /// Return the note represented by the given SelectedNote object
     func getSelectedNote(_ selectedNote: SelectedNote) -> Note? {
         guard let measures = measures else {
             return nil
@@ -371,6 +406,7 @@ class EditViewController: UIViewController {
     }
     
     
+    /// Convert the given fifths value to a string.
     func string(forFifths fifths: Int) -> String {
         if fifths == -1 {
             return "Key of 1 Flat"
@@ -389,9 +425,17 @@ class EditViewController: UIViewController {
         }
     }
     
-
-    // MARK: - Ranges
     
+    /// Shift the currently selected range by the given number of places
+    func moveCurrentRange(places: Int) {
+        currentRange = BarRange(start: currentRange.start + places, end: currentRange.end + places)
+    }
+    
+
+    // MARK: - Actions
+    
+    
+    /// Called when any of the range selection controls are used
     @IBAction func rangeChanged(_ sender: Any) {
         if let stepper = sender as? UIStepper {
             currentRange = BarRange(start: Int(stepperStart.value), end: Int(stepperEnd.value))
@@ -422,21 +466,10 @@ class EditViewController: UIViewController {
     }
     
     
-    func setMaxRanges(bars count: Int) {
-        guard count >= 0 else {
-            return
-        }
-        
-        stepperStart?.minimumValue = 0.0
-    }
-    
-    
-    func moveCurrentRange(places: Int) {
-        currentRange = BarRange(start: currentRange.start + places, end: currentRange.end + places)
-    }
-    
     // MARK: - Left Buttons
     
+    
+    /// Called when any button in the left panel is pressed
     @IBAction func leftButtonPressed(_ sender: InputViewButton) {
         guard let delegate = delegate else {
             return
@@ -475,6 +508,8 @@ class EditViewController: UIViewController {
         }
     }
     
+    
+    /// Called when an attribute changing button is pressed
     @IBAction func attributeButtonPressed(_ sender: Any) {
         guard let delegate = delegate else {
             return
@@ -512,6 +547,7 @@ class EditViewController: UIViewController {
     }
     
     
+    /// Called when a note changing button is pressed
     @IBAction func noteButtonPressed(_ sender: InputViewButton) {
         guard let selectedNote = selectedNote, var note = getSelectedNote(selectedNote) else {
             return
@@ -584,12 +620,15 @@ class EditViewController: UIViewController {
         }
     }
     
+    
+    /// Called when the close button is tapped
     @IBAction func closeTapped(_ sender: Any) {
         if let delegate = delegate {
             delegate.closeTapped()
         }
     }
 }
+
 
 extension EditViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -600,6 +639,7 @@ extension EditViewController: UITableViewDelegate {
             fatalError("Impossible note selected (Cannot get note from tableview row)")
         }
     }
+    
     
     func rowToSelectedNote(row: Int) -> SelectedNote? {
         guard let measures = measures else {
@@ -620,19 +660,23 @@ extension EditViewController: UITableViewDelegate {
         return nil
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return buttonUp.frame.height * 0.9
     }
 }
+
 
 extension EditViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteTableViewCell
@@ -646,6 +690,7 @@ extension EditViewController: UITableViewDataSource {
     }
 }
 
+
 protocol EditDelegate {
     func closeTapped()
     func rangeSelected(range: BarRange)
@@ -654,12 +699,14 @@ protocol EditDelegate {
     func noteChanged(selectedNote: SelectedNote, note: Note)
 }
 
+
 enum RangeTransformation {
     case pitchChange(Int)
     case move(Int)
     case delete
     case duplicate
 }
+
 
 enum AttributeChange {
     case key(Key)
