@@ -20,6 +20,7 @@ class MainTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         loadFileList()
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.tableView.reloadData()
     }
 
