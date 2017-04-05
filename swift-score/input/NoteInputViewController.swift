@@ -29,6 +29,8 @@ class NoteInputViewController: UIViewController {
     // Other
     @IBOutlet weak var buttonRest: InputViewButton!
     @IBOutlet weak var buttonChord: InputViewButton!
+    @IBOutlet weak var buttonAccidental: InputViewButton!
+    
     
     // Pitches
     @IBOutlet weak var buttonC4: InputViewKeyboardButton!
@@ -128,6 +130,22 @@ class NoteInputViewController: UIViewController {
         return buttonChord.isToggled
     }
     
+    var isFlat: Bool {
+        get {
+            return buttonAccidental.tag == -1
+        }
+        set (newIsFlat) {
+            if newIsFlat {
+                buttonAccidental.tag = -1
+                buttonAccidental.setImage(#imageLiteral(resourceName: "flat"), for: .normal)
+            }
+            else {
+                buttonAccidental.tag = 1
+                buttonAccidental.setImage(#imageLiteral(resourceName: "sharp"), for: .normal)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,6 +212,9 @@ class NoteInputViewController: UIViewController {
                 currentDotButton = sender
             }
         }
+        else if sender == buttonAccidental {
+            isFlat = !isFlat
+        }
     }
     
     
@@ -222,19 +243,33 @@ class NoteInputViewController: UIViewController {
             note.pitch = Pitch(step: .d, octave: 5, alter: 0)
         case buttonE5:
             note.pitch = Pitch(step: .e, octave: 5, alter: 0)
-        case buttonC4s:
+        case buttonC4s where isFlat:
+            note.pitch = Pitch(step: .d, octave: 4, alter: -1)
+        case buttonC4s where !isFlat:
             note.pitch = Pitch(step: .c, octave: 4, alter: 1)
-        case buttonD4s:
+        case buttonD4s where isFlat:
+            note.pitch = Pitch(step: .e, octave: 4, alter: -1)
+        case buttonD4s where !isFlat:
             note.pitch = Pitch(step: .d, octave: 4, alter: 1)
-        case buttonF4s:
+        case buttonF4s where isFlat:
+            note.pitch = Pitch(step: .g, octave: 4, alter: -1)
+        case buttonF4s where !isFlat:
             note.pitch = Pitch(step: .f, octave: 4, alter: 1)
-        case buttonG4s:
+        case buttonG4s where isFlat:
+            note.pitch = Pitch(step: .a, octave: 4, alter: -1)
+        case buttonG4s where !isFlat:
             note.pitch = Pitch(step: .g, octave: 4, alter: 1)
-        case buttonA4s:
+        case buttonA4s where isFlat:
+            note.pitch = Pitch(step: .b, octave: 4, alter: -1)
+        case buttonA4s where !isFlat:
             note.pitch = Pitch(step: .a, octave: 4, alter: 1)
-        case buttonC5s:
+        case buttonC5s where isFlat:
+            note.pitch = Pitch(step: .d, octave: 5, alter: -1)
+        case buttonC5s where !isFlat:
             note.pitch = Pitch(step: .c, octave: 5, alter: 1)
-        case buttonD5s:
+        case buttonD5s where isFlat:
+            note.pitch = Pitch(step: .e, octave: 5, alter: -1)
+        case buttonD5s where !isFlat:
             note.pitch = Pitch(step: .d, octave: 5, alter: 1)
         default:
             fatalError("Error: unhandled note button")
