@@ -41,6 +41,7 @@
 		4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */; };
 		469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273F1E69AC8C0013B200 /* PositionCalculator.swift */; };
 		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
+		46AAA3581E9AA480002AF93D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */; };
 		46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */; };
 		46F1E87E1E9251060049F958 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87D1E9251060049F958 /* NoteCell.xib */; };
 		46F1E8801E953F970049F958 /* Saltarello.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87F1E953F970049F958 /* Saltarello.xml */; };
@@ -88,6 +89,7 @@
 		4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewGenerator.swift; sourceTree = "<group>"; };
 		4699273F1E69AC8C0013B200 /* PositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCalculator.swift; sourceTree = "<group>"; };
 		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
+		46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		46F1E87D1E9251060049F958 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		46F1E87F1E953F970049F958 /* Saltarello.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Saltarello.xml; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				469927361E65CADF0013B200 /* ScoreExtension.swift */,
 				468493631E8131BC0084A882 /* StringExtension.swift */,
+				46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */,
+				46AAA3581E9AA480002AF93D /* ViewControllerExtension.swift in Sources */,
 				462FBAF31E562FFD00323987 /* ScoreView.swift in Sources */,
 				469927321E658B760013B200 /* KeyGenerator.swift in Sources */,
 				462FBAF71E5B32FF00323987 /* LineView.swift in Sources */,
