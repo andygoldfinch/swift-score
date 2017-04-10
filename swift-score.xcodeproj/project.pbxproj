@@ -42,6 +42,8 @@
 		469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273F1E69AC8C0013B200 /* PositionCalculator.swift */; };
 		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
 		46AAA3581E9AA480002AF93D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */; };
+		46B7AD081E9B89E40081D564 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7AD071E9B89E40081D564 /* TutorialViewController.swift */; };
+		46B7AD0B1E9B8A5D0081D564 /* TutorialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7AD0A1E9B8A5D0081D564 /* TutorialTableViewController.swift */; };
 		46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */; };
 		46F1E87E1E9251060049F958 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87D1E9251060049F958 /* NoteCell.xib */; };
 		46F1E8801E953F970049F958 /* Saltarello.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87F1E953F970049F958 /* Saltarello.xml */; };
@@ -90,6 +92,8 @@
 		4699273F1E69AC8C0013B200 /* PositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCalculator.swift; sourceTree = "<group>"; };
 		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
 		46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		46B7AD071E9B89E40081D564 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		46B7AD0A1E9B8A5D0081D564 /* TutorialTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTableViewController.swift; sourceTree = "<group>"; };
 		46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		46F1E87D1E9251060049F958 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		46F1E87F1E953F970049F958 /* Saltarello.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Saltarello.xml; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		462FBAAC1E51FE2400323987 /* swift-score */ = {
 			isa = PBXGroup;
 			children = (
+				46B7AD091E9B89F50081D564 /* tutorials */,
 				468493651E815FA20084A882 /* editing */,
 				46022FEA1E7049E1009B491B /* input */,
 				469927381E6884D60013B200 /* controllers */,
@@ -249,6 +254,15 @@
 				462FBABF1E520A6000323987 /* MainViewController.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		46B7AD091E9B89F50081D564 /* tutorials */ = {
+			isa = PBXGroup;
+			children = (
+				46B7AD071E9B89E40081D564 /* TutorialViewController.swift */,
+				46B7AD0A1E9B8A5D0081D564 /* TutorialTableViewController.swift */,
+			);
+			path = tutorials;
 			sourceTree = "<group>";
 		};
 		D98003454D3EEEC3D79E418B /* Pods */ = {
@@ -397,6 +411,7 @@
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
 				46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */,
+				46B7AD0B1E9B8A5D0081D564 /* TutorialTableViewController.swift in Sources */,
 				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,
 				46022FE01E6AE633009B491B /* PathGenerator.swift in Sources */,
@@ -419,6 +434,7 @@
 				464DFCCB1E756DF1006BCD78 /* MeasureBalancer.swift in Sources */,
 				4699273C1E6885280013B200 /* MainTableViewCell.swift in Sources */,
 				4684936B1E818A6F0084A882 /* EditViewToolbar.swift in Sources */,
+				46B7AD081E9B89E40081D564 /* TutorialViewController.swift in Sources */,
 				4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */,
 				468493641E8131BC0084A882 /* StringExtension.swift in Sources */,
 				462FBACA1E533E9D00323987 /* ScoreBuilder.swift in Sources */,

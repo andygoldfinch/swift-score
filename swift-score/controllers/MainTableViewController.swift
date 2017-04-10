@@ -91,17 +91,11 @@ class MainTableViewController: UITableViewController {
     
  
     @IBAction func addScorePressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Create New Score", message: "Enter score name:", preferredStyle: .alert)
-        alert.addTextField()
-        alert.addAction(UIAlertAction(title: "OK", style: .default) {
-            [weak alert] (_) in
-            let textField = alert!.textFields![0]
-            self.createScore(name: textField.text ?? "")
-        } )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
-        self.present(alert, animated: true, completion: nil)
+        self.presentInputAlert(title: "Create New Score", message: "Enter score name:") {
+            self.createScore(name: $0 ?? "")
+        }
     }
+    
     
     func createScore(name: String) {
         var processedName = name
@@ -116,6 +110,7 @@ class MainTableViewController: UITableViewController {
         
         self.performSegue(withIdentifier: "scoreSegue", sender: (processedName.removeXml(), score))
     }
+    
     
     func loadFileList() {
         let documentHandler = DocumentHandler()
