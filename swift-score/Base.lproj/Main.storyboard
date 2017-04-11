@@ -419,56 +419,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="tH2-a7-De2">
-                                <rect key="frame" x="288" y="722" width="192" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbV-N9-6dB">
+                                <rect key="frame" x="8" y="28" width="752" height="732"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzt-ol-H5q">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Previous">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWA-6b-7WI">
-                                        <rect key="frame" x="98" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="192" id="dPd-Tn-oJz"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iMp-Sz-c1S">
-                                <rect key="frame" x="28" y="8" width="712" height="504.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score management introduction" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3IV-Wd-bPg">
-                                        <rect key="frame" x="238.5" y="0.0" width="235" height="20.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="The main screen is where scores are created, deleted and selected." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8P5-O8-SPe">
+                                        <rect key="frame" x="0.0" y="0.0" width="752" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="nJc-ON-aXf"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gP4-bE-SEC">
-                                        <rect key="frame" x="116.5" y="28.5" width="479" height="340"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="score-management-annotated" translatesAutoresizingMaskIntoConstraints="NO" id="gP4-bE-SEC">
+                                        <rect key="frame" x="0.0" y="44" width="752" height="480"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="480" id="SZI-OX-x27"/>
+                                        </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xlR-9Y-mWB">
-                                        <rect key="frame" x="110" y="376.5" width="492" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="1. Create a new score. 2. Tap to open a score, or swipe to delete a score." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlR-9Y-mWB">
+                                        <rect key="frame" x="0.0" y="528" width="752" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="Js0-jJ-0A5"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="xlR-9Y-mWB" firstAttribute="centerX" secondItem="gbV-N9-6dB" secondAttribute="centerX" id="1kX-Ra-zfa"/>
+                                    <constraint firstItem="gP4-bE-SEC" firstAttribute="top" secondItem="8P5-O8-SPe" secondAttribute="bottom" constant="4" id="9nS-4h-5d1"/>
+                                    <constraint firstItem="8P5-O8-SPe" firstAttribute="top" secondItem="gbV-N9-6dB" secondAttribute="top" id="KLc-3E-EnW"/>
+                                    <constraint firstItem="xlR-9Y-mWB" firstAttribute="top" secondItem="gP4-bE-SEC" secondAttribute="bottom" constant="4" id="KvW-tl-K9F"/>
+                                    <constraint firstItem="xlR-9Y-mWB" firstAttribute="width" secondItem="8P5-O8-SPe" secondAttribute="width" id="MgA-c8-WjZ"/>
+                                    <constraint firstItem="gP4-bE-SEC" firstAttribute="width" secondItem="gbV-N9-6dB" secondAttribute="width" id="Mnq-x1-0Gw"/>
+                                    <constraint firstItem="gP4-bE-SEC" firstAttribute="centerX" secondItem="gbV-N9-6dB" secondAttribute="centerX" id="Qy5-dT-dQG"/>
+                                    <constraint firstItem="8P5-O8-SPe" firstAttribute="width" secondItem="gbV-N9-6dB" secondAttribute="width" id="XLu-Z7-faK"/>
+                                    <constraint firstItem="8P5-O8-SPe" firstAttribute="centerX" secondItem="gbV-N9-6dB" secondAttribute="centerX" id="aZi-su-B3U"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="iMp-Sz-c1S" firstAttribute="leading" secondItem="JVm-3K-FJa" secondAttribute="leadingMargin" constant="8" id="GX0-Gf-PLK"/>
-                            <constraint firstItem="ox5-Bu-onu" firstAttribute="top" secondItem="tH2-a7-De2" secondAttribute="bottom" constant="16" id="TW9-Ku-cwy"/>
-                            <constraint firstItem="tH2-a7-De2" firstAttribute="centerX" secondItem="JVm-3K-FJa" secondAttribute="centerX" id="drc-yV-cOr"/>
-                            <constraint firstItem="iMp-Sz-c1S" firstAttribute="top" secondItem="CCq-RC-Guc" secondAttribute="bottom" constant="8" id="ozG-E7-6pS"/>
-                            <constraint firstItem="tH2-a7-De2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iMp-Sz-c1S" secondAttribute="bottom" constant="8" id="tRv-4d-vZB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="iMp-Sz-c1S" secondAttribute="trailing" constant="8" id="yMQ-Hj-Ilk"/>
+                            <constraint firstItem="gbV-N9-6dB" firstAttribute="top" secondItem="CCq-RC-Guc" secondAttribute="bottom" constant="8" id="E7A-VR-Y7m"/>
+                            <constraint firstItem="gbV-N9-6dB" firstAttribute="width" secondItem="JVm-3K-FJa" secondAttribute="width" constant="-16" id="EYL-ix-h29"/>
+                            <constraint firstItem="gbV-N9-6dB" firstAttribute="centerX" secondItem="JVm-3K-FJa" secondAttribute="centerX" id="WVt-EZ-LHx"/>
+                            <constraint firstItem="ox5-Bu-onu" firstAttribute="top" secondItem="gbV-N9-6dB" secondAttribute="bottom" constant="8" id="v2F-7Q-SvK"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -479,217 +473,196 @@
             <point key="canvasLocation" x="1038.8671875" y="1638.28125"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="071-Ua-83G">
+        <scene sceneID="SiE-7M-Ejy">
             <objects>
-                <viewController storyboardIdentifier="tutorialNoteInput" id="58K-79-PlJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorialNoteInput" id="IAD-Ab-ytZ" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="dGp-b7-TQ6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Mor-5W-ojg"/>
+                        <viewControllerLayoutGuide type="top" id="Tx8-cq-Gy0"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wn6-X0-fQh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ele-pu-kKA">
+                    <view key="view" contentMode="scaleToFill" id="7N7-Ob-IoP">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iVu-bx-ekV">
-                                <rect key="frame" x="288" y="722" width="192" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j4l-2R-2dv">
+                                <rect key="frame" x="8" y="28" width="752" height="732"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUS-Ul-uQO">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Previous">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpB-qw-JPh">
-                                        <rect key="frame" x="98" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="192" id="HqE-M4-RDq"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4s5-Tv-zIF">
-                                <rect key="frame" x="28" y="8" width="712" height="504.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note input introduction" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ow9-f5-k5F">
-                                        <rect key="frame" x="272.5" y="0.0" width="167.5" height="20.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="The score screen is where scores are written and edited." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1o-Uf-jlL">
+                                        <rect key="frame" x="0.0" y="0.0" width="752" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2Kn-21-wnV"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4q8-kv-Goq">
-                                        <rect key="frame" x="116.5" y="28.5" width="479" height="340"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note-input-annotated" translatesAutoresizingMaskIntoConstraints="NO" id="gEG-pE-Sou">
+                                        <rect key="frame" x="0.0" y="44" width="752" height="480"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="480" id="eWe-zg-vVG"/>
+                                        </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oob-Ic-RSQ">
-                                        <rect key="frame" x="110" y="376.5" width="492" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBO-IT-oH5">
+                                        <rect key="frame" x="0.0" y="528" width="752" height="196"/>
+                                        <string key="text">1. Switch between input and edit mode. 2. Select the length of note to insert. 3. Select whether the note should be dotted. 4. Change whether the black notes insert a sharp or flat note. 5. Change the octave of the input keyboard.</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gBO-IT-oH5" secondAttribute="bottom" constant="8" id="4Rr-Y3-3IX"/>
+                                    <constraint firstItem="gBO-IT-oH5" firstAttribute="top" secondItem="gEG-pE-Sou" secondAttribute="bottom" constant="4" id="99z-ir-LPZ"/>
+                                    <constraint firstItem="gEG-pE-Sou" firstAttribute="centerX" secondItem="j4l-2R-2dv" secondAttribute="centerX" id="S8t-F5-gh0"/>
+                                    <constraint firstItem="z1o-Uf-jlL" firstAttribute="width" secondItem="j4l-2R-2dv" secondAttribute="width" id="SlO-WB-QCD"/>
+                                    <constraint firstItem="gEG-pE-Sou" firstAttribute="top" secondItem="z1o-Uf-jlL" secondAttribute="bottom" constant="4" id="URS-3v-Nna"/>
+                                    <constraint firstItem="gEG-pE-Sou" firstAttribute="width" secondItem="j4l-2R-2dv" secondAttribute="width" id="YVL-Ay-S7K"/>
+                                    <constraint firstItem="gBO-IT-oH5" firstAttribute="centerX" secondItem="j4l-2R-2dv" secondAttribute="centerX" id="bs4-nh-xff"/>
+                                    <constraint firstItem="gBO-IT-oH5" firstAttribute="width" secondItem="z1o-Uf-jlL" secondAttribute="width" id="kHw-kP-V3w"/>
+                                    <constraint firstItem="z1o-Uf-jlL" firstAttribute="top" secondItem="j4l-2R-2dv" secondAttribute="top" id="v0T-bJ-pf0"/>
+                                    <constraint firstItem="z1o-Uf-jlL" firstAttribute="centerX" secondItem="j4l-2R-2dv" secondAttribute="centerX" id="xBW-a8-cC3"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Mor-5W-ojg" firstAttribute="top" secondItem="iVu-bx-ekV" secondAttribute="bottom" constant="16" id="D6h-aU-eny"/>
-                            <constraint firstItem="iVu-bx-ekV" firstAttribute="centerX" secondItem="ele-pu-kKA" secondAttribute="centerX" id="KLv-Tb-I1f"/>
-                            <constraint firstItem="4s5-Tv-zIF" firstAttribute="top" secondItem="dGp-b7-TQ6" secondAttribute="bottom" constant="8" id="Tl9-fV-l75"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4s5-Tv-zIF" secondAttribute="trailing" constant="8" id="gai-fl-Rx3"/>
-                            <constraint firstItem="4s5-Tv-zIF" firstAttribute="leading" secondItem="ele-pu-kKA" secondAttribute="leadingMargin" constant="8" id="hav-hi-uAn"/>
-                            <constraint firstItem="iVu-bx-ekV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4s5-Tv-zIF" secondAttribute="bottom" constant="8" id="zCm-8x-ODg"/>
+                            <constraint firstItem="Wn6-X0-fQh" firstAttribute="top" secondItem="j4l-2R-2dv" secondAttribute="bottom" constant="8" id="02t-62-aHi"/>
+                            <constraint firstItem="j4l-2R-2dv" firstAttribute="top" secondItem="Tx8-cq-Gy0" secondAttribute="bottom" constant="8" id="PsT-ax-Zz7"/>
+                            <constraint firstItem="j4l-2R-2dv" firstAttribute="width" secondItem="7N7-Ob-IoP" secondAttribute="width" constant="-16" id="gCe-yw-tkQ"/>
+                            <constraint firstItem="j4l-2R-2dv" firstAttribute="centerX" secondItem="7N7-Ob-IoP" secondAttribute="centerX" id="h20-Eb-0wm"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="768"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xzo-N5-rxU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="igD-T6-HXL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1579" y="1638"/>
+            <point key="canvasLocation" x="1559" y="1638"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="TIt-3i-Ppz">
+        <scene sceneID="Ns9-ev-NIS">
             <objects>
-                <viewController storyboardIdentifier="tutorialNoteEditing" id="HXZ-0i-q54" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorialRangeEditing" id="xe5-sY-jkN" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WtW-0p-cs8"/>
-                        <viewControllerLayoutGuide type="bottom" id="XzZ-P0-fMt"/>
+                        <viewControllerLayoutGuide type="top" id="hJI-ep-dax"/>
+                        <viewControllerLayoutGuide type="bottom" id="m9O-GS-vS7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p5c-sb-8sH">
+                    <view key="view" contentMode="scaleToFill" id="Bzn-2Q-4Fk">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Hcj-Mx-UXM">
-                                <rect key="frame" x="288" y="722" width="192" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4j-0B-f7O">
+                                <rect key="frame" x="8" y="28" width="752" height="732"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wwf-G9-FeN">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Previous">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrY-Jb-cOF">
-                                        <rect key="frame" x="98" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="192" id="6cJ-Gy-gAZ"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fsZ-A4-qE3">
-                                <rect key="frame" x="28" y="8" width="712" height="504.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note editing introduction" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZQ-t5-tBr">
-                                        <rect key="frame" x="266.5" y="0.0" width="179.5" height="20.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="When in edit mode, the edit controls show when a bar is tapped. The tools on the left apply changes to the entire range." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1u-i5-tjb">
+                                        <rect key="frame" x="0.0" y="0.0" width="752" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="yjL-KD-819"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuC-xG-wgM">
-                                        <rect key="frame" x="116.5" y="28.5" width="479" height="340"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="range-editing-annotated" translatesAutoresizingMaskIntoConstraints="NO" id="Ib2-dj-vVy">
+                                        <rect key="frame" x="0.0" y="56" width="752" height="480"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="480" id="zvs-Vp-4ww"/>
+                                        </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E1n-Uo-r3h">
-                                        <rect key="frame" x="110" y="376.5" width="492" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceG-Im-Mik">
+                                        <rect key="frame" x="0.0" y="540" width="752" height="184"/>
+                                        <mutableString key="text">1. Switch between input and edit mode. 2. Change the start of the currently selected range. 3. Change the end of the currently selected range. 4. Change the pitch of all notes in the selected range. 5. Change the key, time signature or clef of the selected bars. 6. Move the currently selected range.</mutableString>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="ceG-Im-Mik" firstAttribute="top" secondItem="Ib2-dj-vVy" secondAttribute="bottom" constant="4" id="5nn-rX-9Ls"/>
+                                    <constraint firstItem="ceG-Im-Mik" firstAttribute="centerX" secondItem="G4j-0B-f7O" secondAttribute="centerX" id="7bq-8d-gz0"/>
+                                    <constraint firstItem="Ib2-dj-vVy" firstAttribute="width" secondItem="G4j-0B-f7O" secondAttribute="width" id="Nn8-Yc-HbV"/>
+                                    <constraint firstItem="Ib2-dj-vVy" firstAttribute="centerX" secondItem="G4j-0B-f7O" secondAttribute="centerX" id="ONK-Pu-cCE"/>
+                                    <constraint firstItem="ceG-Im-Mik" firstAttribute="width" secondItem="z1u-i5-tjb" secondAttribute="width" id="Twz-bY-eWD"/>
+                                    <constraint firstItem="z1u-i5-tjb" firstAttribute="centerX" secondItem="G4j-0B-f7O" secondAttribute="centerX" id="U6i-d7-uZp"/>
+                                    <constraint firstItem="z1u-i5-tjb" firstAttribute="top" secondItem="G4j-0B-f7O" secondAttribute="top" id="Vgp-gg-imP"/>
+                                    <constraint firstAttribute="bottom" secondItem="ceG-Im-Mik" secondAttribute="bottom" constant="8" id="bvd-7z-Ap3"/>
+                                    <constraint firstItem="z1u-i5-tjb" firstAttribute="width" secondItem="G4j-0B-f7O" secondAttribute="width" id="ikt-eM-w8w"/>
+                                    <constraint firstItem="Ib2-dj-vVy" firstAttribute="top" secondItem="z1u-i5-tjb" secondAttribute="bottom" constant="4" id="jrn-PP-GnK"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fsZ-A4-qE3" firstAttribute="leading" secondItem="p5c-sb-8sH" secondAttribute="leadingMargin" constant="8" id="UID-l4-e8M"/>
-                            <constraint firstItem="Hcj-Mx-UXM" firstAttribute="centerX" secondItem="p5c-sb-8sH" secondAttribute="centerX" id="bgX-dk-GLl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fsZ-A4-qE3" secondAttribute="trailing" constant="8" id="cdw-ns-VES"/>
-                            <constraint firstItem="fsZ-A4-qE3" firstAttribute="top" secondItem="WtW-0p-cs8" secondAttribute="bottom" constant="8" id="iLF-Z3-uZQ"/>
-                            <constraint firstItem="Hcj-Mx-UXM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fsZ-A4-qE3" secondAttribute="bottom" constant="8" id="l9u-ah-Df0"/>
-                            <constraint firstItem="XzZ-P0-fMt" firstAttribute="top" secondItem="Hcj-Mx-UXM" secondAttribute="bottom" constant="16" id="qjx-hb-Y58"/>
+                            <constraint firstItem="G4j-0B-f7O" firstAttribute="width" secondItem="Bzn-2Q-4Fk" secondAttribute="width" constant="-16" id="BPj-WE-SWa"/>
+                            <constraint firstItem="G4j-0B-f7O" firstAttribute="centerX" secondItem="Bzn-2Q-4Fk" secondAttribute="centerX" id="EFH-ql-Ex7"/>
+                            <constraint firstItem="m9O-GS-vS7" firstAttribute="top" secondItem="G4j-0B-f7O" secondAttribute="bottom" constant="8" id="k5h-fG-vs9"/>
+                            <constraint firstItem="G4j-0B-f7O" firstAttribute="top" secondItem="hJI-ep-dax" secondAttribute="bottom" constant="8" id="oTJ-yI-HVm"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="768"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DB8-od-sMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W3h-ug-Rm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2671" y="1638"/>
+            <point key="canvasLocation" x="2080" y="1638"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="nXt-K2-VF4">
+        <scene sceneID="eyl-BX-6fz">
             <objects>
-                <viewController storyboardIdentifier="tutorialRangeEditing" id="ADc-6a-6wZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tutorialNoteEditing" id="chb-Yw-Val" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Bmc-iK-hhT"/>
-                        <viewControllerLayoutGuide type="bottom" id="Fxg-wY-xJS"/>
+                        <viewControllerLayoutGuide type="top" id="wur-bb-aKC"/>
+                        <viewControllerLayoutGuide type="bottom" id="VNd-d7-Ma7"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xgw-Gg-eN9">
+                    <view key="view" contentMode="scaleToFill" id="Clh-fM-N7J">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Z7u-Db-9cd">
-                                <rect key="frame" x="288" y="722" width="192" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ruv-DW-5UD">
+                                <rect key="frame" x="8" y="28" width="752" height="732"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNu-SG-d6u">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Previous">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9q-sy-6L1">
-                                        <rect key="frame" x="98" y="0.0" width="94" height="30"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="192" id="wY9-NG-EhB"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AG9-eO-3fL">
-                                <rect key="frame" x="28" y="8" width="712" height="504.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Range editing introduction" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="asY-DB-2vl">
-                                        <rect key="frame" x="260" y="0.0" width="192" height="20.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="When in edit mode, the edit controls show when a bar is tapped. The tools on the right apply changes to a specific note." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZe-MO-jhX">
+                                        <rect key="frame" x="0.0" y="0.0" width="752" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="VFP-iW-Rtb"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xX7-f4-pW2">
-                                        <rect key="frame" x="116.5" y="28.5" width="479" height="340"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note-editing-annotated" translatesAutoresizingMaskIntoConstraints="NO" id="vzq-7G-E6R">
+                                        <rect key="frame" x="0.0" y="56" width="752" height="480"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="480" id="vIv-IA-u2f"/>
+                                        </constraints>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tcO-PP-Btn">
-                                        <rect key="frame" x="110" y="376.5" width="492" height="128"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPd-fx-OjC">
+                                        <rect key="frame" x="0.0" y="540" width="752" height="184"/>
+                                        <string key="text">1. Switch between input and edit mode. 2. Change whether the note is a chord or a rest. 3. Change the pitch of the selected note. 4. Select a note. 5. Change the number of dots, accidental or length of the note.</string>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="vzq-7G-E6R" firstAttribute="top" secondItem="qZe-MO-jhX" secondAttribute="bottom" constant="4" id="1mg-B3-WJG"/>
+                                    <constraint firstItem="CPd-fx-OjC" firstAttribute="centerX" secondItem="Ruv-DW-5UD" secondAttribute="centerX" id="1ut-C3-X6I"/>
+                                    <constraint firstItem="vzq-7G-E6R" firstAttribute="width" secondItem="Ruv-DW-5UD" secondAttribute="width" id="NUL-PM-Mw2"/>
+                                    <constraint firstItem="qZe-MO-jhX" firstAttribute="top" secondItem="Ruv-DW-5UD" secondAttribute="top" id="XcQ-AO-aWw"/>
+                                    <constraint firstItem="qZe-MO-jhX" firstAttribute="centerX" secondItem="Ruv-DW-5UD" secondAttribute="centerX" id="dwB-WO-ZTM"/>
+                                    <constraint firstItem="CPd-fx-OjC" firstAttribute="width" secondItem="qZe-MO-jhX" secondAttribute="width" id="j99-m4-gkI"/>
+                                    <constraint firstItem="CPd-fx-OjC" firstAttribute="top" secondItem="vzq-7G-E6R" secondAttribute="bottom" constant="4" id="lZR-RA-nH0"/>
+                                    <constraint firstAttribute="bottom" secondItem="CPd-fx-OjC" secondAttribute="bottom" constant="8" id="qzg-b1-hdO"/>
+                                    <constraint firstItem="qZe-MO-jhX" firstAttribute="width" secondItem="Ruv-DW-5UD" secondAttribute="width" id="sxR-k1-ZNa"/>
+                                    <constraint firstItem="vzq-7G-E6R" firstAttribute="centerX" secondItem="Ruv-DW-5UD" secondAttribute="centerX" id="y5z-bx-6Yt"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Z7u-Db-9cd" firstAttribute="centerX" secondItem="xgw-Gg-eN9" secondAttribute="centerX" id="8kY-9w-mIM"/>
-                            <constraint firstItem="Fxg-wY-xJS" firstAttribute="top" secondItem="Z7u-Db-9cd" secondAttribute="bottom" constant="16" id="Asg-DR-g43"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AG9-eO-3fL" secondAttribute="trailing" constant="8" id="ILh-mL-Glx"/>
-                            <constraint firstItem="AG9-eO-3fL" firstAttribute="leading" secondItem="xgw-Gg-eN9" secondAttribute="leadingMargin" constant="8" id="b7C-Kh-O0H"/>
-                            <constraint firstItem="Z7u-Db-9cd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AG9-eO-3fL" secondAttribute="bottom" constant="8" id="nQi-Rv-eF7"/>
-                            <constraint firstItem="AG9-eO-3fL" firstAttribute="top" secondItem="Bmc-iK-hhT" secondAttribute="bottom" constant="8" id="vvr-NZ-WNY"/>
+                            <constraint firstItem="Ruv-DW-5UD" firstAttribute="top" secondItem="wur-bb-aKC" secondAttribute="bottom" constant="8" id="Jxi-vD-Lm1"/>
+                            <constraint firstItem="VNd-d7-Ma7" firstAttribute="top" secondItem="Ruv-DW-5UD" secondAttribute="bottom" constant="8" id="Rz2-uA-pcU"/>
+                            <constraint firstItem="Ruv-DW-5UD" firstAttribute="centerX" secondItem="Clh-fM-N7J" secondAttribute="centerX" id="Yz3-Zw-s0V"/>
+                            <constraint firstItem="Ruv-DW-5UD" firstAttribute="width" secondItem="Clh-fM-N7J" secondAttribute="width" constant="-16" id="Z2E-r4-1jP"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="768"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xxN-Ed-5FI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WOm-ZD-VTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="1638"/>
+            <point key="canvasLocation" x="2601" y="1638"/>
         </scene>
     </scenes>
     <resources>
@@ -698,6 +671,10 @@
         <image name="ic_help" width="24" height="24"/>
         <image name="ic_keyboard_arrow_up" width="24" height="24"/>
         <image name="ic_score" width="24" height="24"/>
+        <image name="note-editing-annotated" width="2048" height="1536"/>
+        <image name="note-input-annotated" width="2048" height="1536"/>
+        <image name="range-editing-annotated" width="2048" height="1536"/>
+        <image name="score-management-annotated" width="2048" height="1536"/>
     </resources>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
