@@ -27,6 +27,8 @@ class InputViewButton: UIButton {
         }
     }
     
+    
+    /// Called by the system whenever it is necessary to layout the subviews.
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -35,10 +37,14 @@ class InputViewButton: UIButton {
         imageView?.contentMode = .scaleAspectFit
     }
 
+    
+    /// Switch the state of the button's isToggled property.
     func toggle() {
         isToggled = !isToggled
     }
     
+    
+    /// Round the corners of the button.
     func roundCorners() {
         var corners: UIRectCorner = []
         

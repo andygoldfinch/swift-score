@@ -146,8 +146,10 @@ class NoteInputViewController: UIViewController {
         }
     }
     
+    
     // MARK: - Functions
     
+    /// Called when the view is initially loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -175,6 +177,7 @@ class NoteInputViewController: UIViewController {
             buttons[i]!.setTitle(noteName, for: UIControlState.normal)
         }
     }
+    
     
     // MARK: - Actions
     
@@ -303,7 +306,6 @@ class NoteInputViewController: UIViewController {
             delegate.backspaceTapped()
         }
     }
-
 }
 
 

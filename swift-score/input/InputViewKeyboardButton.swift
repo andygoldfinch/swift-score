@@ -16,6 +16,8 @@ class InputViewKeyboardButton: UIButton {
     @IBInspectable var isLeft: Bool = false
     @IBInspectable var isRight: Bool = false
     
+    
+    /// Called by the system whenever it is necessary to layout the subviews.
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -31,6 +33,8 @@ class InputViewKeyboardButton: UIButton {
         }
     }
     
+    
+    /// Round the corners of the button.
     func roundCorners() {
         var corners: UIRectCorner = [.bottomLeft, .bottomRight]
         

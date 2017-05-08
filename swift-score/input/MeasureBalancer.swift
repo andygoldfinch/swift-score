@@ -12,6 +12,8 @@ class MeasureBalancer {
     private let lengths: [NoteType: Double]
     private let types: [NoteType] = [.n1024, .n512, .n256, .n128, .n64, .n32, .n16, .n8, .n4, .n2, .n1, .nx2, .nx4, .nx8]
     
+    
+    /// Initialise the object.
     init() {
         var dict: [NoteType: Double] = [:]
         
