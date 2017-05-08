@@ -44,7 +44,6 @@
 		46AAA3581E9AA480002AF93D /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */; };
 		46B7AD081E9B89E40081D564 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7AD071E9B89E40081D564 /* TutorialViewController.swift */; };
 		46B7AD0B1E9B8A5D0081D564 /* TutorialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B7AD0A1E9B8A5D0081D564 /* TutorialTableViewController.swift */; };
-		46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */; };
 		46F1E87E1E9251060049F958 /* NoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87D1E9251060049F958 /* NoteCell.xib */; };
 		46F1E8801E953F970049F958 /* Saltarello.xml in Resources */ = {isa = PBXBuildFile; fileRef = 46F1E87F1E953F970049F958 /* Saltarello.xml */; };
 		46FB3D661E8A7747000316F2 /* MeasureProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */; };
@@ -94,7 +93,6 @@
 		46AAA3571E9AA480002AF93D /* ViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		46B7AD071E9B89E40081D564 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		46B7AD0A1E9B8A5D0081D564 /* TutorialTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialTableViewController.swift; sourceTree = "<group>"; };
-		46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		46F1E87D1E9251060049F958 /* NoteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoteCell.xib; sourceTree = "<group>"; };
 		46F1E87F1E953F970049F958 /* Saltarello.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Saltarello.xml; sourceTree = "<group>"; };
 		46FB3D651E8A7746000316F2 /* MeasureProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasureProcessor.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 				468493671E8160330084A882 /* EditViewController.xib */,
 				4684936A1E818A6F0084A882 /* EditViewToolbar.swift */,
 				46FB3D691E8BC8E5000316F2 /* EditBackgroundView.swift */,
-				46F1E87B1E9244130049F958 /* NoteTableViewCell.swift */,
 				46F1E87D1E9251060049F958 /* NoteCell.xib */,
 			);
 			path = editing;
@@ -410,7 +407,6 @@
 				4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */,
 				462FBAC01E520A6000323987 /* MainViewController.swift in Sources */,
 				462FBAC71E533A9100323987 /* ScorePartwise.swift in Sources */,
-				46F1E87C1E9244130049F958 /* NoteTableViewCell.swift in Sources */,
 				46B7AD0B1E9B8A5D0081D564 /* TutorialTableViewController.swift in Sources */,
 				46022FE51E6DC58E009B491B /* NoteInputViewController.swift in Sources */,
 				462FBAAE1E51FE2400323987 /* AppDelegate.swift in Sources */,

@@ -15,6 +15,8 @@ import UIKit
     @IBInspectable var roundBottomRight: Bool = true
     @IBInspectable var cornerRadius: CGFloat = 5.0
     
+    
+    /// Called whenever the subviews of the view are to be layout.
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -22,6 +24,8 @@ import UIKit
         self.backgroundColor = UIColor.white
     }
 
+    
+    /// Round the corners of this view
     func roundCorners() {
         var corners: UIRectCorner = []
         

@@ -135,8 +135,6 @@ class EditViewController: UIViewController {
     
     let beatTypes = [1, 2, 4, 8, 16, 32]
     
-
-    
     var currentClefButton: InputViewButton! {
         didSet {
             oldValue?.isToggled = false
@@ -166,7 +164,8 @@ class EditViewController: UIViewController {
     }
     
     // MARK: - Functions
-
+    
+    /// Called when the view is initially loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -177,7 +176,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Configure the current state of the range selection controls
+    /// Configure the current state of the range selection controls.
     func configureRangeControls() {
         guard stepperStart != nil && stepperEnd != nil && labelRange != nil else {
             return
@@ -196,7 +195,7 @@ class EditViewController: UIViewController {
     }
 
     
-    /// Configure the current state of the attribute controls
+    /// Configure the current state of the attribute controls.
     func configureAttributeControls() {
         guard labelKey != nil && labelTimeTop != nil && labelTimeBottom != nil
             && stepperKey != nil && stepperTimeTop != nil && stepperTimeBottom != nil
@@ -234,7 +233,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Configure the current state of the note controls
+    /// Configure the current state of the note controls.
     func configureNoteControls() {
         guard buttonIsRest != nil && buttonIsChord != nil && buttonFlatDouble != nil
             && buttonFlat != nil && buttonNatural != nil && buttonSharp != nil
@@ -313,7 +312,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Configure the current state of the note selection table view controls
+    /// Configure the current state of the note selection table view controls.
     func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -322,7 +321,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Enable or disable all buttons related to pitch
+    /// Enable or disable all buttons related to pitch.
     func setPitchButtons(enabled: Bool) {
         buttonNoteUp.isEnabled = enabled
         buttonNoteDown.isEnabled = enabled
@@ -336,8 +335,6 @@ class EditViewController: UIViewController {
         buttonSharpDouble.isEnabled = enabled
         
         buttonIsChord.isEnabled = enabled
-        
-        
         
         if !enabled {
             currentAccidentalButton = nil
@@ -380,11 +377,10 @@ class EditViewController: UIViewController {
             currentTypeButton?.isToggled = false
             currentDotButton?.isToggled = false
         }
-
     }
     
     
-    /// Return the note represented by the given SelectedNote object
+    /// Return the note represented by the given SelectedNote object.
     func getSelectedNote(_ selectedNote: SelectedNote) -> Note? {
         guard let measures = measures else {
             return nil
@@ -426,7 +422,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Shift the currently selected range by the given number of places
+    /// Shift the currently selected range by the given number of places.
     func moveCurrentRange(places: Int) {
         currentRange = BarRange(start: currentRange.start + places, end: currentRange.end + places)
     }
@@ -434,8 +430,7 @@ class EditViewController: UIViewController {
 
     // MARK: - Actions
     
-    
-    /// Called when any of the range selection controls are used
+    /// Called when any of the range selection controls are used.
     @IBAction func rangeChanged(_ sender: Any) {
         if let stepper = sender as? UIStepper {
             currentRange = BarRange(start: Int(stepperStart.value), end: Int(stepperEnd.value))
@@ -468,8 +463,7 @@ class EditViewController: UIViewController {
     
     // MARK: - Left Buttons
     
-    
-    /// Called when any button in the left panel is pressed
+    /// Called when any button in the left panel is pressed.
     @IBAction func leftButtonPressed(_ sender: InputViewButton) {
         guard let delegate = delegate else {
             return
@@ -509,7 +503,7 @@ class EditViewController: UIViewController {
     }
     
     
-    /// Called when an attribute changing button is pressed
+    /// Called when an attribute changing button is pressed.
     @IBAction func attributeButtonPressed(_ sender: Any) {
         guard let delegate = delegate else {
             return
@@ -630,7 +624,9 @@ class EditViewController: UIViewController {
 }
 
 
+/// Conform to the TableView delegate protocol.
 extension EditViewController: UITableViewDelegate {
+    /// Handle row selection for the note list.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedNote = rowToSelectedNote(row: indexPath.row) {
             self.selectedNote = selectedNote
@@ -641,6 +637,7 @@ extension EditViewController: UITableViewDelegate {
     }
     
     
+    /// Convert a row number to a SelectedNote object.
     func rowToSelectedNote(row: Int) -> SelectedNote? {
         guard let measures = measures else {
             return nil
@@ -661,23 +658,28 @@ extension EditViewController: UITableViewDelegate {
     }
     
     
+    /// Set the row height.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return buttonUp.frame.height * 0.9
     }
 }
 
 
+/// Conform to the TableView data source protocol.
 extension EditViewController: UITableViewDataSource {
+    /// Return the number of rows in the table
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
     
     
+    /// Return the number of sections in the table.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
+    /// Configure the table cell.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteTableViewCell
         
@@ -688,6 +690,12 @@ extension EditViewController: UITableViewDataSource {
         
         return cell
     }
+}
+
+
+class NoteTableViewCell: UITableViewCell {
+    @IBOutlet weak var labelPitch: UILabel!
+    @IBOutlet weak var labelType: UILabel!
 }
 
 
