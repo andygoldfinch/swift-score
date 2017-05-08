@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+    /// Display an alert to take input, using the given title and message. Passes the contents of the text field to the given closure.
     func presentInputAlert(title: String, message: String, onPress closure: @escaping (String?) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addTextField()

@@ -8,7 +8,7 @@
 
 import Foundation
 
-
+/// Conform to the Equatable protocol to allow comparison.
 extension Clef: Equatable {
     static func ==(lhs: Clef, rhs: Clef) -> Bool {
         return lhs.line == rhs.line
@@ -17,6 +17,7 @@ extension Clef: Equatable {
 }
 
 
+/// Conform to the Equatable protocol to allow comparison.
 extension Key: Equatable {
     static func ==(lhs: Key, rhs: Key) -> Bool {
         return lhs.fifths == rhs.fifths
@@ -24,6 +25,7 @@ extension Key: Equatable {
 }
 
 
+/// Conform to the Equatable protocol to allow comparison.
 extension Time: Equatable {
     static func ==(lhs: Time, rhs: Time) -> Bool {
         return lhs.beats == rhs.beats
@@ -31,6 +33,8 @@ extension Time: Equatable {
     }
 }
 
+
+/// Conform to the Equatable protocol to allow comparison.
 extension Attributes: Equatable {
     static func ==(lhs: Attributes, rhs: Attributes) -> Bool {
         return lhs.clef == rhs.clef
@@ -40,6 +44,8 @@ extension Attributes: Equatable {
     }
 }
 
+
+/// Provide a default Attributes object.
 extension Attributes {
     static var defaultAttributes: Attributes {
         var attributes = Attributes()
@@ -52,6 +58,8 @@ extension Attributes {
     }
 }
 
+
+/// Provide a default Measure object.
 extension Measure {
     static var defaultMeasure: Measure {
         var measure = Measure()
@@ -63,6 +71,8 @@ extension Measure {
     }
 }
 
+
+/// Provide a default ScorePartwise object.
 extension ScorePartwise {
     static var defaultScore: ScorePartwise {
         var score = ScorePartwise()
@@ -73,6 +83,8 @@ extension ScorePartwise {
     }
 }
 
+
+/// Conform to the CustomStringConvertible protocol to allow string representation.
 extension Pitch: CustomStringConvertible {
     var description: String {
         return "\(step.rawValue)\(octave ?? 4)\(alterToString(alter ?? 0))"
@@ -94,6 +106,8 @@ extension Pitch: CustomStringConvertible {
     }
 }
 
+
+/// Conform to the CustomStringConvertible protocol to allow string representation.
 extension NoteType: CustomStringConvertible {
     var description: String {
         switch self {
