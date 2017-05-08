@@ -16,6 +16,8 @@ class MainTableViewController: UITableViewController {
     let exampleFiles: [String] = ["Simple", "Saltarello", "Mozart-Trio", "Custom"]
     var files: [String] = []
     
+    
+    /// Called whenever the view is about to appear.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -24,18 +26,14 @@ class MainTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
+    
+    /// Return the number of sections in the table.
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    /// Return the number of rows in each section
+    
+    /// Return the number of rows in each section.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return exampleFiles.count
@@ -46,13 +44,13 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    /// Return the section name
+    /// Return the section name.
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section]
     }
 
     
-    /// Set the text for a specific cell
+    /// Set the text for a specific cell.
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell", for: indexPath) as! MainTableViewCell
 
@@ -67,13 +65,13 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    /// Return whether a row can be edited
+    /// Return whether a row can be edited.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section != 0
     }
     
     
-    /// Specifiy a custom delete button
+    /// Specifiy a custom delete button.
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let action: UITableViewRowAction = UITableViewRowAction(style: .default, title: "Delete", handler: delete)
         action.backgroundColor = UIColor(red: 168.0/255.0, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -82,7 +80,7 @@ class MainTableViewController: UITableViewController {
     }
     
     
-    /// Delete an item at the given index path
+    /// Delete an item at the given index path.
     func delete(action: UITableViewRowAction, itemAt indexPath: IndexPath) {
         DocumentHandler().deleteDocument(name: files[indexPath.row])
         files.remove(at: indexPath.row)
@@ -90,6 +88,7 @@ class MainTableViewController: UITableViewController {
     }
     
  
+    /// Called when the add score button is pressed.
     @IBAction func addScorePressed(_ sender: Any) {
         self.presentInputAlert(title: "Create New Score", message: "Enter score name:") {
             self.createScore(name: $0 ?? "")
@@ -97,6 +96,7 @@ class MainTableViewController: UITableViewController {
     }
     
     
+    /// Create an empty score with the given name.
     func createScore(name: String) {
         var processedName = name
         processedName = processedName.replacingOccurrences(of: " ", with: "")
@@ -112,12 +112,14 @@ class MainTableViewController: UITableViewController {
     }
     
     
+    /// Load the list of files using a DocumentHandler object.
     func loadFileList() {
         let documentHandler = DocumentHandler()
         files = documentHandler.getDocumentNames()
     }
 
 
+    /// Prepare for a segue.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? MainViewController {
             let documentHandler = DocumentHandler()
@@ -156,6 +158,8 @@ class MainTableViewController: UITableViewController {
             }
         }
     }
- 
+}
 
+class MainTableViewCell: UITableViewCell {
+    @IBOutlet weak var labelName: UILabel!    
 }

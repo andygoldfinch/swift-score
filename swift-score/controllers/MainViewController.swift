@@ -40,6 +40,8 @@ class MainViewController: UIViewController {
         }
     }
 
+    
+    /// Called when the view is initially loaded.
     override func viewDidLoad() {
         super.viewDidLoad()
         guard score != nil else {
@@ -57,11 +59,13 @@ class MainViewController: UIViewController {
     }
 
     
+    /// Called when the zoom stepper is used.
     @IBAction func stepperChanged(_ sender: UIStepper) {
         scoreView.changeSpacing(to: sender.value)
     }
     
     
+    /// Called when the toolbar show button is pressed.
     @IBAction func toolbarShowPressed(_ sender: Any) {
         toolbar.isHidden = !toolbar.isHidden
         let height = self.toolbar.frame.height
@@ -77,6 +81,7 @@ class MainViewController: UIViewController {
     }
     
     
+    /// Called when the save button is pressed.
     @IBAction func savePressed(_ sender: Any) {
         let score = scoreView.getScoreForSaving()
         
@@ -90,6 +95,7 @@ class MainViewController: UIViewController {
     }
     
     
+    /// Called when the add part button is pressed.
     @IBAction func addPartPressed(_ sender: Any) {
         var score: ScorePartwise = scoreView.getScoreForSaving() ?? ScorePartwise(partList: [], parts: [])
         let id = String(score.partList.count + 1)
@@ -101,9 +107,11 @@ class MainViewController: UIViewController {
     }
     
 
+    /// Called when the input type is chanegd.
     @IBAction func inputTypePressed(_ sender: Any) {
         isInEditMode = !isInEditMode
     }
+    
     
     /// Reload the file list on return to table view.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,20 +121,29 @@ class MainViewController: UIViewController {
     }
 }
 
+
+/// Conform to the ScoreView delegate protocol.
 extension MainViewController: ScoreViewDelegate {
+    /// Notify the delegate that the height was set.
     func heightWasSet(height: CGFloat) {
         self.scoreBottomConstraint.constant = height - self.scrollView.frame.height + 64
     }
     
+    
+    /// Notify the delegate that the width was set.
     func widthWasSet(width: CGFloat) {
         self.scoreView.frame.size = CGSize(width: width, height: self.scrollView.frame.height)
         self.scoreTrailingConstraint.constant = width - self.scrollView.frame.width + 64
     }
     
+    
+    /// Notify the delegate that the keyboard did hide.
     func keyboardDidHide() {
         scrollBottomConstraint.constant = 0
     }
     
+    
+    /// Notify the delegate that the keyboard did show.
     func keyboardDidShow(height: CGFloat) {
         scrollBottomConstraint.constant = height
     }

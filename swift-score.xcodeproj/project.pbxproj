@@ -37,7 +37,6 @@
 		469927341E65BED90013B200 /* Echigo-Jishi.xml in Resources */ = {isa = PBXBuildFile; fileRef = 469927331E65BED90013B200 /* Echigo-Jishi.xml */; };
 		469927371E65CADF0013B200 /* ScoreExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927361E65CADF0013B200 /* ScoreExtension.swift */; };
 		4699273A1E6885130013B200 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927391E6885130013B200 /* MainTableViewController.swift */; };
-		4699273C1E6885280013B200 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273B1E6885280013B200 /* MainTableViewCell.swift */; };
 		4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */; };
 		469927401E69AC8C0013B200 /* PositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699273F1E69AC8C0013B200 /* PositionCalculator.swift */; };
 		469927421E69AFF80013B200 /* AccidentalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469927411E69AFF80013B200 /* AccidentalManager.swift */; };
@@ -86,7 +85,6 @@
 		469927331E65BED90013B200 /* Echigo-Jishi.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Echigo-Jishi.xml"; sourceTree = "<group>"; };
 		469927361E65CADF0013B200 /* ScoreExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreExtension.swift; sourceTree = "<group>"; };
 		469927391E6885130013B200 /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		4699273B1E6885280013B200 /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		4699273D1E69A8C00013B200 /* ImageViewGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewGenerator.swift; sourceTree = "<group>"; };
 		4699273F1E69AC8C0013B200 /* PositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCalculator.swift; sourceTree = "<group>"; };
 		469927411E69AFF80013B200 /* AccidentalManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccidentalManager.swift; sourceTree = "<group>"; };
@@ -247,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				469927391E6885130013B200 /* MainTableViewController.swift */,
-				4699273B1E6885280013B200 /* MainTableViewCell.swift */,
 				462FBABF1E520A6000323987 /* MainViewController.swift */,
 			);
 			path = controllers;
@@ -428,7 +425,6 @@
 				468493681E8160330084A882 /* EditViewController.swift in Sources */,
 				464DFCCF1E7C1BEE006BCD78 /* ScoreWriter.swift in Sources */,
 				464DFCCB1E756DF1006BCD78 /* MeasureBalancer.swift in Sources */,
-				4699273C1E6885280013B200 /* MainTableViewCell.swift in Sources */,
 				4684936B1E818A6F0084A882 /* EditViewToolbar.swift in Sources */,
 				46B7AD081E9B89E40081D564 /* TutorialViewController.swift in Sources */,
 				4699273E1E69A8C00013B200 /* ImageViewGenerator.swift in Sources */,
