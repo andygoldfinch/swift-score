@@ -44,12 +44,16 @@ struct BarRange {
     }
 }
 
+
+/// Conform to the Equatable protocol to allow comparison.
 extension BarRange: Equatable {
     static func ==(lhs: BarRange, rhs: BarRange) -> Bool {
         return lhs.start == rhs.start && lhs.end == rhs.end
     }
 }
 
+
+/// Representation of the location of a sinle selected note.
 struct SelectedNote {
     var relativeBar: Int
     let note: Int
