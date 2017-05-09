@@ -11,6 +11,7 @@ import AEXML
 
 class ScoreBuilder {
     
+    /// Construct a partwise score object from the given AEXMLDocument.
     func partwise(xml: AEXMLDocument) -> ScorePartwise {
         var score: ScorePartwise = ScorePartwise()
         
@@ -31,7 +32,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a <part-list> element and return a list of ScorePart objects
+    /// Take a <part-list> element and return a list of ScorePart objects.
     private func makePartList(element: AEXMLElement) -> [ScorePart] {
         var partList: [ScorePart] = []
         let elements = element["score-part"].all
@@ -49,7 +50,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <part> element and return a Part
+    /// Take a single <part> element and return a Part.
     private func makePart(element: AEXMLElement) -> Part? {
         var part = Part()
         
@@ -70,7 +71,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <measure> element and return a Measure
+    /// Take a single <measure> element and return a Measure.
     private func makeMeasure(element: AEXMLElement) -> Measure? {
         guard !element.children.isEmpty else {
             return nil
@@ -97,7 +98,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <attributes> element and return an Attributes object
+    /// Take a single <attributes> element and return an Attributes object.
     private func makeAttributes(element: AEXMLElement) -> Attributes? {
         guard !element.children.isEmpty else {
             return nil
@@ -113,7 +114,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <key> element and return a Key
+    /// Take a single <key> element and return a Key.
     private func makeKey(element: AEXMLElement) -> Key? {
         guard !element.children.isEmpty else {
             return nil
@@ -126,7 +127,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <time> element and return a Time
+    /// Take a single <time> element and return a Time.
     private func makeTime(element: AEXMLElement) -> Time? {
         guard !element.children.isEmpty else {
             return nil
@@ -140,7 +141,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <clef> element and return a Clef
+    /// Take a single <clef> element and return a Clef.
     private func makeClef(element: AEXMLElement) -> Clef? {
         guard !element.children.isEmpty else {
             return nil
@@ -154,7 +155,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <note> element and return a Note
+    /// Take a single <note> element and return a Note.
     private func makeNote(element: AEXMLElement) -> Note? {
         guard !element.children.isEmpty else {
             return nil
@@ -171,7 +172,7 @@ class ScoreBuilder {
     }
     
     
-    /// Take a single <pitch> element and return a Pitch
+    /// Take a single <pitch> element and return a Pitch.
     private func makePitch(element: AEXMLElement) -> Pitch? {
         guard !element.children.isEmpty else {
             return nil

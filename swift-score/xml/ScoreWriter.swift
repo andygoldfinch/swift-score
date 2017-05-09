@@ -11,7 +11,7 @@ import AEXML
 
 class ScoreWriter {
    
-    /// Convert a ScorPartwise into an AEXMLDocument
+    /// Convert a ScorPartwise into an AEXMLDocument.
     func makeDocument(score: ScorePartwise) -> AEXMLDocument {
         let doc = AEXMLDocument()
         
@@ -27,7 +27,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a [ScorePart] and return a <part-list> element
+    /// Take a [ScorePart] and return a <part-list> element.
     private func makePartList(_ partList: [ScorePart]) -> AEXMLElement {
         let element = AEXMLElement(name: "part-list")
         
@@ -39,7 +39,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a ScorePart and return a <socre-part> element
+    /// Take a ScorePart and return a <socre-part> element.
     private func makeScorePart(_ part: ScorePart) -> AEXMLElement {
         let element = AEXMLElement(name: "score-part")
         
@@ -50,7 +50,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a Part and return a <part> element
+    /// Take a Part and return a <part> element.
     private func makePart(_ part: Part) -> AEXMLElement {
         let element = AEXMLElement(name: "part")
         
@@ -64,7 +64,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a Measure and return a <measure> element
+    /// Take a Measure and return a <measure> element.
     private func makeMeasure(_ measure: Measure) -> AEXMLElement {
         let element = AEXMLElement(name: "measure")
         
@@ -82,7 +82,7 @@ class ScoreWriter {
     }
     
     
-    /// Take an Attributes and return an <attributes> element
+    /// Take an Attributes and return an <attributes> element.
     private func makeAttributes(_ attributes: Attributes?) -> AEXMLElement? {
         guard let attributes = attributes else {
             return nil
@@ -120,7 +120,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a Note and return a <note> element
+    /// Take a Note and return a <note> element.
     private func makeNote(_ note: Note) -> AEXMLElement {
         let element = AEXMLElement(name: "note")
         
@@ -148,7 +148,7 @@ class ScoreWriter {
     }
     
     
-    /// Take a Pitch and return a <pitch> element
+    /// Take a Pitch and return a <pitch> element.
     private func makePitch(_ pitch: Pitch) -> AEXMLElement {
         let element = AEXMLElement(name: "pitch")
         
