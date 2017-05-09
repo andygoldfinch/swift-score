@@ -12,6 +12,7 @@ class PositionCalculator {
     let spacing: CGFloat
     let midY: CGFloat
     
+    /// Initialize the object with the given spacing and middle line values.
     init(spacing: CGFloat, midY: CGFloat) {
         self.spacing = spacing
         self.midY = midY

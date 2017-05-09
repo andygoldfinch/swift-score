@@ -176,13 +176,17 @@ class ScoreView: UIView {
 }
 
 
+/// Conform to the LineView delegate protocol.
 extension ScoreView: LineViewDelegate {
+    /// Called when the keyboard is hidden
     func keyboardDidHide() {
         if let delegate = delegate {
             delegate.keyboardDidHide()
         }
     }
     
+    
+    /// Called when the keyboard did show, passing the height of the keyboard.
     func keyboardDidShow(height: CGFloat) {
         if let delegate = delegate {
             delegate.keyboardDidShow(height: height)

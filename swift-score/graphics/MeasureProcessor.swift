@@ -27,6 +27,7 @@ class MeasureProcessor {
         return processedMeasures
     }
     
+    
     /// Return an updated attributes object.
     func update(previousAttributes: Attributes, newAttributes: Attributes?) -> Attributes {
         guard let new = newAttributes else {

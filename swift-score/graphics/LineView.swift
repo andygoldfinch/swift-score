@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 
 /// This class draws a single line of music, represented as a list of measures.
-/// Measures should be added one at a time, and the add method will return false when there is no space left on this line.
 class LineView: UIView {
     var noteInputViewController: NoteInputViewController?
     var editViewControler: EditViewController?
@@ -71,6 +70,7 @@ class LineView: UIView {
             self.setNeedsDisplay()
         }
     }
+    
     var previousBarEnds: [CGFloat]?
     var tappedX: CGFloat? {
         didSet {
@@ -80,6 +80,8 @@ class LineView: UIView {
         }
     }
     
+    
+    /// Called to draw the view, contains the main rendering loop.
     override func draw(_ rect: CGRect) {
         if measures.isEmpty {
             return
@@ -183,7 +185,6 @@ class LineView: UIView {
                 }
                 
                 // Notes
-                
                 let position = isChord ?
                     positionCalculator.getHeadPosition(note: note, clef: currentClef) :
                     positionCalculator.getNotePosition(note: note, clef: currentClef)
@@ -268,13 +269,13 @@ class LineView: UIView {
         
         let highlightFrame = CGRect(x: startX, y: y, width: width, height: height)
         let view = UIView(frame: highlightFrame)
-        //view.backgroundColor = UIColor(red: 0.8, green: 0.0, blue: 0.0, alpha: 0.13)
         view.backgroundColor = UIColor(white: 0.5, alpha: 0.18)
         self.addSubview(view)
         self.sendSubview(toBack: view)
     }
     
     
+    /// Add a note to the line, including automatically balancing bars.
     func addNote(note: Note) {
         guard !note.chord else {
             let lastIndex = measures.count - 1
@@ -308,6 +309,7 @@ class LineView: UIView {
     }
     
     
+    /// Called when touches begin on the view.
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if !self.isFirstResponder {
             self.becomeFirstResponder()
@@ -318,12 +320,14 @@ class LineView: UIView {
     }
     
     
+    /// Deselect the range when first responder status is resigned.
     @discardableResult override func resignFirstResponder() -> Bool {
         self.selectedRange = nil
         return super.resignFirstResponder()
     }
     
     
+    /// Convert an x coordinate to a BarRange object.
     func xToRange(tappedX: CGFloat, previousBarlines: [CGFloat]) -> BarRange {
         for i in 0..<previousBarlines.count {
             if tappedX > previousBarlines[i] {
@@ -481,11 +485,14 @@ class LineView: UIView {
 
 /// Conform to the NoteInputDelegate protocol
 extension LineView: NoteInputDelegate {
+    /// Called when a note is typed on the edit keyboard.
     func selectedInput(note: Note) {
         addNote(note: note)
         setNeedsDisplay()
     }
     
+    
+    /// Called when the keyboard close button is tapped.
     func closeTapped() {
         self.resignFirstResponder()
         selectedRange = nil
@@ -494,6 +501,8 @@ extension LineView: NoteInputDelegate {
         }
     }
     
+    
+    /// Called when the keyboard backspace button is tapped.
     func backspaceTapped() {
         if !measures.isEmpty {
             if  !measures[measures.count-1].notes.isEmpty {
@@ -510,10 +519,13 @@ extension LineView: NoteInputDelegate {
 
 /// Conform to the EditDelegate protocol
 extension LineView: EditDelegate {
+    /// Called when a note is to be changed.
     func noteChanged(selectedNote: SelectedNote, note: Note) {
         changeNote(selectedNote: selectedNote, note: note)
     }
 
+    
+    /// Called when the attributes are to be changed.
     internal func attributesChanged(change: AttributeChange) {
         guard let range = selectedRange else {
             print("Error: no range selected")
@@ -530,10 +542,14 @@ extension LineView: EditDelegate {
         }
     }
 
+    
+    /// Called when a range is selected or the current range changes.
     func rangeSelected(range: BarRange) {
         self.selectedRange = range
     }
     
+    
+    /// Called when the current range is to be transformed.
     func rangeTransformed(transformation: RangeTransformation) {
         guard let range = selectedRange else {
             print("Error: no range selected")
@@ -552,6 +568,7 @@ extension LineView: EditDelegate {
         }
     }
 }
+
 
 protocol LineViewDelegate {
     func keyboardDidShow(height: CGFloat)

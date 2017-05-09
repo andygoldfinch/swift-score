@@ -12,9 +12,11 @@ import AVFoundation
 class ImageViewGenerator {
     let spacing: CGFloat
     
+    /// Initialise with the given spacing value.
     init(spacing: CGFloat) {
         self.spacing = spacing
     }
+    
     
     /// Return an image representing the given note.
     func makeNoteView(note: Note, x: CGFloat, y: CGFloat) -> UIImageView {
@@ -83,7 +85,7 @@ class ImageViewGenerator {
     }
     
     
-    /// Return an image view representing the given clef
+    /// Return an image view representing the given clef.
     func makeClefView(clef: Clef, x: CGFloat, y: CGFloat) -> UIImageView {
         let view = UIImageView()
         let height = getClefHeight(clef: clef)
@@ -109,7 +111,7 @@ class ImageViewGenerator {
         let font = UIFont(name: "BodoniSvtyTwoITCTT-Bold", size: 2.6 * spacing)
         let style = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         style.alignment = NSTextAlignment.center
-        let attributes = [NSFontAttributeName: font, NSParagraphStyleAttributeName: style]
+        let attributes: [String: Any] = [NSFontAttributeName: font as Any, NSParagraphStyleAttributeName: style]
         
         let splitRect = rect.divided(atDistance: rect.height/2.0, from: .minYEdge)
         var topRect = splitRect.slice
@@ -141,7 +143,7 @@ class ImageViewGenerator {
     }
 
 
-    /// Calculate the height for the given clef
+    /// Calculate the height for the given clef.
     private func getClefHeight(clef: Clef) -> CGFloat {
         switch clef.sign.lowercased() {
         case "g":
@@ -154,7 +156,7 @@ class ImageViewGenerator {
     }
 
 
-    /// Return an image for the given note
+    /// Return an image for the given note.
     private func getNoteImage(for note: Note) -> UIImage? {
         var name: String!
         if let type = note.type {
@@ -194,7 +196,7 @@ class ImageViewGenerator {
     }
     
     
-    /// Return an image for the head of the given note
+    /// Return an image for the head of the given note.
     private func getHeadImage(for note: Note) -> UIImage? {
         var name: String!
         if let type = note.type {

@@ -11,9 +11,11 @@ import UIKit
 class PathGenerator {
     let spacing: CGFloat
     
+    /// Initialise the object with the given spacing value.
     init(spacing: CGFloat) {
         self.spacing = spacing
     }
+    
     
     /// Make a UIBezierPath representing the given ledger lines object.
     func makeLedgerLines(lines: LedgerLines?, type: NoteType, x: CGFloat, midY: CGFloat) -> UIBezierPath {
